@@ -1,0 +1,65 @@
+import { Button, Link, Toolbar, Typography } from '@material-ui/core';
+
+import PropTypes from 'prop-types';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    background: theme.palette.beige2,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  toolbarTitle: {
+    flex: 1,
+    fontWeight: 'bold',
+    color: theme.palette.titleColor,
+    paddingLeft: theme.spacing(6)
+  },
+  toolbarButton: {
+    textAlign: 'left',
+    marginRight: theme.spacing(6),
+  },
+}));
+
+
+export default function Header(props) {
+  const classes = useStyles();
+  const { headerSections, title } = props;
+
+  // TODO:: this needs to be responsive -- probably use grid
+  return (
+    <React.Fragment>
+      <Toolbar className={classes.toolbar}>
+        <Typography
+          component='h2'
+          variant="h5"
+          color="inherit"
+          align='left'
+          className={classes.toolbarTitle}
+        >
+          {title}
+        </Typography>
+        <div>
+          {headerSections.map((section) => (
+            <Button size='medium' className={classes.toolbarButton} key={section.title}>
+              <Link
+                color='inherit'
+                key={section.title}
+                href={section.url}
+                style={{ textDecoration: 'none' }}
+              >
+                {section.title}
+              </Link>
+            </Button>
+          ))}
+        </div>
+      </Toolbar>
+    </React.Fragment >
+  );
+}
+
+Header.propTypes = {
+  headerSections: PropTypes.array,
+  title: PropTypes.string,
+};
