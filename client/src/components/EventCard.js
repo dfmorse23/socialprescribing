@@ -6,9 +6,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    display: 'flex',
-  },
   cardDetails: {
     flex: 1,
   },
@@ -27,6 +24,25 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginLeft: theme.spacing(3),
     marginTop: theme.spacing(1),
+  },
+  fullHeightCard: {
+    height: '100%',
+  },
+  spacedCardActionArea: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+  },
+  eventCardTitle: {
+    '&:last-child': {
+      paddingBottom: 0,
+      paddingLeft: theme.spacing(1),
+    },
+  },
+  eventCardTag: {
+    paddingTop: 0,
   }
 }));
 
@@ -37,13 +53,17 @@ export default function EventCard(props) {
 
   return (
     <Grid item xs={12} md={3}>
-      <Card>
-        <CardActionArea component="a" href={event.url} rel="noopener">
-          <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
-          <CardContent>
-            <Typography variant="body1" className={classes.cardTitleText}>
-              {event.title}
-            </Typography>
+      <Card className={classes.fullHeightCard}>
+        <CardActionArea component="a" href={event.url} rel="noopener" className={classes.spacedCardActionArea}>
+          <div>
+            <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
+            <CardContent className={classes.eventCardTitle}>
+              <Typography variant="body1" className={classes.cardTitleText}>
+                {event.title}
+              </Typography>
+            </CardContent>
+          </div>
+          <CardContent className={classes.eventCardTag}>
             <Button variant="contained" size="small" disabled className={classes.cardSubText}>
               {event.tag}
             </Button>
