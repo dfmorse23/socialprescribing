@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Header from './Header';
 import React from 'react';
 import SearchWithGraphic from './SearchWithGraphic';
+import get_dummy_data from './get_dummy_data';
 
 const headerSections = [
   { title: 'About', url: '#' },
@@ -35,26 +36,11 @@ const filterBarSections = [
 const title = {
   title: 'Social Prescribing for Self-care',
   description: 'Search 100+ curated links and resources for social prescriptions in your neighborhood',
-  image: 'https://source.unsplash.com/random',
+  image: 'https://source.unsplash.com/random/?sig=123',
   imgText: 'main image description',
 };
 
-const events = [
-  {
-    title: 'Reddit',
-    url: 'https://www.reddit.com/r/legaladvice',
-    tag: 'legal',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-  {
-    title: 'Find it yourself',
-    url: 'https://google.ca',
-    tag: 'outdoors',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-];
+const events = get_dummy_data();
 
 export default function LandingPage() {
 
@@ -66,17 +52,11 @@ export default function LandingPage() {
         <main>
           <SearchWithGraphic title={title} />
           <FilterBar filters={filterBarSections} />
-          <Grid container spacing={4}>
+          <Grid container spacing={4} alignItems="stretch">
             {events.map((event) => (
               <EventCard key={event.title} event={event} />
             ))}
-
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
+            {/* 
             {events.map((event) => (
               <EventCard key={event.title} event={event} />
             ))}
@@ -86,6 +66,12 @@ export default function LandingPage() {
             {events.map((event) => (
               <EventCard key={event.title} event={event} />
             ))}
+            {events.map((event) => (
+              <EventCard key={event.title} event={event} />
+            ))}
+            {events.map((event) => (
+              <EventCard key={event.title} event={event} />
+            ))} */}
 
 
           </Grid>
