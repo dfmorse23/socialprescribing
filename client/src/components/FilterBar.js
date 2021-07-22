@@ -1,11 +1,10 @@
+import { Divider, Toolbar } from '@material-ui/core'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Toolbar } from '@material-ui/core'
 import { alpha } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   toolbarSecondary: {
@@ -39,28 +38,59 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: theme.shape.borderRadius,
     },
   },
+  divider: {
+    margin: theme.spacing(0.5, 1.5),
+  },
+
 }));
 
 export default function FilterBar(props) {
   const classes = useStyles();
-  const { filters } = props;
-  const [selections, setSelections] = useState(() => []);
-
-  const handleSelection = (event, newSelections) => {
-    setSelections(newSelections);
-  }
+  const { filterBarSections, filterSelections, handleSelection } = props;
 
   return (
     <Toolbar variant="regular" disableGutters={true} className={classes.toolbarSecondary}>
-      <ToggleButtonGroup value={selections} onChange={handleSelection} aria-label="selections" size="medium" classes={{ grouped: classes.buttonGroup }}>
-        {filters.map((filter) => (
-          <ToggleButton aria-label={filter.title} value={filter.title} className={classes.buttonColor} key={filter.title}>{filter.title}</ToggleButton>
+      <ToggleButtonGroup
+        value={filterSelections}
+        onChange={handleSelection}
+        aria-label="filterSelections"
+        size="medium"
+        classes={{ grouped: classes.buttonGroup }}
+      >
+        <ToggleButton
+          aria-label={filterBarSections.all}
+          value={filterBarSections.all}
+          className={classes.buttonColor}
+          key={filterBarSections.all}
+        >
+          {filterBarSections.all}
+        </ToggleButton>
+        <Divider flexItem orientation="vertical" className={classes.divider} />
+        {filterBarSections.filters.map((filter) => (
+          <ToggleButton
+            aria-label={filter}
+            value={filter}
+            className={classes.buttonColor}
+            key={filter}>
+            {filter}
+          </ToggleButton>
         ))}
+        <Divider flexItem orientation="vertical" className={classes.divider} />
+        <ToggleButton
+          aria-label={filterBarSections.favorites}
+          value={filterBarSections.favorites}
+          className={classes.buttonColor}
+          key={filterBarSections.favorites}
+        >
+          {filterBarSections.favorites}
+        </ToggleButton>
       </ToggleButtonGroup>
     </Toolbar >
   );
 }
 
 FilterBar.propTypes = {
-  filters: PropTypes.array,
+  filterBarSections: PropTypes.object,
+  filterSelections: PropTypes.arrayOf(PropTypes.string),
+  handleSelection: PropTypes.func
 };
