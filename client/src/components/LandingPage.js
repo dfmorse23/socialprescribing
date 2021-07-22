@@ -56,24 +56,6 @@ export default function LandingPage() {
             {events.map((event) => (
               <EventCard key={event.title} event={event} />
             ))}
-            {/* 
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))} */}
-
-
           </Grid>
         </main>
       </Container>
