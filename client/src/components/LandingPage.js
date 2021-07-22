@@ -1,12 +1,9 @@
-import { Container, CssBaseline, Grid } from '@material-ui/core';
+import { Container, CssBaseline } from '@material-ui/core';
 
-import EventCard from './EventCard';
-import FilterBar from './FilterBar';
+import EventsWithSelectors from './EventsWithSelectors';
 import Footer from './Footer';
 import Header from './Header';
 import React from 'react';
-import SearchWithGraphic from './SearchWithGraphic';
-import get_dummy_data from './get_dummy_data';
 
 const headerSections = [
   { title: 'About', url: '#' },
@@ -16,22 +13,24 @@ const headerSections = [
   { title: 'Sign In', url: '#' },
 ]
 
-const filterBarSections = [
-  { title: 'All', url: '#' },
-  { title: 'Volunteering', url: '#' },
-  { title: 'Nature', url: '#' },
-  { title: 'Food', url: '#' },
-  { title: 'Housing', url: '#' },
-  { title: 'Goods', url: '#' },
-  { title: 'Transit', url: '#' },
-  { title: 'Health', url: '#' },
-  { title: 'Money', url: '#' },
-  { title: 'Care', url: '#' },
-  { title: 'Education', url: '#' },
-  { title: 'Work', url: '#' },
-  { title: 'Legal', url: '#' },
-  { title: 'My Favorites', url: '#' },
-];
+const filterBarSections = {
+  all: 'All',
+  favorites: 'My Favorites',
+  filters: [
+    'Volunteering',
+    'Nature',
+    'Food',
+    'Housing',
+    'Goods',
+    'Transit',
+    'Health',
+    'Money',
+    'Care',
+    'Education',
+    'Work',
+    'Legal',
+  ],
+};
 
 const title = {
   title: 'Social Prescribing for Self-care',
@@ -40,7 +39,6 @@ const title = {
   imgText: 'main image description',
 };
 
-const events = get_dummy_data();
 
 export default function LandingPage() {
 
@@ -50,13 +48,7 @@ export default function LandingPage() {
       <Container maxWidth="lg" >
         <Header title="social prescribing." headerSections={headerSections} />
         <main>
-          <SearchWithGraphic title={title} />
-          <FilterBar filters={filterBarSections} />
-          <Grid container spacing={4} alignItems="stretch">
-            {events.map((event) => (
-              <EventCard key={event.title} event={event} />
-            ))}
-          </Grid>
+          <EventsWithSelectors title={title} filterBarSections={filterBarSections} />
         </main>
       </Container>
       <Footer title="social prescribing." description="Fill your social prescription today!" />

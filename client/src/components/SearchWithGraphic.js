@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchWithGraphic(props) {
   const classes = useStyles();
-  const { title } = props;
+  const { title, handleSearch } = props;
   const [searchValue, setSearchValue] = useState('');
 
   // TODO:: use the search bar onRequestSearch to populate results
@@ -89,7 +89,7 @@ export default function SearchWithGraphic(props) {
           value={searchValue}
           placeholder="Search ZIP code..."
           onChange={(newSearchValue) => setSearchValue(newSearchValue)}
-        // onRequestSearch={() => doSomethingWith(this.state.value)}
+          onRequestSearch={() => handleSearch(searchValue)}
         />
       </CardContent>
     </Card >
@@ -98,4 +98,5 @@ export default function SearchWithGraphic(props) {
 
 SearchWithGraphic.propTypes = {
   title: PropTypes.object,
+  handleSearch: PropTypes.func,
 };
