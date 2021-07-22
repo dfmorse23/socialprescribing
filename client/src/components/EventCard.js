@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
 
 import PropTypes from 'prop-types';
@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
   },
   cardMedia: {
     padding: theme.spacing(3),
-    maxHeight: 200,
+    paddingBottom: theme.spacing(2),
+    maxHeight: 175,
     borderRadius: 30,
   },
   cardTitleText: {
     fontWeight: 'bold',
     paddingLeft: theme.spacing(3),
-    marginTop: -theme.spacing(3),
   },
   cardSubText: {
     textTransform: 'none',
@@ -37,12 +37,19 @@ const useStyles = makeStyles((theme) => ({
   },
   eventCardTitle: {
     '&:last-child': {
+      paddingTop: 0,
       paddingBottom: 0,
       paddingLeft: theme.spacing(1),
     },
   },
   eventCardTag: {
     paddingTop: 0,
+  },
+  customBox: {
+    display: "-webkit-box",
+    boxOrient: "vertical",
+    lineClamp: 2,
+    overflow: "hidden"
   }
 }));
 
@@ -58,9 +65,14 @@ export default function EventCard(props) {
           <div>
             <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
             <CardContent className={classes.eventCardTitle}>
-              <Typography variant="body1" className={classes.cardTitleText}>
-                {event.title}
-              </Typography>
+              <Box
+                component="div"
+                classes={{ root: classes.customBox }}
+              >
+                <Typography variant="body1" className={classes.cardTitleText}>
+                  {event.title}
+                </Typography>
+              </Box>
             </CardContent>
           </div>
           <CardContent className={classes.eventCardTag}>

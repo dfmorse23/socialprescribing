@@ -48,7 +48,7 @@ export default function get_dummy_data() {
     image: 'https://source.unsplash.com/random',
   },
   {
-    title: 'Find it yourself',
+    title: 'this is a really long post so make sure it doesn\'t go too long',
     url: 'https://google.ca',
     tag: 'outdoors',
     image: 'https://source.unsplash.com/random',
