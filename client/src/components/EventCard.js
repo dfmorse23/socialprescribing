@@ -61,7 +61,7 @@ export default function EventCard(props) {
   return (
     <Grid item xs={12} md={3}>
       <Card className={classes.fullHeightCard}>
-        <CardActionArea component="a" href={event.url} rel="noopener" className={classes.spacedCardActionArea}>
+        <CardActionArea component="a" href={event.url} target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
           <div>
             <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
             <CardContent className={classes.eventCardTitle}>
