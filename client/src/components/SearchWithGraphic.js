@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     position: 'relative',
     color: theme.palette.common.white,
-    backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: 'rgba(0,0,0,.25)',
+    backgroundColor: 'rgba(0,0,0,.3)',
   },
   titleGrouping: {
     position: 'relative',

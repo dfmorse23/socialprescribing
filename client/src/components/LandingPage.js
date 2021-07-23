@@ -35,7 +35,7 @@ const filterBarSections = {
 const title = {
   title: 'Social Prescribing for Self-care',
   description: 'Search 100+ curated links and resources for social prescriptions in your neighborhood',
-  image: 'https://source.unsplash.com/random/?sig=123',
+  image: 'https://source.unsplash.com/tvc5imO5pXk/2400x1275',
   imgText: 'main image description',
 };
 
