@@ -1,0 +1,687 @@
+[
+  {
+    "categories": "Adoption & Foster Care",
+    "categories_link": "https://www.findhelp.org/care/adoption-%26-foster-care?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Animal Welfare",
+    "categories_link": "https://www.findhelp.org/care/animal-welfare?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Bereavement",
+    "categories_link": "https://www.findhelp.org/care/bereavement?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Burial & Funeral Help",
+    "categories_link": "https://www.findhelp.org/care/burial-%26-funeral-help?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Daytime Care",
+    "categories_link": "https://www.findhelp.org/care/daytime-care?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "End-Of-Life Care",
+    "categories_link": "https://www.findhelp.org/care/end-of-life-care?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Help Pay For Childcare",
+    "categories_link": "https://www.findhelp.org/care/help-pay-for-childcare?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Hospice",
+    "categories_link": "https://www.findhelp.org/care/hospice?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "In-Home Support",
+    "categories_link": "https://www.findhelp.org/care/in-home-support?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Physical Safety",
+    "categories_link": "https://www.findhelp.org/care/physical-safety?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Residential Care",
+    "categories_link": "https://www.findhelp.org/care/residential-care?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Support Network",
+    "categories_link": "https://www.findhelp.org/care/support-network?postal=94016",
+    "tag": "care"
+  },
+  {
+    "categories": "Books",
+    "categories_link": "https://www.findhelp.org/education/books?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Daily Life Skills",
+    "categories_link": "https://www.findhelp.org/education/daily-life-skills?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Help Find School",
+    "categories_link": "https://www.findhelp.org/education/help-find-school?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Help Pay For School",
+    "categories_link": "https://www.findhelp.org/education/help-pay-for-school?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "More Education",
+    "categories_link": "https://www.findhelp.org/education/more-education?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Parenting Education",
+    "categories_link": "https://www.findhelp.org/education/parenting-education?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Preschool",
+    "categories_link": "https://www.findhelp.org/education/preschool?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Screening & Exams",
+    "categories_link": "https://www.findhelp.org/education/screening-%26-exams?postal=94016",
+    "tag": "education"
+  },
+  {
+    "categories": "Community Gardens",
+    "categories_link": "https://www.findhelp.org/food/community-gardens?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Emergency Food",
+    "categories_link": "https://www.findhelp.org/food/emergency-food?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Food Delivery",
+    "categories_link": "https://www.findhelp.org/food/food-delivery?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Food Pantry",
+    "categories_link": "https://www.findhelp.org/food/food-pantry?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Help Pay For Food",
+    "categories_link": "https://www.findhelp.org/food/help-pay-for-food?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Meals",
+    "categories_link": "https://www.findhelp.org/food/meals?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Nutrition Education",
+    "categories_link": "https://www.findhelp.org/food/nutrition-education?postal=94016",
+    "tag": "food"
+  },
+  {
+    "categories": "Assistive Technology",
+    "categories_link": "https://www.findhelp.org/goods/assistive-technology?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Baby Clothes",
+    "categories_link": "https://www.findhelp.org/goods/baby-clothes?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Baby Supplies",
+    "categories_link": "https://www.findhelp.org/goods/baby-supplies?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Blankets & Fans",
+    "categories_link": "https://www.findhelp.org/goods/blankets-%26-fans?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Clothes For School",
+    "categories_link": "https://www.findhelp.org/goods/clothes-for-school?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Clothes For Work",
+    "categories_link": "https://www.findhelp.org/goods/clothes-for-work?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Clothing Vouchers",
+    "categories_link": "https://www.findhelp.org/goods/clothing-vouchers?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Clothing",
+    "categories_link": "https://www.findhelp.org/goods/clothing?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Diapers & Formula",
+    "categories_link": "https://www.findhelp.org/goods/diapers-%26-formula?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Furniture",
+    "categories_link": "https://www.findhelp.org/goods/furniture?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Home Fuels",
+    "categories_link": "https://www.findhelp.org/goods/home-fuels?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Home Goods",
+    "categories_link": "https://www.findhelp.org/goods/home-goods?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Personal Care Items",
+    "categories_link": "https://www.findhelp.org/goods/personal-care-items?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Personal Safety",
+    "categories_link": "https://www.findhelp.org/goods/personal-safety?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Supplies For School",
+    "categories_link": "https://www.findhelp.org/goods/supplies-for-school?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "Toys & Gifts",
+    "categories_link": "https://www.findhelp.org/goods/toys-%26-gifts?postal=94016",
+    "tag": "goods"
+  },
+  {
+    "categories": "12-Step",
+    "categories_link": "https://www.findhelp.org/health/12-step?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Addiction & Recovery",
+    "categories_link": "https://www.findhelp.org/health/addiction-%26-recovery?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Alternative Medicine",
+    "categories_link": "https://www.findhelp.org/health/alternative-medicine?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Anger Management",
+    "categories_link": "https://www.findhelp.org/health/anger-management?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Birth Control",
+    "categories_link": "https://www.findhelp.org/health/birth-control?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Checkup & Test",
+    "categories_link": "https://www.findhelp.org/health/checkup-%26-test?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Counseling",
+    "categories_link": "https://www.findhelp.org/health/counseling?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Dental Care",
+    "categories_link": "https://www.findhelp.org/health/dental-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Detox",
+    "categories_link": "https://www.findhelp.org/health/detox?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Disability Benefits",
+    "categories_link": "https://www.findhelp.org/health/disability-benefits?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Disability Screening",
+    "categories_link": "https://www.findhelp.org/health/disability-screening?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Discounted Healthcare",
+    "categories_link": "https://www.findhelp.org/health/discounted-healthcare?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Disease Management",
+    "categories_link": "https://www.findhelp.org/health/disease-management?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Disease Screening",
+    "categories_link": "https://www.findhelp.org/health/disease-screening?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Drug Testing",
+    "categories_link": "https://www.findhelp.org/health/drug-testing?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Exercise & Fitness",
+    "categories_link": "https://www.findhelp.org/health/exercise-%26-fitness?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Family Counseling",
+    "categories_link": "https://www.findhelp.org/health/family-counseling?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Family Planning",
+    "categories_link": "https://www.findhelp.org/health/family-planning?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Fertility",
+    "categories_link": "https://www.findhelp.org/health/fertility?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Group Therapy",
+    "categories_link": "https://www.findhelp.org/health/group-therapy?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Health Education",
+    "categories_link": "https://www.findhelp.org/health/health-education?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Health Insurance",
+    "categories_link": "https://www.findhelp.org/health/health-insurance?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Hearing Tests",
+    "categories_link": "https://www.findhelp.org/health/hearing-tests?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Help Pay For Healthcare",
+    "categories_link": "https://www.findhelp.org/health/help-pay-for-healthcare?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Hospital Treatment",
+    "categories_link": "https://www.findhelp.org/health/hospital-treatment?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Individual Counseling",
+    "categories_link": "https://www.findhelp.org/health/individual-counseling?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Maternity Care",
+    "categories_link": "https://www.findhelp.org/health/maternity-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Medical Care",
+    "categories_link": "https://www.findhelp.org/health/medical-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Medical Supplies",
+    "categories_link": "https://www.findhelp.org/health/medical-supplies?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Medications For Mental Health",
+    "categories_link": "https://www.findhelp.org/health/medications-for-mental-health?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Mental Health Care",
+    "categories_link": "https://www.findhelp.org/health/mental-health-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Mental Health Evaluation",
+    "categories_link": "https://www.findhelp.org/health/mental-health-evaluation?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Outpatient Treatment",
+    "categories_link": "https://www.findhelp.org/health/outpatient-treatment?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Pain Management",
+    "categories_link": "https://www.findhelp.org/health/pain-management?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Personal Hygiene",
+    "categories_link": "https://www.findhelp.org/health/personal-hygiene?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Physical Therapy",
+    "categories_link": "https://www.findhelp.org/health/physical-therapy?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Postnatal Care",
+    "categories_link": "https://www.findhelp.org/health/postnatal-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Pregnancy Tests",
+    "categories_link": "https://www.findhelp.org/health/pregnancy-tests?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Prescription Assistance",
+    "categories_link": "https://www.findhelp.org/health/prescription-assistance?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Prevent & Treat",
+    "categories_link": "https://www.findhelp.org/health/prevent-%26-treat?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Primary Care",
+    "categories_link": "https://www.findhelp.org/health/primary-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Prostheses",
+    "categories_link": "https://www.findhelp.org/health/prostheses?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Psychiatric Emergency Services",
+    "categories_link": "https://www.findhelp.org/health/psychiatric-emergency-services?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Residential Treatment",
+    "categories_link": "https://www.findhelp.org/health/residential-treatment?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Sex Education",
+    "categories_link": "https://www.findhelp.org/health/sex-education?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Skilled Nursing",
+    "categories_link": "https://www.findhelp.org/health/skilled-nursing?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Specialized Therapy",
+    "categories_link": "https://www.findhelp.org/health/specialized-therapy?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Substance Abuse Counseling",
+    "categories_link": "https://www.findhelp.org/health/substance-abuse-counseling?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Understand Disability",
+    "categories_link": "https://www.findhelp.org/health/understand-disability?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Understand Mental Health",
+    "categories_link": "https://www.findhelp.org/health/understand-mental-health?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Vaccinations",
+    "categories_link": "https://www.findhelp.org/health/vaccinations?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Vision Care",
+    "categories_link": "https://www.findhelp.org/health/vision-care?postal=94016",
+    "tag": "health"
+  },
+  {
+    "categories": "Assisted Living",
+    "categories_link": "https://www.findhelp.org/housing/assisted-living?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Efficiency Upgrades",
+    "categories_link": "https://www.findhelp.org/housing/efficiency-upgrades?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Foreclosure Counseling",
+    "categories_link": "https://www.findhelp.org/housing/foreclosure-counseling?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Health & Safety",
+    "categories_link": "https://www.findhelp.org/housing/health-%26-safety?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Help Find Housing",
+    "categories_link": "https://www.findhelp.org/housing/help-find-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Help Pay For Housing",
+    "categories_link": "https://www.findhelp.org/housing/help-pay-for-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Help Pay For Internet Or Phone",
+    "categories_link": "https://www.findhelp.org/housing/help-pay-for-internet-or-phone?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Help Pay For Utilities",
+    "categories_link": "https://www.findhelp.org/housing/help-pay-for-utilities?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Homebuyer Education",
+    "categories_link": "https://www.findhelp.org/housing/homebuyer-education?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Housing Advice",
+    "categories_link": "https://www.findhelp.org/housing/housing-advice?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Housing Vouchers",
+    "categories_link": "https://www.findhelp.org/housing/housing-vouchers?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Independent Living",
+    "categories_link": "https://www.findhelp.org/housing/independent-living?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Long-Term Housing",
+    "categories_link": "https://www.findhelp.org/housing/long-term-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Maintenance & Repairs",
+    "categories_link": "https://www.findhelp.org/housing/maintenance-%26-repairs?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Nursing Home",
+    "categories_link": "https://www.findhelp.org/housing/nursing-home?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Public Housing",
+    "categories_link": "https://www.findhelp.org/housing/public-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Residential Housing",
+    "categories_link": "https://www.findhelp.org/housing/residential-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Safe Housing",
+    "categories_link": "https://www.findhelp.org/housing/safe-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Short-Term Housing",
+    "categories_link": "https://www.findhelp.org/housing/short-term-housing?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Sober Living",
+    "categories_link": "https://www.findhelp.org/housing/sober-living?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Temporary Shelter",
+    "categories_link": "https://www.findhelp.org/housing/temporary-shelter?postal=94016",
+    "tag": "housing"
+  },
+  {
+    "categories": "Advocacy & Legal Aid",
+    "categories_link": "https://www.findhelp.org/legal/advocacy-%26-legal-aid?postal=94016",
+    "tag": "legal"
+  },
+  {
+    "categories": "Mediation",
+    "categories_link": "https://www.findhelp.org/legal/mediation?postal=94016",
+    "tag": "legal"
+  },
+  {
+    "categories": "Notary",
+    "categories_link": "https://www.findhelp.org/legal/notary?postal=94016",
+    "tag": "legal"
+  },
+  {
+    "categories": "Representation",
+    "categories_link": "https://www.findhelp.org/legal/representation?postal=94016",
+    "tag": "legal"
+  },
+  {
+    "categories": "Translation & Interpretation",
+    "categories_link": "https://www.findhelp.org/legal/translation-%26-interpretation?postal=94016",
+    "tag": "legal"
+  },
+  {
+    "categories": "Financial Assistance",
+    "categories_link": "https://www.findhelp.org/money/financial-assistance?postal=94016",
+    "tag": "money"
+  },
+  {
+    "categories": "Financial Education",
+    "categories_link": "https://www.findhelp.org/money/financial-education?postal=94016",
+    "tag": "money"
+  },
+  {
+    "categories": "Government Benefits",
+    "categories_link": "https://www.findhelp.org/money/government-benefits?postal=94016",
+    "tag": "money"
+  },
+  {
+    "categories": "Insurance",
+    "categories_link": "https://www.findhelp.org/money/insurance?postal=94016",
+    "tag": "money"
+  },
+  {
+    "categories": "Tax Preparation",
+    "categories_link": "https://www.findhelp.org/money/tax-preparation?postal=94016",
+    "tag": "money"
+  },
+  {
+    "categories": "Bus Passes",
+    "categories_link": "https://www.findhelp.org/transit/bus-passes?postal=94016",
+    "tag": "transit"
+  },
+  {
+    "categories": "Help Pay For Gas",
+    "categories_link": "https://www.findhelp.org/transit/help-pay-for-gas?postal=94016",
+    "tag": "transit"
+  },
+  {
+    "categories": "Help Pay For Transit",
+    "categories_link": "https://www.findhelp.org/transit/help-pay-for-transit?postal=94016",
+    "tag": "transit"
+  },
+  {
+    "categories": "Transportation For Healthcare",
+    "categories_link": "https://www.findhelp.org/transit/transportation-for-healthcare?postal=94016",
+    "tag": "transit"
+  },
+  {
+    "categories": "Transportation For School",
+    "categories_link": "https://www.findhelp.org/transit/transportation-for-school?postal=94016",
+    "tag": "transit"
+  },
+  {
+    "categories": "Transportation",
+    "categories_link": "https://www.findhelp.org/transit/transportation?postal=94016",
+    "tag": "transit"
+  },
+  {
+    "categories": "Help Find Work",
+    "categories_link": "https://www.findhelp.org/work/help-find-work?postal=94016",
+    "tag": "work"
+  },
+  {
+    "categories": "Help Pay For Work Expenses",
+    "categories_link": "https://www.findhelp.org/work/help-pay-for-work-expenses?postal=94016",
+    "tag": "work"
+  },
+  {
+    "categories": "Skills & Training",
+    "categories_link": "https://www.findhelp.org/work/skills-%26-training?postal=94016",
+    "tag": "work"
+  },
+  {
+    "categories": "Supported Employment",
+    "categories_link": "https://www.findhelp.org/work/supported-employment?postal=94016",
+    "tag": "work"
+  },
+  {
+    "categories": "Workplace Rights",
+    "categories_link": "https://www.findhelp.org/work/workplace-rights?postal=94016",
+    "tag": "work"
+  }
+]
