@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,20 +26,21 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignInModal(props) {
+  const history = useHistory();
   const classes = useStyles();
-  const [open, setOpen] = useState(false)
+  const isOpen = props.isModalOpen
 
   const body = (
     <div className={classes.paper}>
       <p>Welcome back</p>
       <h2>Login to your account.</h2>
       <form className={classes.root} noValidate autoComplete="off">
-        <FormControl className={classes.formControl} required="true" variant={"outlined"}>
+        <FormControl className={classes.formControl} required variant={"outlined"}>
           <FormLabel className={classes.formLabel} htmlFor="email" shrink='false' name="email">Email</FormLabel>
           <OutlinedInput id="email" aria-describedby="email address" />
         </FormControl>
 
-        <FormControl className={classes.formControl} required="true" variant={"outlined"}>
+        <FormControl className={classes.formControl} required variant={"outlined"}>
           <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
           <OutlinedInput id="password" aria-describedby="password" />
         </FormControl>
@@ -67,12 +69,9 @@ export default function SignInModal(props) {
 
   return (
     <div>
-      <button type="button" onClick={() => setOpen(true)}>
-        Open Modal
-      </button>
       <Modal
-        open={open}
-        onClose={() => setOpen(false)}
+        open={isOpen}
+        onClose={() => history.push("/#")}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

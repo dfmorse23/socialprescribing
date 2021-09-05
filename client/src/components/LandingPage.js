@@ -11,7 +11,7 @@ const headerSections = [
   { title: 'For Healthcare Workers', url: '#' },
   { title: 'For Leaders', url: '#' },
   { title: 'Resources', url: '#' },
-  { title: 'Sign In', url: '#', modal: <SignInModal /> },
+  { title: 'Sign In', url: '#/signin' },
 ]
 
 const filterBarSections = {
@@ -41,13 +41,15 @@ const title = {
 };
 
 
-export default function LandingPage() {
+export default function LandingPage(props) {
+  const isModalOpen = props.signin
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg" >
         <Header title="social prescribing." headerSections={headerSections} />
+        <SignInModal isModalOpen={isModalOpen} />
         <main>
           <EventsWithSelectors title={title} filterBarSections={filterBarSections} />
         </main>
