@@ -50,6 +50,7 @@ export default function Header(props) {
                 style={{ textDecoration: 'none' }}
               >
                 {section.title}
+                {section.modal ? section.modal : ''}
               </Link>
             </Button>
           ))}

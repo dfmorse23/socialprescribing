@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createTheme } from '@material-ui/core/styles';
 import reportWebVitals from './reportWebVitals';
+import { HashRouter, Route } from "react-router-dom";
 
 // import Blog from './components/Blog';
 
@@ -29,7 +30,9 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme} >
-      <LandingPage />,
+      <HashRouter>
+        <Route exact path="/" component={LandingPage} />
+      </HashRouter>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
