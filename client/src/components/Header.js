@@ -1,5 +1,4 @@
 import { Button, Link, Toolbar, Typography } from '@material-ui/core';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -50,7 +49,6 @@ export default function Header(props) {
                 style={{ textDecoration: 'none' }}
               >
                 {section.title}
-                {section.modal ? section.modal : ''}
               </Link>
             </Button>
           ))}

@@ -32,6 +32,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme} >
       <HashRouter>
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/signin" component={() => (
+          <LandingPage signin={true} />
+        )} />
       </HashRouter>
     </ThemeProvider>
   </React.StrictMode>,
