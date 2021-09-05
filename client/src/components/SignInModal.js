@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: '7px',
     boxShadow: theme.shadows[4],
-    padding: theme.spacing(4, 10, 8),
+    padding: theme.spacing(4, 10, 4),
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     margin: '10px 0',
   },
   button: {
+    marginTop: '15px',
     width: '100%',
-    marginTop: '20px',
     padding: '15px',
   },
   submit: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   oAuth: {
+    marginBottom: '20px',
     backgroundColor: '#2d3748',
     '&:hover': {
       backgroundColor: '#2b3444',
@@ -54,8 +55,10 @@ export default function SignInModal(props) {
 
   const body = (
     <div className={classes.paper}>
-      <p>Welcome back</p>
-      <h2>Login to your account.</h2>
+      <Grid>
+        <p>Welcome back</p>
+        <h2>Login to your account.</h2>
+      </Grid>
       <form className={classes.root} noValidate autoComplete="off">
         <FormControl className={classes.formControl} required variant={"outlined"}>
           <FormLabel className={classes.formLabel} htmlFor="email" shrink='false' name="email">Email</FormLabel>
@@ -104,6 +107,22 @@ export default function SignInModal(props) {
           </SvgIcon>
           Or sign-in with Google
         </Button>
+
+        <Grid container
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <Grid item>
+            <p>Don't have an account? &nbsp;</p>
+          </Grid>
+          <Grid item>
+            <Link href="/#" variant="body2">
+              Join Today
+            </Link>
+          </Grid>
+        </Grid>
+
       </form >
     </div >
   );
