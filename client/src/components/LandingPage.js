@@ -3,6 +3,7 @@ import { Container, CssBaseline } from '@material-ui/core';
 import EventsWithSelectors from './EventsWithSelectors';
 import Footer from './Footer';
 import Header from './Header';
+import SignInModal from './SignInModal';
 import React from 'react';
 
 const headerSections = [
@@ -10,7 +11,7 @@ const headerSections = [
   { title: 'For Healthcare Workers', url: '#' },
   { title: 'For Leaders', url: '#' },
   { title: 'Resources', url: '#' },
-  { title: 'Sign In', url: '#' },
+  { title: 'Sign In', url: '#', modal: <SignInModal /> },
 ]
 
 const filterBarSections = {
