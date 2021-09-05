@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 
@@ -20,7 +20,16 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   formLabel: {
-    margin: '10px 0'
+    margin: '10px 0',
+  },
+  button: {
+    width: '100%',
+    marginTop: '15px',
+    padding: '15px',
+    backgroundColor: '#50c45b',
+    '&:hover': {
+      backgroundColor: '#49b353',
+    },
   },
 }));
 
@@ -28,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInModal(props) {
   const history = useHistory();
   const classes = useStyles();
-  const isOpen = props.isModalOpen
+  const isOpen = props.isModalOpen || false
+  const [rememberMe, setRememberMe] = useState(false)
+
 
   const body = (
     <div className={classes.paper}>
@@ -52,7 +63,9 @@ export default function SignInModal(props) {
         >
           <Grid item>
             <FormControlLabel
-              control={<Checkbox checked={false} onChange={() => { }} name="rememberMe" />}
+              control={
+                <Checkbox checked={rememberMe} color="primary" onChange={(e) => setRememberMe(Boolean(e.target.checked))} name="rememberMe" />
+              }
               label="Remember Me"
             />
           </Grid>
@@ -63,6 +76,10 @@ export default function SignInModal(props) {
             </Link>
           </Grid>
         </Grid>
+
+        <Button variant="contained" color="primary" className={classes.button} type="Submit">
+          Login Now
+        </Button>
       </form >
     </div >
   );
