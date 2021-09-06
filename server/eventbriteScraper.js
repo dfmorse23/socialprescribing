@@ -3,13 +3,13 @@ const cheerio = require("cheerio");
 
 const getEvents = async (zipcode) => {
 	try {
+		// TODO: Fix hardcoded url, ie 'ca--san-francisco'
 		const url = `https://www.eventbrite.com/d/ca--san-francisco/${zipcode}/`;
 		const { data } = await axios.get(url);
 		const $ = cheerio.load(data);
 		const eventTitles = [];
 		const eventTimes = [];
 		const eventLocations = [];
-		const eventPrices = [];
 
 		// Get titles
 		$("div.eds-is-hidden-accessible").each((i, el) => {
@@ -39,19 +39,15 @@ const getEvents = async (zipcode) => {
 						const location = $(el).text();
 						eventLocations.push(location);
 					});
-
-				// Prices - WIP (nth-child not selecting properly)
-				const price = $(el).find("el:nth-child(2)").text();
-				eventPrices.push(price);
 			}
 		});
 
 		const info = {};
 		for (let i = 0; i < eventTitles.length; i++) {
-			info[`${eventTitles[i]}`] = {};
-			info[`${eventTitles[i]}`].time = eventTimes[i];
-			info[`${eventTitles[i]}`].location = eventLocations[i];
-			info[`${eventTitles[i]}`].price = eventPrices[i];
+			info[`${eventTitles[i]}`] = {
+				time: eventTimes[i],
+				location: eventLocations[i],
+			};
 		}
 
 		return [info];
