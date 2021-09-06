@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/hannahle/sp-prototype#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "axios": "^0.21.3",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1",
+    "puppeteer": "^10.2.0",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-stealth": "^2.7.8"
   }
 }
