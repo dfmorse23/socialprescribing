@@ -6,19 +6,17 @@ import { useAuth } from '../contexts/AuthContext'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    overflow: 'scroll'
+    overflow: 'scroll',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   paper: {
-    margin: '100px auto',
     width: '500px',
     backgroundColor: theme.palette.background.paper,
     borderRadius: '7px',
     boxShadow: theme.shadows[4],
-    padding: theme.spacing(4, 10, 4),
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    overflow: 'scroll',
+    padding: theme.spacing(4, 8, 4),
   },
   formControl: {
     margin: '20px 0',
