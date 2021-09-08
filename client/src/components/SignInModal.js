@@ -57,12 +57,18 @@ export default function SignInModal(props) {
   const [rememberMe, setRememberMe] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [validationError, setValidationError] = useState()
   const { login } = useAuth()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    login(email, password)
+    try {
+      setValidationError('')
+      await login(email, password)
+    } catch (err) {
+      setValidationError('Invalid credentials. Please try again.')
+    }
   }
 
 
@@ -82,6 +88,8 @@ export default function SignInModal(props) {
           <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
           <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </FormControl>
+
+        {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
 
         <Grid container
           direction="row"
