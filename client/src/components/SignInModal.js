@@ -65,7 +65,6 @@ export default function SignInModal(props) {
     try {
       setValidationError('')
       setLoading(true)
-
       await login(email, password)
 
       history.push('/#')
