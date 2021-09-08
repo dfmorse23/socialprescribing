@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { createTheme } from '@material-ui/core/styles';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route } from "react-router-dom";
+import { AuthProvider } from './contexts/AuthContext';
 
 // import Blog from './components/Blog';
 
@@ -30,12 +31,14 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme} >
-      <HashRouter>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/signin" component={() => (
-          <LandingPage signin={true} />
-        )} />
-      </HashRouter>
+      <AuthProvider>
+        <HashRouter>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/signin" component={() => (
+            <LandingPage signin={true} />
+          )} />
+        </HashRouter>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

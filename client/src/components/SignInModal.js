@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link, Button, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
+import { useAuth } from '../contexts/AuthContext'
 
 const useStyles = makeStyles((theme) => ({
+  modal: {
+    overflow: 'scroll'
+  },
   paper: {
     margin: '100px auto',
     width: '500px',
@@ -14,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
+    overflow: 'scroll',
   },
   formControl: {
     margin: '20px 0',
@@ -52,12 +57,12 @@ export default function SignInModal(props) {
   const [rememberMe, setRememberMe] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { login } = useAuth()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-
-    // firebase login
+    login(email, password)
   }
 
 
@@ -139,6 +144,7 @@ export default function SignInModal(props) {
     <div>
       <Modal
         open={isOpen}
+        className={classes.modal}
         onClose={() => history.push("/#")}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
