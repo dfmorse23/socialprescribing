@@ -45,12 +45,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function SignInModal(props) {
   const history = useHistory();
   const classes = useStyles();
   const isOpen = props.isModalOpen || false
   const [rememberMe, setRememberMe] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+
+    // firebase login
+  }
 
 
   const body = (
@@ -62,12 +70,12 @@ export default function SignInModal(props) {
       <form className={classes.root} noValidate autoComplete="off">
         <FormControl className={classes.formControl} required variant={"outlined"}>
           <FormLabel className={classes.formLabel} htmlFor="email" shrink='false' name="email">Email</FormLabel>
-          <OutlinedInput id="email" aria-describedby="email address" />
+          <OutlinedInput id="email" aria-describedby="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
         </FormControl>
 
         <FormControl className={classes.formControl} required variant={"outlined"}>
           <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
-          <OutlinedInput id="password" aria-describedby="password" />
+          <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </FormControl>
 
         <Grid container
@@ -78,7 +86,7 @@ export default function SignInModal(props) {
           <Grid item>
             <FormControlLabel
               control={
-                <Checkbox checked={rememberMe} color="" onChange={(e) => setRememberMe(Boolean(e.target.checked))} name="rememberMe" />
+                <Checkbox checked={rememberMe} color="default" onChange={(e) => setRememberMe(Boolean(e.target.checked))} name="rememberMe" />
               }
               label="Remember Me"
             />
@@ -91,11 +99,11 @@ export default function SignInModal(props) {
           </Grid>
         </Grid>
 
-        <Button variant="contained" color="primary" className={[classes.button, classes.submit]} type="Submit">
+        <Button variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
           Login Now
         </Button>
 
-        <Button variant="contained" color="primary" className={[classes.button, classes.oAuth]} type="Submit">
+        <Button variant="contained" color="primary" className={`${classes.button} ${classes.oAuth}`} type="Submit">
           <SvgIcon className={classes.icon}>
             {/* Google Icon */}
             <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
