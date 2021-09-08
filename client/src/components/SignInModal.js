@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 8, 4),
   },
   formControl: {
-    margin: '20px 0',
+    margin: '10px 0',
     width: '100%',
   },
   formLabel: {
@@ -56,6 +56,7 @@ export default function SignInModal(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
+  const [loading, setLoading] = useState(false)
   const { login } = useAuth()
 
   const handleSubmit = async (e) => {
@@ -63,10 +64,13 @@ export default function SignInModal(props) {
 
     try {
       setValidationError('')
+      setLoading(true)
       await login(email, password)
     } catch (err) {
       setValidationError('Invalid credentials. Please try again.')
     }
+
+    setLoading(false)
   }
 
 
@@ -110,7 +114,7 @@ export default function SignInModal(props) {
           </Grid>
         </Grid>
 
-        <Button variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
+        <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
           Login Now
         </Button>
 
