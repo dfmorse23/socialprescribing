@@ -5,26 +5,15 @@ const xml2js = require("xml2js");
 
 const convertZipcode = (zipcode) => {
 	return new Promise((resolve, reject) => {
-		var config = {
-			method: "post",
-			url: `http://production.shippingapis.com/ShippingApi.dll
-			?API=CityStateLookup
-			&XML=<CityStateLookupRequest USERID="${process.env.USPS_USERID}"><ZipCode ID="0"><Zip5>${zipcode}</Zip5></ZipCode></CityStateLookupRequest>`,
-		};
-
-		axios(config)
+		axios
+			.get(`http://ZiptasticAPI.com/${zipcode}`)
 			.then((res) => {
-				xml2js.parseString(res["data"], (err, result) => {
-					const city = result["CityStateLookupResponse"]["ZipCode"][0]["City"][0].replace(
-						/\s/g,
-						"-"
-					);
-					const state = result["CityStateLookupResponse"]["ZipCode"][0]["State"][0];
-					resolve({ state: state, city: city });
-				});
+				const state = res["data"]["state"];
+				const city = res["data"]["city"].replace(/\s/g, "-");
+				resolve({ state: state, city: city });
 			})
 			.catch((err) => {
-				reject(err);
+				reject(err.message);
 			});
 	});
 };
@@ -43,6 +32,7 @@ const getEvents = (zipcode) => {
 					const eventTimes = [];
 					const eventLocations = [];
 					const eventUrls = [];
+					const eventTags = [];
 
 					// Get titles
 					console.log($("div.eds-is-hidden-accessible"));
@@ -61,8 +51,7 @@ const getEvents = (zipcode) => {
 					}
 
 					// Get times
-					// This may break if EventBrite ever fixes the typo in the class name...
-					$("div.eds-evet-card-content__sub-title").each((i, el) => {
+					$("div.eds-event-card-content__sub-title").each((i, el) => {
 						if (i % 2 == 1) {
 							const time = $(el).text();
 							eventTimes.push(time);
@@ -90,16 +79,18 @@ const getEvents = (zipcode) => {
 						}
 					});
 
-					const info = {};
+					const returnedData = [];
 					for (let i = 0; i < eventTitles.length; i++) {
-						info[`${eventTitles[i]}`] = {
-							time: eventTimes[i],
-							location: eventLocations[i],
+						returnedData.push({
+							title: eventTitles[i],
+							date: eventTimes[i],
+							image: "some image url here",
 							url: eventUrls[i],
-						};
+							tag: "EventBrite Category",
+						});
 					}
 
-					resolve([info]);
+					resolve(returnedData);
 				})
 				.catch((err) => {
 					reject(err);
