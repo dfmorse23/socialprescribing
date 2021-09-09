@@ -35,9 +35,7 @@ const getEvents = (zipcode) => {
 					const eventTags = [];
 
 					// Get titles
-					console.log($("div.eds-is-hidden-accessible"));
 					if ($("div.eds-is-hidden-accessible")) {
-						console.log("Found titles");
 						$("div.eds-is-hidden-accessible").each((i, el) => {
 							// EventBrite lists titles twice with this class. Only record every other title.
 							if (i % 2 == 1) {
