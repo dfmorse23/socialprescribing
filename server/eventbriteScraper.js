@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 
 const getEvents = async (zipcode) => {
 	try {
-		// Get city & state from zipcode
+		// Get city & state from zipcode api
 		const { data } = await axios.get(
 			`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/info.json/${zipcode}/degrees`
 		);
@@ -12,6 +12,10 @@ const getEvents = async (zipcode) => {
 
 		// Submit city, state, and zipcode to EventBrite
 		const eventBriteUrl = `https://www.eventbrite.com/d/${data["state"]}--${formattedCity}/${zipcode}/`;
+
+		// If the zipcode api fails, comment out everything above and uncomment the below line
+		// const eventBriteUrl = https://www.eventbrite.com/d/tx--dallas/75001
+
 		const events = await axios.get(eventBriteUrl);
 		const $ = cheerio.load(events["data"]);
 		const eventTitles = [];
