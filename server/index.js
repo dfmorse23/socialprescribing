@@ -10,9 +10,9 @@ app.get("/api", (req, res) => {
 });
 
 app.post("/api/getEvents/:zipcode", (req, res) => {
-	const data = eventBriteScraper.getEvents(req.params.zipcode);
-	console.log(data);
-	return res.json(data);
+	eventBriteScraper.getEvents(req.params.zipcode).then((events) => {
+		return res.json(events);
+	});
 });
 
 app.listen(PORT, () => {
