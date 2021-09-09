@@ -1,20 +1,36 @@
 require("dotenv").config({ path: "../.env" });
 const axios = require("axios");
 const cheerio = require("cheerio");
+const xml2js = require("xml2js");
+
+const convertZipcode = (zipcode) => {
+	return new Promise((resolve, reject) => {
+		var config = {
+			method: "post",
+			url: `http://production.shippingapis.com/ShippingApi.dll
+			?API=CityStateLookup
+			&XML=<CityStateLookupRequest USERID="${process.env.USPS_USERID}"><ZipCode ID="0"><Zip5>${zipcode}</Zip5></ZipCode></CityStateLookupRequest>`,
+		};
+
+		axios(config).then((res) => {
+			xml2js.parseString(res["data"], (err, result) => {
+				const city = result["CityStateLookupResponse"]["ZipCode"][0]["City"][0].replace(
+					/\s/g,
+					"-"
+				);
+				const state = result["CityStateLookupResponse"]["ZipCode"][0]["State"][0];
+				resolve({ state: state, city: city });
+			});
+		});
+	});
+};
 
 const getEvents = async (zipcode) => {
 	try {
-		// Get city & state from zipcode api
-		const { data } = await axios.get(
-			`https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/info.json/${zipcode}/degrees`
-		);
-		const formattedCity = data["city"].replace(/\s/g, "-");
+		const cityState = await convertZipcode(zipcode);
 
 		// Submit city, state, and zipcode to EventBrite
-		const eventBriteUrl = `https://www.eventbrite.com/d/${data["state"]}--${formattedCity}/${zipcode}/`;
-
-		// If the zipcode api fails, comment out everything above and uncomment the below line
-		// const eventBriteUrl = https://www.eventbrite.com/d/tx--dallas/75001
+		const eventBriteUrl = `https://www.eventbrite.com/d/${cityState["state"]}--${cityState["city"]}/${zipcode}/`;
 
 		const events = await axios.get(eventBriteUrl);
 		const $ = cheerio.load(events["data"]);
@@ -79,4 +95,5 @@ const getEvents = async (zipcode) => {
 	}
 };
 
-getEvents(94103).then((data) => console.log(data));
+// getEvents(94103).then((data) => console.log(data));
+module.exports = { getEvents: getEvents };
