@@ -7,7 +7,7 @@ puppeteer.use(StealthPlugin());
 // ---Puppeteer-extra + Stealth Plugins // Triggers CAPTCHA & sometimes forbidden error---
 const getEmergencyFood = async (zipcode) => {
 	try {
-		const url = `https://www.findhelp.org/food/emergency-food?postal=${zipcode}`;
+		const url = `https://www.findhelp.org/search_results/94103`;
 		const browser = await puppeteer.launch();
 		const page = await browser.newPage();
 		await page.setJavaScriptEnabled(true);
