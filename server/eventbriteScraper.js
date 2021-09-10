@@ -1,7 +1,6 @@
 require("dotenv").config({ path: "../.env" });
 const axios = require("axios");
 const cheerio = require("cheerio");
-const xml2js = require("xml2js");
 
 const convertZipcode = (zipcode) => {
 	return new Promise((resolve, reject) => {
