@@ -57,8 +57,8 @@ const scrapeVolunteerMatch = async (zipcode) => {
 						// Time & date
 						time = cardData(el)
 							.text()
-							.replace(/(\r\n|\n|\r)/gm, "")
-							.replace("|", "")
+							.replace(/(\r\n|\n|\r|\|)/gm, "")
+							.replace(/(?<=[0-9]).*(?=\-)/, " ")
 							.trim();
 					}
 				);
