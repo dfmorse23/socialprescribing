@@ -6,14 +6,6 @@ import Header from './Header';
 import SignInModal from './SignInModal';
 import React from 'react';
 
-const headerSections = [
-  { title: 'About', url: '#' },
-  { title: 'For Healthcare Workers', url: '#' },
-  { title: 'For Leaders', url: '#' },
-  { title: 'Resources', url: '#' },
-  { title: 'Sign In', url: '#/signin' },
-]
-
 const filterBarSections = {
   all: 'All',
   favorites: 'My Favorites',
@@ -48,7 +40,7 @@ export default function LandingPage(props) {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg" >
-        <Header title="social prescribing." headerSections={headerSections} />
+        <Header title="social prescribing." />
         <SignInModal isModalOpen={isModalOpen} />
         <main>
           <EventsWithSelectors title={title} filterBarSections={filterBarSections} />

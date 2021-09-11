@@ -8,6 +8,7 @@ import { createTheme } from '@material-ui/core/styles';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
+import SignupPage from './components/SignupPage';
 
 // import Blog from './components/Blog';
 
@@ -37,6 +38,7 @@ ReactDOM.render(
           <Route exact path="/signin" component={() => (
             <LandingPage signin={true} />
           )} />
+          <Route exact path="/signup" component={SignupPage} />
         </HashRouter>
       </AuthProvider>
     </ThemeProvider>
