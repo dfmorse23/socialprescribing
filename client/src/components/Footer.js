@@ -42,7 +42,7 @@ export default function Footer(props) {
 
   return (
     <footer className={classes.footer}>
-      <Container maxWidth="lg" className={classes.footerContainer}>
+      <Container maxWidth={false} className={classes.footerContainer}>
         <Grid container alignItems="center">
           <Grid item xs={12} md={3}>
             <Typography
