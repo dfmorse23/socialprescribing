@@ -1,6 +1,7 @@
-import { Button, Link, Toolbar, Typography } from '@material-ui/core';
+import { Button, Toolbar, Link, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,15 +38,17 @@ export default function Header(props) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        <Typography
-          component='h2'
-          variant="h5"
-          color="inherit"
-          align='left'
-          className={classes.toolbarTitle}
-        >
-          {title}
-        </Typography>
+        <Link href="#" underline="none">
+          <Typography
+            component='h2'
+            variant="h5"
+            color="inherit"
+            align='left'
+            className={classes.toolbarTitle}
+          >
+            {title}
+          </Typography>
+        </Link>
         <div>
           {headerSections.map((section) => (
             <Button size='medium' className={classes.toolbarButton} key={section.title}>
