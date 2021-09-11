@@ -140,7 +140,7 @@ export default function SignInModal(props) {
             <p>Don't have an account? &nbsp;</p>
           </Grid>
           <Grid item>
-            <Link href="/#" variant="body2">
+            <Link href="/#/signup/" variant="body2">
               Join Today
             </Link>
           </Grid>

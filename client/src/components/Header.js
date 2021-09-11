@@ -21,10 +21,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const headerSections = [
+  { title: 'About', url: '#' },
+  { title: 'For Healthcare Workers', url: '#' },
+  { title: 'For Leaders', url: '#' },
+  { title: 'Resources', url: '#' },
+  { title: 'Sign In', url: '#/signin' },
+]
 
 export default function Header(props) {
   const classes = useStyles();
-  const { headerSections, title } = props;
+  const { title } = props;
 
   // TODO:: this needs to be responsive -- probably use grid
   return (
