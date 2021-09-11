@@ -1,4 +1,4 @@
-import { Grid, FormControl, OutlinedInput, FormLabel, FormControlLabel, Button, SvgIcon } from '@material-ui/core';
+import { Grid, FormControl, OutlinedInput, FormLabel, Button, SvgIcon, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
 
@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '7px',
     boxShadow: theme.shadows[4],
     padding: theme.spacing(4, 8, 4),
+    margin: '40px 0',
   },
   formControl: {
     margin: '10px 0',
@@ -50,18 +51,41 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignupForm(props) {
   const classes = useStyles();
-  const [rememberMe, setRememberMe] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  const { signup } = useAuth()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      setValidationError('')
+      setLoading(true)
+      await signup(email, password)
+    } catch (err) {
+
+      switch (err.code) {
+        case 'auth/invalid-email':
+          setValidationError('Please use a valid email')
+          break;
+        case 'auth/email-already-in-use':
+          setValidationError('Email is already in use.')
+          break;
+        default:
+          setValidationError('Account could not be created.')
+      }
+    }
+
+    setLoading(false)
+  }
 
   return (
     <React.Fragment>
       <div className={classes.paper}>
         <Grid>
-          <p></p>
+          <p>Welcome,</p>
           <h2>Create an Account</h2>
         </Grid>
         <form className={classes.root} noValidate autoComplete="off">
@@ -103,7 +127,7 @@ export default function SignupForm(props) {
               <p>Already have an account? &nbsp;</p>
             </Grid>
             <Grid item>
-              <Link href="/signin" variant="body2">
+              <Link href="/#/signin" variant="body2">
                 Login
               </Link>
             </Grid>

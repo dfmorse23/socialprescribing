@@ -78,7 +78,7 @@ export default function SignInModal(props) {
     <div className={classes.paper}>
       <Grid>
         <p>Welcome back</p>
-        <h2>Login to your account.</h2>
+        <h2>Login to your account</h2>
       </Grid>
       <form className={classes.root} noValidate autoComplete="off">
         <FormControl className={classes.formControl} required variant={"outlined"}>
