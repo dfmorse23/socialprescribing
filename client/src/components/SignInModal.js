@@ -57,7 +57,7 @@ export default function SignInModal(props) {
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  const { login, googleOAuth } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -65,9 +65,30 @@ export default function SignInModal(props) {
     try {
       setValidationError('')
       setLoading(true)
+
       await login(email, password)
+
+      history.push('/#')
+
     } catch (err) {
+      console.log(err)
       setValidationError('Invalid credentials. Please try again.')
+    }
+
+    setLoading(false)
+  }
+
+  const googleSignIn = async () => {
+    try {
+      setValidationError('')
+      setLoading(true)
+
+      await googleOAuth()
+
+      history.push('/#')
+
+    } catch (err) {
+      setValidationError('Could not sign in with Google.')
     }
 
     setLoading(false)
@@ -118,7 +139,7 @@ export default function SignInModal(props) {
           Login Now
         </Button>
 
-        <Button variant="contained" color="primary" className={`${classes.button} ${classes.oAuth}`} type="Submit">
+        <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.oAuth}`} onClick={googleSignIn} >
           <SvgIcon className={classes.icon}>
             {/* Google Icon */}
             <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">

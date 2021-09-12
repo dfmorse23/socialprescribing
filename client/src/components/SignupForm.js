@@ -1,6 +1,7 @@
 import { Grid, FormControl, OutlinedInput, FormLabel, Button, SvgIcon, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
+import { useHistory } from 'react-router';
 
 import React, { useState } from 'react';
 
@@ -51,11 +52,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignupForm(props) {
   const classes = useStyles();
+  const history = useHistory();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
   const [loading, setLoading] = useState(false)
-  const { signup } = useAuth()
+  const { signup, googleOAuth } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -64,6 +66,9 @@ export default function SignupForm(props) {
       setValidationError('')
       setLoading(true)
       await signup(email, password)
+
+      history.push('/#')
+
     } catch (err) {
 
       switch (err.code) {
@@ -76,6 +81,22 @@ export default function SignupForm(props) {
         default:
           setValidationError('Account could not be created.')
       }
+    }
+
+    setLoading(false)
+  }
+
+  const googleSignIn = async () => {
+    try {
+      setValidationError('')
+      setLoading(true)
+
+      await googleOAuth()
+
+      history.push('/#')
+
+    } catch (err) {
+      setValidationError('Could not sign in with Google.')
     }
 
     setLoading(false)
@@ -105,7 +126,7 @@ export default function SignupForm(props) {
             Signup Now
           </Button>
 
-          <Button variant="contained" color="primary" className={`${classes.button} ${classes.oAuth}`} type="Submit">
+          <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.oAuth}`} onClick={googleSignIn}>
             <SvgIcon className={classes.icon}>
               {/* Google Icon */}
               <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
