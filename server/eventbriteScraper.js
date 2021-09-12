@@ -1,4 +1,3 @@
-require("dotenv").config({ path: "../.env" });
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -96,7 +95,4 @@ const getEvents = (zipcode) => {
 	});
 };
 
-getEvents(94103)
-	.then((data) => console.log(data))
-	.catch((err) => console.log(err.message));
 module.exports = { getEvents: getEvents };
