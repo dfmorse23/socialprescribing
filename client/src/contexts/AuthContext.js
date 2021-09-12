@@ -6,6 +6,10 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+<<<<<<< HEAD
+=======
+  setPersistence,
+>>>>>>> d017442... add google oauth to login and signup
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
