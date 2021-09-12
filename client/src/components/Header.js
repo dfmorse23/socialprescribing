@@ -29,13 +29,12 @@ const headerSections = [
   { title: 'For Healthcare Workers', url: '#' },
   { title: 'For Leaders', url: '#' },
   { title: 'Resources', url: '#' },
-  { title: 'Sign In', url: '#/signin' },
 ]
 
 export default function Header(props) {
   const classes = useStyles();
   const { title } = props;
-  const { currentUser } = useAuth()
+  const { currentUser, signout } = useAuth()
 
   // TODO:: this needs to be responsive -- probably use grid
   return (
@@ -71,14 +70,28 @@ export default function Header(props) {
               </Button>
             ))}
             {currentUser ?
-              <Link
-                color='inherit'
-                href={'#'}
-                style={{ textDecoration: 'none' }}
-              >
-                {currentUser.email}
-              </Link>
-              : ''}
+              <React.Fragment>
+                <Button size='medium' className={classes.toolbarButton} onClick={() => signout()}>
+                  Logout
+                </Button>
+                <Link
+                  color='inherit'
+                  href={'#'}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {currentUser.email}
+                </Link>
+              </React.Fragment>
+              :
+              <Button size='medium' className={classes.toolbarButton}>
+                <Link
+                  color='inherit'
+                  href={'#/signin'}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {'Sign In'}
+                </Link>
+              </Button>}
           </Grid>
         </Grid>
       </Toolbar>
