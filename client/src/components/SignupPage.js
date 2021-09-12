@@ -9,10 +9,12 @@ import React from 'react';
 const useStyles = makeStyles((theme) => ({
   orb: {
     position: 'absolute',
-    width: '637px',
-    height: '637px',
+    width: '337px',
+    height: '337px',
+    top: '200px',
+    left: '300px',
     zIndex: '-1',
-    background: `linear-gradient(90deg, ${theme.palette.beige1} 0%, #FFFFFF 100%)`,
+    background: `linear-gradient(90deg, ${theme.palette.beige1} 50%, #FFFFFF 100%)`,
     filter: 'blur(100px)',
   },
 }));
@@ -26,8 +28,6 @@ export default function SignupPage(props) {
       <Container maxWidth="lg" >
         <Header title="social prescribing." />
         <main>
-          <div className={classes.orb}>
-          </div>
           <Grid
             container
             direction="row"
