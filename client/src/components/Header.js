@@ -22,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     marginRight: theme.spacing(4),
   },
+  toolbarAuthButton: {
+    backgroundColor: theme.palette.green1,
+    color: 'white',
+    "&:hover": {
+      backgroundColor: '#17b08e'
+    },
+  }
 }));
 
 const headerSections = [
@@ -71,25 +78,26 @@ export default function Header(props) {
             ))}
             {currentUser ?
               <React.Fragment>
-                <Button size='medium' className={classes.toolbarButton} onClick={() => signout()}>
-                  Logout
-                </Button>
                 <Link
+                  className={classes.toolbarButton}
                   color='inherit'
                   href={'#'}
                   style={{ textDecoration: 'none' }}
                 >
                   {currentUser.email}
                 </Link>
+                <Button size='medium' className={`${classes.toolbarAuthButton} ${classes.toolbarButton}`} onClick={() => signout()}>
+                  Logout
+                </Button>
               </React.Fragment>
               :
-              <Button size='medium' className={classes.toolbarButton}>
+              <Button size='medium' className={`${classes.toolbarAuthButton} ${classes.toolbarButton}`}>
                 <Link
                   color='inherit'
                   href={'#/signin'}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: 'none', fontWeight: 'bold' }}
                 >
-                  {'Sign In'}
+                  Sign In
                 </Link>
               </Button>}
           </Grid>
