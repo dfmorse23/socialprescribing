@@ -1,5 +1,6 @@
 const express = require("express");
-const eventBriteScraper = require("./eventbriteScraper");
+const eventBriteScraper = require("./scrapers/eventbriteScraper");
+const volunteerScraper = require("./scrapers/volunteerScraper");
 
 const PORT = process.env.PORT || 3001;
 
