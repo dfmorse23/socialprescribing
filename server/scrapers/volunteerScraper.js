@@ -39,12 +39,20 @@ var options = {
   rejectUnauthorized: true,
 };
 
-function callback(error, response, body) {
+async function callback(error, response, body) {
   if (!error && response.statusCode == 200) {
     console.log(response.headers);
     console.log(body);
     try {
-      const $ = cheerio.load(body);
+		const endpoint = `https://www.volunteermatch.org/search/?l=94103`;
+      const browser = await puppeteer.launch();
+      const page = await browser.newPage();
+      await page.setJavaScriptEnabled(true);
+      await page.goto(endpoint);
+      const pageHTML = await page.evaluate(
+        () => document.querySelector("*").outerHTML
+      );
+	  const $ = cheerio.load(pageHTML);
       const returnedData = [];
 
       // For each list item
@@ -97,7 +105,7 @@ function callback(error, response, body) {
               .replace(/(\r\n|\n|\r|\|)/gm, "")
               .replace(/(?<=[0-9]).*(?=\-)/, " ")
               .trim();
-          });
+		  });
         }
 
         returnedData.push({
@@ -108,7 +116,8 @@ function callback(error, response, body) {
           tag: "Volunteering",
         });
       });
-      console.log(returnedData);
+	  console.log(returnedData);
+	  browser.close();
       return returnedData;
     } catch (err) {
       console.log(err);
@@ -119,4 +128,4 @@ function callback(error, response, body) {
 }
 
 proxyRequest(options, callback);
-// module.exports = { getEvents: getEvents };
+module.exports = { getEvents: getEvents };
