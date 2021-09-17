@@ -65,7 +65,7 @@ export default function SignupForm(props) {
     try {
       setValidationError('')
       setLoading(true)
-      await signup(email, password)
+      await signup(email, password, true)
 
       history.push('/#')
 
@@ -91,7 +91,7 @@ export default function SignupForm(props) {
       setValidationError('')
       setLoading(true)
 
-      await googleOAuth()
+      await googleOAuth(true)
 
       history.push('/#')
 
