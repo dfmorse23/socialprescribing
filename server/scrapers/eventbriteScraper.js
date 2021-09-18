@@ -7,8 +7,9 @@ const convertZipcode = (zipcode) => {
 			.get(`http://ZiptasticAPI.com/${zipcode}`)
 			.then((res) => {
 				const state = res["data"]["state"];
-				const city = res["data"]["city"].replace(/\s/g, "-");
-				resolve({ state: state, city: city });
+				const city = res["data"]["city"];
+				const country = res["data"]["country"];
+				resolve({ state: state, city: city, country: country });
 			})
 			.catch((err) => {
 				reject(err.message);
@@ -20,37 +21,34 @@ const getEvents = (zipcode) => {
 	return new Promise((resolve, reject) => {
 		convertZipcode(zipcode).then((res) => {
 			// Submit city, state, and zipcode to EventBrite
-			const eventBriteUrl = `https://www.eventbrite.com/d/${res["state"]}--${res["city"]}/${zipcode}/`;
+			const city = res["city"].replace(/\s/g, "-");
+			const eventBriteUrl = `https://www.eventbrite.com/d/${res["state"]}--${city}/${zipcode}/`;
 
 			axios
 				.get(eventBriteUrl)
 				.then((events) => {
 					const $ = cheerio.load(events["data"]);
 					const eventTitles = [];
-					const eventTimes = [];
+					const eventDates = [];
 					const eventLocations = [];
 					const eventUrls = [];
-					const eventTags = [];
 
 					// Get titles
-					if ($("div.eds-is-hidden-accessible")) {
-						$("div.eds-is-hidden-accessible").each((i, el) => {
-							// EventBrite lists titles twice with this class. Only record every other title.
-							if (i % 2 == 1) {
-								const title = $(el).text();
-								// Remove characters after pipe (usually contains extra description)
-								eventTitles.push(title.split("|")[0]);
-							}
-						});
-					} else {
-						reject("Found no titles.");
-					}
+					$("div.eds-is-hidden-accessible").each((i, el) => {
+						// EventBrite lists titles twice with this class. Only record every other title.
+						if (i % 2 == 1) {
+							const title = $(el).text();
+							// Remove characters after pipe (usually contains extra description)
+							eventTitles.push(title.split("|")[0]);
+						}
+					});
 
-					// Get times
+					// Get dates
 					$("div.eds-event-card-content__sub-title").each((i, el) => {
 						if (i % 2 == 1) {
-							const time = $(el).text();
-							eventTimes.push(time);
+							const timeDate = $(el).text();
+							const timeDateSplit = timeDate.split(", ");
+							eventDates.push(timeDateSplit[1]);
 						}
 					});
 
@@ -79,10 +77,19 @@ const getEvents = (zipcode) => {
 					for (let i = 0; i < eventTitles.length; i++) {
 						returnedData.push({
 							title: eventTitles[i],
-							date: eventTimes[i],
-							image: "some image url here",
+							date: {
+								startDate: eventDates[i],
+								endDate: null,
+							},
+							location: {
+								postalCode: zipcode,
+								city: res["city"],
+								region: res["state"],
+								country: res["country"],
+								virtual: false,
+							},
 							url: eventUrls[i],
-							tag: "EventBrite Category",
+							tag: "EventBrite",
 						});
 					}
 
