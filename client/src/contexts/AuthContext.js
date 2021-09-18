@@ -11,6 +11,7 @@ import {
   signInWithPopup,
   setPersistence,
   browserSessionPersistence,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 const AuthContext = React.createContext()
@@ -49,6 +50,10 @@ export function AuthProvider({ children }) {
     }
   }
 
+  function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email)
+  }
+
   function signout() {
     auth.signOut()
   }
@@ -68,6 +73,7 @@ export function AuthProvider({ children }) {
     login,
     signout,
     googleOAuth,
+    resetPassword,
   }
 
   return (
