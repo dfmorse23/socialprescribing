@@ -23,8 +23,4 @@ router.post("/getEvents/:zipcode", (req, res) => {
 	});
 });
 
-router.get("/", (req, res) => {
-	return res.json({ response: "In scraper route" });
-});
-
 module.exports = router;
