@@ -46,4 +46,4 @@ const getEvents = (zipcode) => {
 	});
 };
 
-getEvents("94103").then((res) => console.log(res));
+module.exports = { getEvents: getEvents };
