@@ -52,6 +52,7 @@ export default function EventsWithSelectors(props) {
 
   return (
     <React.Fragment>
+      {/* Jackie: Edit the handleSearch function with the query you import from api */}
       <SearchWithGraphic title={title} onSearch={handleSearch} />
       <FilterBar
         filterBarSections={filterBarSections}
