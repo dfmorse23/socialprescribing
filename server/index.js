@@ -1,5 +1,4 @@
 const express = require("express");
-import pool from "database.js";
 
 const PORT = process.env.PORT || 3001;
 
