@@ -70,7 +70,7 @@ export default function ForgotPasswordForm(props) {
       setSuccessMessage('Check your inbox for the reset email.')
 
     } catch (err) {
-      setValidationError('Reset email could not be sent')
+      setValidationError('Reset email could not be sent.')
     }
 
     setLoading(false)
