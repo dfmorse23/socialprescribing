@@ -18,7 +18,6 @@ export default function EventsWithSelectors(props) {
 	const handleSearch = (searchValue) => {
 		return new Promise((resolve, reject) => {
 			fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
-				crossDomain: true,
 				method: "POST",
 				headers: { "Content-type": "application/json" },
 				body: JSON.stringify({ searchValue }),
@@ -66,7 +65,6 @@ export default function EventsWithSelectors(props) {
 
 	return (
 		<React.Fragment>
-			{/* Jackie: Edit the handleSearch function with the query you import from api */}
 			<SearchWithGraphic title={title} handleSearch={handleSearch} />
 			<FilterBar
 				filterBarSections={filterBarSections}

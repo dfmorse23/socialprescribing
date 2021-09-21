@@ -1,5 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const { data } = require("cheerio/lib/api/attributes");
 
 const convertZipcode = (zipcode) => {
 	return new Promise((resolve, reject) => {
@@ -73,9 +74,9 @@ const getEvents = (zipcode) => {
 						}
 					});
 
-					const returnedData = [];
+					const dataList = [];
 					for (let i = 0; i < eventTitles.length; i++) {
-						returnedData.push({
+						dataList.push({
 							title: eventTitles[i],
 							date: {
 								startDate: eventDates[i],
@@ -89,11 +90,10 @@ const getEvents = (zipcode) => {
 								virtual: false,
 							},
 							url: eventUrls[i],
-							tag: "EventBrite",
 						});
 					}
 
-					resolve(returnedData);
+					resolve({ EventBrite: dataList });
 				})
 				.catch((err) => {
 					reject(err);
