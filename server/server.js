@@ -7,14 +7,8 @@ const scraper = require("./routes/scrapers.js");
 
 const app = express();
 
-app.use("/api/scrapers", scraper);
 app.use(cors());
-app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", ["*"]);
-	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-	res.header("Access-Control-Allow-Headers", "Content-Type");
-	next();
-});
+app.use("/api/scrapers", scraper);
 
 app.get("/", (req, res) => {
 	return res.json({ response: "Hello World" });

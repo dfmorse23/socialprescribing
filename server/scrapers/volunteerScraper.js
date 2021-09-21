@@ -22,11 +22,11 @@ const getEvents = (zipcode) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				let returnedData = [];
+				let dataList = [];
 				opps = data["data"]["searchSRP"]["srpOpportunities"];
 
 				for (let i = 0; i < opps.length; i++) {
-					returnedData.push({
+					dataList.push({
 						title: opps[i]["detail"]["title"],
 						url: opps[i]["detail"]["url"],
 						location: opps[i]["detail"]["location"],
@@ -34,11 +34,10 @@ const getEvents = (zipcode) => {
 							startDate: opps[i]["dateRange"]["startDate"],
 							endDate: opps[i]["dateRange"]["endDate"],
 						},
-						tag: "Volunteering",
 					});
 				}
 
-				resolve(returnedData);
+				resolve({ Volunteering: dataList });
 			})
 			.catch((err) => {
 				reject(err.message);
