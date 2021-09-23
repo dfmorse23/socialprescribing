@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "client": "npm start --prefix client",
-    "client-install": "npm install --prefix client"
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "dependencies": {
     "axios": "^0.21.3",
     "cheerio": "^1.0.0-rc.10",
+    "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

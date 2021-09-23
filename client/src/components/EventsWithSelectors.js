@@ -23,7 +23,8 @@ export default function EventsWithSelectors(props) {
 				body: JSON.stringify({ searchValue }),
 			})
 				.then((res) => {
-					resolve(res.json());
+					res.json()
+						.then(data => console.log(data))
 				})
 				.catch((err) => {
 					console.log(err);
