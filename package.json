@@ -26,9 +26,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "concurrently": "^6.2.1",
 =======
 >>>>>>> 312ef94 (broken cors policy)
+=======
+    "concurrently": "^6.2.1",
+>>>>>>> 986cbe4 (Added script & tested code)
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
