@@ -17,12 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   cardTitleText: {
     fontWeight: 'bold',
-    paddingLeft: theme.spacing(3),
   },
   cardSubText: {
     textTransform: 'none',
     textAlign: 'center',
-    marginLeft: theme.spacing(3),
     marginTop: theme.spacing(1),
   },
   fullHeightCard: {
@@ -33,7 +31,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'center',
+  },
+  cardImageTitleArea: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   eventCardTitle: {
     '&:last-child': {
@@ -59,10 +64,10 @@ export default function EventCard(props) {
   const { event } = props;
 
   return (
-    <Grid item xs={12} md={3}>
+    <Grid item xs={6} md={3}>
       <Card className={classes.fullHeightCard}>
         <CardActionArea component="a" href={event.url} target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
-          <div>
+          <div className={classes.cardImageTitleArea}>
             <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
             <CardContent className={classes.eventCardTitle}>
               <Box

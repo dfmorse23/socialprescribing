@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    background: theme.palette.beige2,
+    background: theme.palette.beige3,
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
