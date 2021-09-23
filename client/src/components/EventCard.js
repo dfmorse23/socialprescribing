@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: 0,
       paddingBottom: 0,
       paddingLeft: theme.spacing(1),
+      textAlign: 'center',
     },
   },
   eventCardTag: {
