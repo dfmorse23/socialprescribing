@@ -1,23 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 
-import EventCard from "./EventCard";
-import FilterBar from "./FilterBar";
-import { Grid } from "@material-ui/core";
-import PropTypes from "prop-types";
-import React from "react";
-import SearchWithGraphic from "./SearchWithGraphic";
-import get_dummy_data from "./get_dummy_data";
+import EventCard from './EventCard';
+import FilterBar from './FilterBar';
+import { Grid } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import React from 'react';
+import SearchWithGraphic from './SearchWithGraphic';
+import SearchIcon from '@material-ui/icons/Search';
+import get_dummy_data from './get_dummy_data';
+import EventSkeleton from './EventSkeleton'
 
 export default function EventsWithSelectors(props) {
   const { title, filterBarSections } = props;
+  const [isLoading, setIsLoading] = useState(false)
+  const [userHasSearched, setUserHasSearched] = useState(false)
   const [events, setEvents] = useState([]);
   const [filterSelections, setFilterSelections] = useState(() => ["All"]);
   let allEvents = useRef([]);
 
-  // todo:: make request and update events on search here
-  const handleSearch = (searchValue) => {
-    return new Promise((resolve, reject) => {
-      fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
+  const handleSearch = async (searchValue) => {
+    setUserHasSearched(true)
+    setIsLoading(true)
+
+    try {
+      const response = await fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ searchValue }),
@@ -66,18 +72,35 @@ export default function EventsWithSelectors(props) {
 
   return (
     <React.Fragment>
-      <SearchWithGraphic title={title} handleSearch={handleSearch} />
-      <FilterBar
-        filterBarSections={filterBarSections}
-        filterSelections={filterSelections}
-        handleSelection={handleFilterSelection}
-      />
-      <Grid container spacing={4}>
-        {events.map((event) => (
-          <EventCard key={event.title} event={event} />
-        ))}
-      </Grid>
-    </React.Fragment>
+      <div style={{ marginBottom: '50px' }}>
+        <SearchWithGraphic title={title} handleSearch={handleSearch} />
+        <FilterBar
+          filterBarSections={filterBarSections}
+          filterSelections={filterSelections}
+          handleSelection={handleFilterSelection}
+        />
+        {userHasSearched ?
+          isLoading ?
+            <EventSkeleton />
+            :
+            <Grid container spacing={4} >
+              {events.map((event) => (
+                <EventCard key={event.title} event={event} />
+              ))}
+            </Grid>
+          :
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <SearchIcon fontSize='large' />
+            <h1 style={{ margin: '200px 20px' }}> Search your ZIP code</h1>
+          </Grid>
+        }
+      </div>
+    </React.Fragment >
   );
 }
 

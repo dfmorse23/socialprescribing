@@ -9,7 +9,6 @@ import {
   setPersistence,
   GoogleAuthProvider,
   signInWithPopup,
-  setPersistence,
   browserSessionPersistence,
   sendPasswordResetEmail,
 } from "firebase/auth";
