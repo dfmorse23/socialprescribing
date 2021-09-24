@@ -14,6 +14,7 @@ export default function EventsWithSelectors(props) {
   const { title, filterBarSections } = props;
   const [isLoading, setIsLoading] = useState(false)
   const [userHasSearched, setUserHasSearched] = useState(false)
+  const [eventSearchError, setEventSearchError] = useState()
   const [events, setEvents] = useState([]);
   const [filterSelections, setFilterSelections] = useState(() => ["All"]);
   let allEvents = useRef([]);
@@ -28,16 +29,16 @@ export default function EventsWithSelectors(props) {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ searchValue }),
       })
-        .then((res) => {
-          res.json()
-            .then(data => console.log(data))
-        })
-        .catch((err) => {
-          console.log(err);
-          reject(err);
-          return;
-        });
-    });
+
+      const resJson = response.json()
+      setEvents(resJson)
+    }
+    catch (err) {
+      // Show a general search failed error to the user
+      setEventSearchError('We encountered a problem getting your prescriptions.')
+    }
+
+    setIsLoading(false)
   };
 
   const handleFilterSelection = (e, newSelections) => {
@@ -65,10 +66,10 @@ export default function EventsWithSelectors(props) {
   };
 
   // initial render event
-  useEffect(() => {
-    allEvents.current = get_dummy_data();
-    setEvents(allEvents.current);
-  }, []);
+  // useEffect(() => {
+  //   allEvents.current = get_dummy_data();
+  //   setEvents(allEvents.current);
+  // }, []);
 
   return (
     <React.Fragment>
@@ -79,6 +80,7 @@ export default function EventsWithSelectors(props) {
           filterSelections={filterSelections}
           handleSelection={handleFilterSelection}
         />
+        <h2 style={{ margin: '50px 20px', color: '#ff5031', textAlign: 'center' }}>{eventSearchError}</h2>
         {userHasSearched ?
           isLoading ?
             <Grid container spacing={4} >
@@ -101,7 +103,7 @@ export default function EventsWithSelectors(props) {
             alignItems="center"
           >
             <SearchIcon fontSize='large' />
-            <h1 style={{ margin: '200px 20px' }}> Search your ZIP code</h1>
+            <h1 style={{ margin: '50px 20px' }}> Search your ZIP code</h1>
           </Grid>
         }
       </div>
