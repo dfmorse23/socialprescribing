@@ -81,7 +81,12 @@ export default function EventsWithSelectors(props) {
         />
         {userHasSearched ?
           isLoading ?
-            <EventSkeleton />
+            <Grid container spacing={4} >
+              <EventSkeleton />
+              <EventSkeleton />
+              <EventSkeleton />
+              <EventSkeleton />
+            </Grid>
             :
             <Grid container spacing={4} >
               {events.map((event) => (
