@@ -37,12 +37,9 @@ const useStyles = makeStyles((theme) => ({
     height: '20px',
     width: '55%',
   },
-
-
   skeleton: {
     height: '100%',
     transform: 'translate(100%)',
-    animation: `$leftToRight 1500ms linear infinite`,
   },
   skeletonIndicator: {
     width: '5px',

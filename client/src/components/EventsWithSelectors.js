@@ -30,7 +30,6 @@ export default function EventsWithSelectors(props) {
       })
 
       const resJson = await response.json()
-      console.log([...resJson[0].EventBrite, ...resJson[1].Volunteering])
       setAllEvents([...resJson[0].EventBrite, ...resJson[1].Volunteering])
       setEvents([...resJson[0].EventBrite, ...resJson[1].Volunteering])
     }
