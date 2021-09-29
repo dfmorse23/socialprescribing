@@ -20,6 +20,7 @@ export default function EventsWithSelectors(props) {
   const handleSearch = async (searchValue) => {
     setUserHasSearched(true)
     setIsLoading(true)
+    setEventSearchError('')
 
     try {
       const response = await fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
