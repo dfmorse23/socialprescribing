@@ -1,4 +1,3 @@
-const { default: axios } = require("axios");
 const fetch = require("node-fetch");
 
 const getEvents = (zipcode) => {
