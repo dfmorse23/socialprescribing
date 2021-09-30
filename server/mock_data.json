@@ -1,0 +1,79 @@
+{
+    "mockData": [
+        {
+            "title": "Greater Cleveland Volunteers",
+            "date": {
+                "startDate": "Varies",
+                "endDate": null
+            },
+            "description": "Connect with a GCV staff member to find the perfect volunteering fit: based on your interests, availability, time commitment",
+            "location": "Varies",
+            "url": "https://www.greaterclevelandvolunteers.org/programs/volunteer.php",
+            "email": "JBanish@greaterclevelandvolunteers.org",
+            "contactName": "Joy Banish",
+            "cost": "Free",
+            "type": "Community group",
+            "tag": "Volunteering"
+        },
+        {
+            "title": "Business Volunteers Unlimited",
+            "date": {
+                "startDate": "Varies",
+                "endDate": null
+            },
+            "description": "Access BVU's calendar of upcoming high quality volunteering experiences. Find one that is right for you.",
+            "location": "Varies",
+            "url": "https://handson.bvuvolunteers.org/",
+            "email": "acancelliere@bvuvolunteers.org",
+            "contactName": "Anne Cancelliere",
+            "cost": "Free",
+            "type": "Community group",
+            "tag": "Volunteering"
+        },
+        {
+            "title": "Holden Arboretum & Botanical Gardens",
+            "date": {
+                "startDate": "Varies",
+                "endDate": null
+            },
+            "description": "Get access to one of the most beautiful nature areas in the midwest. X Y Z classes happen every once and a while that you could have access to *note Cleveland Clinic patients can get reimbursement for tickets by doing X Y Z",
+            "location": "Varies",
+            "url": "https://holdenfg.org/holden-arboretum/plan-your-visit/",
+            "email": "salbro@holdenfg.org",
+            "contactName": "Sandra Albro",
+            "cost": "$10-15",
+            "type": "Solo/Community group",
+            "tag": "Nature"
+        },
+        {
+            "title": "Cleveland Metroparks",
+            "date": {
+                "startDate": "Varies",
+                "endDate": null
+            },
+            "description": "Select from a dozen or so park community events that happen daily",
+            "location": "Varies",
+            "url": "https://www.clevelandmetroparks.com/parks/calendar",
+            "email": "mar4@clevelandmetroparks.com",
+            "contactName": "Mary Rouse",
+            "cost": "Free - $25",
+            "type": "Solo/Community group",
+            "tag": "Nature"
+        },
+        {
+            "title": "Neighborhood park",
+            "date": {
+                "startDate": "Anytime",
+                "endDate": null
+            },
+            "description": "Find a park in your neighborhood",
+            "location": "Varies",
+            "url": "https://parkrxamerica.org/",
+            "email": "n/a",
+            "contactName": "n/a",
+            "cost": "Free",
+            "type": "Solo/Community group",
+            "tag": "Nature"
+        }
+    ]
+}
