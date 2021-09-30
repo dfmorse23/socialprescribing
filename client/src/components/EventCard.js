@@ -3,6 +3,7 @@ import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -67,9 +68,13 @@ export default function EventCard(props) {
   const classes = useStyles();
   const { event } = props;
   const { currentUser } = useAuth();
+  const history = useHistory();
 
   const handleLike = async () => {
-    console.log(currentUser.uid)
+    if (!currentUser) {
+      history.push('/signin')
+      return
+    }
     // Send UUID and event object to the backend favorites endpoint
     // const response = await fetch(`http://localhost:3001/api/`, {
     //   method: "POST",
