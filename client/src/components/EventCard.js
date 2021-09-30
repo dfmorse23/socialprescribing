@@ -1,5 +1,8 @@
-import { Box, Button, Grid, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Typography, IconButton } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useAuth } from '../contexts/AuthContext';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -21,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   cardSubText: {
     textTransform: 'none',
     textAlign: 'center',
-    marginTop: theme.spacing(1),
   },
   fullHeightCard: {
     height: '100%',
@@ -48,44 +50,55 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
     },
   },
-  eventCardTag: {
-    paddingTop: 0,
-  },
   customBox: {
     display: "-webkit-box",
     boxOrient: "vertical",
     lineClamp: 2,
     overflow: "hidden"
-  }
+  },
 }));
-
 
 export default function EventCard(props) {
   const classes = useStyles();
   const { event } = props;
+  const { currentUser } = useAuth();
+
+  const handleLike = async () => {
+    console.log(currentUser.uid)
+    // Send UUID and event object to the backend favorites endpoint
+    // const response = await fetch(`http://localhost:3001/api/`, {
+    //   method: "POST",
+    //   headers: { "Content-type": "application/json" },
+    // })
+  }
 
   return (
     <Grid item xs={6} md={3}>
       <Card className={classes.fullHeightCard}>
-        <CardActionArea component="a" href={event.url} target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
-          <div className={classes.cardImageTitleArea}>
-            <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
-            <CardContent className={classes.eventCardTitle}>
-              <Box
-                component="div"
-                classes={{ root: classes.customBox }}
-              >
-                <Typography variant="body1" className={classes.cardTitleText}>
-                  {event.title}
-                </Typography>
-              </Box>
-            </CardContent>
-          </div>
-          <CardContent className={classes.eventCardTag}>
+        <CardActionArea component="div" target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
+          <a href={event.url} classes={classes.cardMainContentLink}>
+            <div className={classes.cardImageTitleArea}>
+              <CardMedia component="img" image={"https://source.unsplash.com/1600x900/?nature,water"} title={event.title} className={classes.cardMedia} />
+              <CardContent className={classes.eventCardTitle}>
+                <Box
+                  component="div"
+                  classes={{ root: classes.customBox }}
+                >
+                  <Typography variant="body1" className={classes.cardTitleText}>
+                    {event.title}
+                  </Typography>
+                </Box>
+              </CardContent>
+            </div>
+          </a>
+          <Grid container justifyContent="space-around" alignItems="center">
+            <IconButton aria-label="add to favorites" onClick={() => handleLike()}>
+              <FavoriteIcon />
+            </IconButton>
             <Button variant="contained" size="small" disabled className={classes.cardSubText}>
               {event.tag}
             </Button>
-          </CardContent>
+          </Grid>
         </CardActionArea>
       </Card>
     </Grid >
