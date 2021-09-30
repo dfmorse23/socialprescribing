@@ -90,6 +90,7 @@ const getEvents = (zipcode) => {
 								virtual: false,
 							},
 							url: eventUrls[i],
+							tag: "EventBrite",
 						});
 					}
 
