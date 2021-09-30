@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography, IconButton } from '@material-ui/core';
+import { Box, Button, Grid, Typography, IconButton, CardActions } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardTitleText: {
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   cardSubText: {
     textTransform: 'none',
@@ -27,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
   fullHeightCard: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'space-between',
+    justifyContent: 'space-between'
   },
   spacedCardActionArea: {
     height: '100%',
@@ -75,22 +80,25 @@ export default function EventCard(props) {
   return (
     <Grid item xs={6} md={3}>
       <Card className={classes.fullHeightCard}>
-        <CardActionArea component="div" target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
-          <a href={event.url} classes={classes.cardMainContentLink}>
-            <div className={classes.cardImageTitleArea}>
-              <CardMedia component="img" image={"https://source.unsplash.com/1600x900/?nature,water"} title={event.title} className={classes.cardMedia} />
-              <CardContent className={classes.eventCardTitle}>
-                <Box
-                  component="div"
-                  classes={{ root: classes.customBox }}
-                >
-                  <Typography variant="body1" className={classes.cardTitleText}>
-                    {event.title}
-                  </Typography>
-                </Box>
-              </CardContent>
-            </div>
-          </a>
+        <CardActionArea href={event.url}>
+          <CardMedia
+            className={classes.media}
+            image="/static/images/cards/contemplative-reptile.jpg"
+            title="Contemplative Reptile"
+          />
+          <CardContent className={classes.eventCardTitle}>
+            <CardMedia component="img" image={"https://source.unsplash.com/1600x900/?nature,water"} title={event.title} className={classes.cardMedia} />
+            <Box
+              component="div"
+              classes={{ root: classes.customBox }}
+            >
+              <Typography variant="body1" className={classes.cardTitleText}>
+                {event.title}
+              </Typography>
+            </Box>
+          </CardContent>
+        </CardActionArea>
+        <CardActions className={classes.cardActionsContainer}>
           <Grid container justifyContent="space-around" alignItems="center">
             <IconButton aria-label="add to favorites" onClick={() => handleLike()}>
               <FavoriteIcon />
@@ -99,7 +107,7 @@ export default function EventCard(props) {
               {event.tag}
             </Button>
           </Grid>
-        </CardActionArea>
+        </CardActions>
       </Card>
     </Grid >
   );
