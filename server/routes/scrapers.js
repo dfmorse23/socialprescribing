@@ -4,6 +4,15 @@ const volunteerScraper = require("../scrapers/volunteerScraper");
 const router = express.Router();
 
 router.post("/getEvents/:zipcode", (req, res) => {
+	// Temporarily hardcode Cleveland data
+	const intZipcode = parseInt(req.params.zipcode);
+	if (intZipcode >= 44101 && intZipcode <= 44199) {
+		console.log("Queried Cleveland zipcode");
+
+		let data = require("../mock_data.json");
+		return res.json(data);
+	}
+
 	const eventBriteData = new Promise((resolve, reject) => {
 		eventBriteScraper
 			.getEvents(req.params.zipcode)
@@ -18,9 +27,13 @@ router.post("/getEvents/:zipcode", (req, res) => {
 			.catch((err) => reject(err));
 	});
 
-	Promise.all([eventBriteData, volunteermatchData]).then((vals) => {
-		return res.json(vals);
-	});
+	Promise.all([eventBriteData, volunteermatchData])
+		.then((vals) => {
+			return res.json(vals);
+		})
+		.catch((err) => {
+			return res.status(400).json({ error: `${err}` });
+		});
 });
 
 module.exports = router;
