@@ -44,7 +44,7 @@ export default function EventsWithSelectors(props) {
   const handleFilterSelection = (e, newSelections) => {
     // take the difference between newSelections and filterSelection (newSelections - filterSelections)
     // to see if 'All' has been added
-    if (events.length === 0) {
+    if (!allEvents) {
       return
     }
 
