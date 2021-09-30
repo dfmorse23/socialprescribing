@@ -11,6 +11,19 @@ const pool = new Pool({
     port: process.env.AWS_PORT,
 });
 
+// const createUserTable = `
+// CREATE TABLE users (
+//     user_uid UUID PRIMARY KEY,
+//     resource_uid JSONB
+//     )`;
+
+// try {
+//     const res = pool.query(createUserTable);
+//     console.log(res);
+// } catch (err) {
+//     console.log(err);
+// }
+
 module.exports = {
     query: (text, params, callback) => {
         const start = Date.now();
