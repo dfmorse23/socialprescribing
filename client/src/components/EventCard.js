@@ -14,10 +14,9 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   cardMedia: {
-    padding: theme.spacing(3),
     paddingBottom: theme.spacing(2),
     maxHeight: 175,
-    borderRadius: 30,
+    borderRadius: 5,
   },
   cardTitleText: {
     fontWeight: 'bold',
