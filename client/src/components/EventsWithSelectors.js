@@ -44,6 +44,10 @@ export default function EventsWithSelectors(props) {
   const handleFilterSelection = (e, newSelections) => {
     // take the difference between newSelections and filterSelection (newSelections - filterSelections)
     // to see if 'All' has been added
+    if (events.length === 0) {
+      return
+    }
+
     const difference = newSelections.filter((x) => !filterSelections.includes(x));
 
     // if there is nothing selected or all is selected display all events
