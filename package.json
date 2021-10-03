@@ -23,32 +23,11 @@
   "dependencies": {
     "axios": "^0.21.3",
     "cheerio": "^1.0.0-rc.10",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "concurrently": "^6.2.1",
-=======
->>>>>>> 312ef94 (broken cors policy)
-=======
-    "concurrently": "^6.2.1",
->>>>>>> 986cbe4 (Added script & tested code)
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
     "node-fetch": "^2.0.0",
-    "prettier": "^2.4.0"
-<<<<<<< HEAD
-=======
-=======
-    "dotenv": "^10.0.0",
->>>>>>> da71871 (minor folder restructuring & formatting changes)
     "express": "^4.17.1",
-    "prettier": "^2.4.0",
-    "puppeteer-extra": "^3.1.18",
-    "puppeteer-extra-plugin-stealth": "^2.7.8"
->>>>>>> c414a9c (update dependencies)
-=======
->>>>>>> 14b0315 (update dependencies)
+    "prettier": "^2.4.0"
   }
 }
