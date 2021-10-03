@@ -48,6 +48,18 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: '20px',
   },
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: theme.palette.green1,
+      },
+    },
+    '& .MuiFormLabel-root': {
+      '&.Mui-focused': {
+        color: theme.palette.green1,
+      },
+    }
+  },
 }));
 
 export default function SignupForm(props) {
