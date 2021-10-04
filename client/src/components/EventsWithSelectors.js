@@ -22,6 +22,9 @@ export default function EventsWithSelectors(props) {
     setIsLoading(true)
     setEventSearchError('')
 
+    setAllEvents([])
+    setEvents([])
+
     try {
       const response = await fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
         method: "POST",
@@ -30,11 +33,30 @@ export default function EventsWithSelectors(props) {
       })
 
       const resJson = await response.json()
-      setAllEvents([...resJson[0].EventBrite, ...resJson[1].Volunteering])
-      setEvents([...resJson[0].EventBrite, ...resJson[1].Volunteering])
+
+      // console.log(resJson)
+      console.log(resJson.mockData)
+
+
+      let EventBrite = []
+      let Volunteering = []
+      let Clevelend = []
+      if (resJson.hasOwnProperty('mockData')) {
+        Clevelend = resJson.mockData
+      }
+      else {
+        EventBrite = resJson[0].EventBrite
+        Volunteering = resJson[1].Volunteering
+      }
+
+      setAllEvents([...EventBrite, ...Volunteering, ...Clevelend])
+      setEvents([...EventBrite, ...Volunteering, ...Clevelend])
     }
     catch (err) {
       // Show a general search failed error to the user
+      console.log(err.message)
+      console.log(err)
+
       setEventSearchError('We encountered a problem getting your prescriptions.')
     }
 

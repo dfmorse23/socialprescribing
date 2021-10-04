@@ -91,7 +91,7 @@ export default function EventCard(props) {
             title="Contemplative Reptile"
           />
           <CardContent className={classes.eventCardTitle} style={{ padding: "0px" }}>
-            <CardMedia component="img" image={"https://source.unsplash.com/1600x900/?nature,water"} title={event.title} className={classes.cardMedia} />
+            <CardMedia component="img" image={event.image ? event.image : `http://placehold.jp/24/cccccc/ffffff/250x250.png?text=${event.tag}`} title={event.title} className={classes.cardMedia} />
             <Box
               component="div"
               classes={{ root: classes.customBox }}
