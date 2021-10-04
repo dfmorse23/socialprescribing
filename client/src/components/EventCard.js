@@ -1,8 +1,9 @@
-import { Box, Button, Grid, Typography, IconButton } from '@material-ui/core';
+import { Box, Button, Grid, Typography, IconButton, CardActions } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   cardMedia: {
-    padding: theme.spacing(3),
     paddingBottom: theme.spacing(2),
     maxHeight: 175,
-    borderRadius: 30,
+    borderRadius: 5,
   },
   cardTitleText: {
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   cardSubText: {
     textTransform: 'none',
@@ -27,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
   fullHeightCard: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'space-between',
+    justifyContent: 'space-between'
   },
   spacedCardActionArea: {
     height: '100%',
@@ -62,9 +67,13 @@ export default function EventCard(props) {
   const classes = useStyles();
   const { event } = props;
   const { currentUser } = useAuth();
+  const history = useHistory();
 
   const handleLike = async () => {
-    console.log(currentUser.uid)
+    if (!currentUser) {
+      history.push('/signin')
+      return
+    }
     // Send UUID and event object to the backend favorites endpoint
     // const response = await fetch(`http://localhost:3001/api/`, {
     //   method: "POST",
@@ -75,22 +84,25 @@ export default function EventCard(props) {
   return (
     <Grid item xs={6} md={3}>
       <Card className={classes.fullHeightCard}>
-        <CardActionArea component="div" target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
-          <a href={event.url} classes={classes.cardMainContentLink}>
-            <div className={classes.cardImageTitleArea}>
-              <CardMedia component="img" image={"https://source.unsplash.com/1600x900/?nature,water"} title={event.title} className={classes.cardMedia} />
-              <CardContent className={classes.eventCardTitle}>
-                <Box
-                  component="div"
-                  classes={{ root: classes.customBox }}
-                >
-                  <Typography variant="body1" className={classes.cardTitleText}>
-                    {event.title}
-                  </Typography>
-                </Box>
-              </CardContent>
-            </div>
-          </a>
+        <CardActionArea href={event.url}>
+          <CardMedia
+            className={classes.media}
+            image="/static/images/cards/contemplative-reptile.jpg"
+            title="Contemplative Reptile"
+          />
+          <CardContent className={classes.eventCardTitle}>
+            <CardMedia component="img" image={"https://source.unsplash.com/1600x900/?nature,water"} title={event.title} className={classes.cardMedia} />
+            <Box
+              component="div"
+              classes={{ root: classes.customBox }}
+            >
+              <Typography variant="body1" className={classes.cardTitleText}>
+                {event.title}
+              </Typography>
+            </Box>
+          </CardContent>
+        </CardActionArea>
+        <CardActions className={classes.cardActionsContainer}>
           <Grid container justifyContent="space-around" alignItems="center">
             <IconButton aria-label="add to favorites" onClick={() => handleLike()}>
               <FavoriteIcon />
@@ -99,7 +111,7 @@ export default function EventCard(props) {
               {event.tag}
             </Button>
           </Grid>
-        </CardActionArea>
+        </CardActions>
       </Card>
     </Grid >
   );
