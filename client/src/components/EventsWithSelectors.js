@@ -36,7 +36,6 @@ export default function EventsWithSelectors(props) {
 
       console.log(resJson)
 
-
       let EventBrite = []
       let Volunteering = []
       let Clevelend = []

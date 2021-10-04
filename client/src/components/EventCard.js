@@ -1,6 +1,5 @@
 import { Box, Button, Grid, Typography, IconButton, CardActions } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router';
