@@ -85,11 +85,6 @@ export default function EventCard(props) {
     <Grid item xs={6} md={3}>
       <Card className={classes.fullHeightCard}>
         <CardActionArea href={event.url}>
-          <CardMedia
-            className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
-          />
           <CardContent className={classes.eventCardTitle} style={{ padding: "0px" }}>
             <CardMedia component="img" image={event.image ? event.image : `http://placehold.jp/24/cccccc/ffffff/250x250.png?text=${event.tag}`} title={event.title} className={classes.cardMedia} />
             <Box

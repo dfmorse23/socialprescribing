@@ -34,8 +34,7 @@ export default function EventsWithSelectors(props) {
 
       const resJson = await response.json()
 
-      // console.log(resJson)
-      console.log(resJson.mockData)
+      console.log(resJson)
 
 
       let EventBrite = []
