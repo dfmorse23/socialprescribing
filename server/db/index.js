@@ -11,18 +11,18 @@ const pool = new Pool({
     port: process.env.AWS_PORT,
 });
 
-const createFavoritesTable = `
-CREATE TABLE user_favorites (
-    user_uid UUID PRIMARY KEY,
-    favorites JSONB
-    )`;
+// const createFavoritesTable = `
+// CREATE TABLE user_favorites (
+//     user_uid UUID PRIMARY KEY,
+//     favorites JSONB
+//     )`;
 
-try {
-    const res = pool.query(createFavoritesTable);
-    console.log(res);
-} catch (err) {
-    console.log(err);
-}
+// try {
+//     const res = pool.query(createFavoritesTable);
+//     console.log(res);
+// } catch (err) {
+//     console.log(err);
+// }
 
 module.exports = {
     query: (text, params, callback) => {
