@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-const { getImage } = require("./getImage");
 
 const getEvents = (zipcode) => {
 	return new Promise(async (resolve, reject) => {
@@ -27,28 +26,19 @@ const getEvents = (zipcode) => {
 				let oppsCount = opps.length;
 				let dataList = [];
 
-				// Get image urls from unsplash
-				getImage(oppsCount)
-					.then((imageUrls) => {
-						for (let i = 0; i < oppsCount; i++) {
-							dataList.push({
-								title: opps[i]["detail"]["title"],
-								url: opps[i]["detail"]["url"],
-								location: opps[i]["detail"]["location"],
-								date: {
-									startDate: opps[i]["dateRange"]["startDate"],
-									endDate: opps[i]["dateRange"]["endDate"],
-								},
-								tag: "Volunteering",
-								image:
-									imageUrls[i] ||
-									"https://images.unsplash.com/photo-1461532257246-777de18cd58b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
-							});
-						}
-					})
-					.catch((err) => {
-						reject(err.message);
+				for (let i = 0; i < oppsCount; i++) {
+					dataList.push({
+						title: opps[i]["detail"]["title"],
+						url: opps[i]["detail"]["url"],
+						location: opps[i]["detail"]["location"],
+						date: {
+							startDate: opps[i]["dateRange"]["startDate"],
+							endDate: opps[i]["dateRange"]["endDate"],
+						},
+						tag: "Volunteering",
+						image: null,
 					});
+				}
 
 				resolve({ Volunteering: dataList });
 			})
