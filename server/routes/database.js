@@ -21,9 +21,26 @@ router.post("addFavorite/:user_uid", (req, res) => {
         INSERT INTO user_favorites(user_uid, favorites)
         VALUES ($1, $2)
         ON CONFLICT (user_uid)
-        DO UPDATE SET favorites = EXCLUDED.favorites
+        DO UPDATE SET favorites = user_favorites.favorites || EXCLUDED.favorites
         `,
         [req.params.user_uid, req.body],
+        (err, res) => {
+            if (err) {
+                return err;
+            }
+            return res.rows[0];
+        }
+    );
+});
+
+router.post("removeFavorite/:user_uid", (req, res) => {
+    db.query(
+        `
+        UPDATE user_favorites
+        SET favorites = favorites - $2
+        WHERE user_uid = $1
+        `,
+        [req.params.user_uid, Object.keys(req.body)[0]],
         (err, res) => {
             if (err) {
                 return err;
