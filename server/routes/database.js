@@ -45,7 +45,6 @@ router.post("removeFavorite/:user_uid", (req, res) => {
             if (err) {
                 return err;
             }
-            return res.rows[0];
         }
     );
 });
