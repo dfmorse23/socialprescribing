@@ -85,7 +85,7 @@ export default function EventCard(props) {
       <Card className={classes.fullHeightCard}>
         <CardActionArea onClick={() => window.open(event.url, "_blank")} >
           <CardContent className={classes.eventCardTitle} style={{ padding: "0px" }}>
-            <CardMedia component="img" image={event.image ? event.image : `http://placehold.jp/24/cccccc/ffffff/250x250.png?text=${event.tag}`} title={event.title} className={classes.cardMedia} />
+            <CardMedia component="img" image={event.image ? event.image : `https://source.unsplash.com/collection/2178991,sig=${props.sig}`} title={event.title} className={classes.cardMedia} />
             <Box
               component="div"
               classes={{ root: classes.customBox }}

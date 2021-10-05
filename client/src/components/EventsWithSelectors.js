@@ -109,8 +109,8 @@ export default function EventsWithSelectors(props) {
             </Grid>
             :
             <Grid container spacing={4} >
-              {events.map((event) => (
-                <EventCard key={event.title} event={event} />
+              {events.map((event, index) => (
+                <EventCard key={event.title} sig={index * Math.random() * 1000} event={event} />
               ))}
             </Grid>
           :
