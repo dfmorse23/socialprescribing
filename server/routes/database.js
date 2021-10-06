@@ -6,11 +6,11 @@ router.get("/favorites/:user_uid", (req, res) => {
     db.query(
         "SELECT * FROM user_favorites WHERE user_uid = $1",
         [req.params.user_uid],
-        (err, res) => {
+        (err, result) => {
             if (err) {
-                return err;
+                console.log(err);
             }
-            return res.rows[0];
+            res.send(result.rows[0]);
         }
     );
 });
@@ -24,11 +24,11 @@ router.post("/addFavorite/:user_uid", (req, res) => {
         DO UPDATE SET favorites = user_favorites.favorites || EXCLUDED.favorites
         `,
         [req.params.user_uid, req.body],
-        (err, res) => {
+        (err, result) => {
             if (err) {
                 return err;
             }
-            return res.rows[0];
+            res.send(result.rows[0]);
         }
     );
 });
@@ -41,10 +41,11 @@ router.post("/removeFavorite/:user_uid", (req, res) => {
         WHERE user_uid = $1
         `,
         [req.params.user_uid, Object.keys(req.body)[0]],
-        (err, res) => {
+        (err, result) => {
             if (err) {
                 return err;
             }
+            res.send(result.rows[0]);
         }
     );
 });
@@ -53,10 +54,11 @@ router.post("/deleteFavorites/:user_uid", (req, res) => {
     db.query(
         "DELETE FROM user_favorites WHERE user_uid = $1",
         [req.params.user_uid],
-        (err, res) => {
+        (err, result) => {
             if (err) {
                 return err;
             }
+            res.send(result.rows[0]);
         }
     );
 });
