@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-router.get("favorites/:user_uid", (req, res) => {
+router.get("/favorites/:user_uid", (req, res) => {
     db.query(
         "SELECT * FROM user_favorites WHERE user_uid = $1",
         [req.params.user_uid],
@@ -15,7 +15,7 @@ router.get("favorites/:user_uid", (req, res) => {
     );
 });
 
-router.post("addFavorite/:user_uid", (req, res) => {
+router.post("/addFavorite/:user_uid", (req, res) => {
     db.query(
         `
         INSERT INTO user_favorites(user_uid, favorites)
@@ -33,7 +33,7 @@ router.post("addFavorite/:user_uid", (req, res) => {
     );
 });
 
-router.post("removeFavorite/:user_uid", (req, res) => {
+router.post("/removeFavorite/:user_uid", (req, res) => {
     db.query(
         `
         UPDATE user_favorites
@@ -49,7 +49,7 @@ router.post("removeFavorite/:user_uid", (req, res) => {
     );
 });
 
-router.post("deleteFavorites/:user_uid", (req, res) => {
+router.post("/deleteFavorites/:user_uid", (req, res) => {
     db.query(
         "DELETE FROM user_favorites WHERE user_uid = $1",
         [req.params.user_uid],
