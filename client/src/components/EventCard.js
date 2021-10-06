@@ -3,10 +3,11 @@ import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
+const addDashes = require("add-dashes-to-uuid")
 
 const useStyles = makeStyles((theme) => ({
   cardDetails: {
@@ -78,6 +79,26 @@ export default function EventCard(props) {
     //   method: "POST",
     //   headers: { "Content-type": "application/json" },
     // })
+    console.log(addDashes(currentUser.uid))
+
+    try {
+      const response = await fetch(`http://localhost:3001/user/addFavorite/45b9e074-8655-4aef-bb03-dde07d0171a9`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ event }),
+      })
+
+
+      const resJson = response
+
+      console.log(resJson)
+    }
+    catch (err) {
+      // Show a general search failed error to the user
+      console.log(err.message)
+      console.log(err)
+    }
+
   }
 
   return (
