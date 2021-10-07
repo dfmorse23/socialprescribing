@@ -1,13 +1,12 @@
 import { Box, Button, Grid, Typography, IconButton, CardActions } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
-const addDashes = require("add-dashes-to-uuid")
 
 const useStyles = makeStyles((theme) => ({
   cardDetails: {
@@ -68,30 +67,33 @@ export default function EventCard(props) {
   const { event } = props;
   const { currentUser } = useAuth();
   const history = useHistory();
+  const [liked, setLiked] = useState(false)
 
   const handleLike = async () => {
     if (!currentUser) {
       history.push('/signin')
       return
     }
-    // Send UUID and event object to the backend favorites endpoint
-    // const response = await fetch(`http://localhost:3001/api/`, {
-    //   method: "POST",
-    //   headers: { "Content-type": "application/json" },
-    // })
-    console.log(addDashes(currentUser.uid))
+
+    if (liked) {
+      handleRemoveLike()
+      return
+    }
 
     try {
-      const response = await fetch(`http://localhost:3001/user/addFavorite/45b9e074-8655-4aef-bb03-dde07d0171a9`, {
+      const response = await fetch(`http://localhost:3001/user/addFavorite/${currentUser.uid}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ event }),
+        body: JSON.stringify({ [event.title]: event }),
       })
 
 
       const resJson = response
 
+      console.log(currentUser.uid)
       console.log(resJson)
+
+      setLiked(true)
     }
     catch (err) {
       // Show a general search failed error to the user
@@ -99,6 +101,10 @@ export default function EventCard(props) {
       console.log(err)
     }
 
+  }
+
+  const handleRemoveLike = async () => {
+    // Remove like here
   }
 
   return (
@@ -120,7 +126,11 @@ export default function EventCard(props) {
         <CardActions className={classes.cardActionsContainer}>
           <Grid container justifyContent="space-around" alignItems="center">
             <IconButton aria-label="add to favorites" onClick={() => handleLike()}>
-              <FavoriteIcon />
+              {liked ?
+                <FavoriteIcon />
+                :
+                <FavoriteBorderIcon />
+              }
             </IconButton>
             <Button variant="contained" size="small" disabled className={classes.cardSubText}>
               {event.tag}

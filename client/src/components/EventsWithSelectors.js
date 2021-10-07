@@ -7,6 +7,8 @@ import React from 'react';
 import SearchWithGraphic from './SearchWithGraphic';
 import SearchIcon from '@material-ui/icons/Search';
 import EventSkeleton from './EventSkeleton'
+import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router';
 
 export default function EventsWithSelectors(props) {
   const { title, filterBarSections } = props;
@@ -16,6 +18,8 @@ export default function EventsWithSelectors(props) {
   const [events, setEvents] = useState([]);
   const [filterSelections, setFilterSelections] = useState(() => ['All']);
   const [allEvents, setAllEvents] = useState()
+  const { currentUser } = useAuth();
+  const history = useHistory();
 
   const handleSearch = async (searchValue) => {
     setUserHasSearched(true)
@@ -61,7 +65,39 @@ export default function EventsWithSelectors(props) {
     setIsLoading(false)
   };
 
-  const handleFilterSelection = (e, newSelections) => {
+  const getLikedItems = async () => {
+    setIsLoading(true)
+    // Get the user's liked items
+    if (!currentUser) {
+      // Redirect the user to login
+      history.push('/signin')
+      return
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3001/user/favorites/${currentUser.uid}`, {
+        method: "GET",
+        headers: { "Content-type": "application/json" },
+      })
+      const resJson = await response.json()
+
+      const events = Object.values(resJson)
+
+      setIsLoading(false)
+      return events
+
+    }
+    catch (err) {
+      // Show a general search failed error to the user
+      console.log(err.message)
+      console.log(err)
+
+      setEventSearchError('We encountered a problem getting your liked prescriptions.')
+    }
+
+  }
+
+  const handleFilterSelection = async (e, newSelections) => {
     // take the difference between newSelections and filterSelection (newSelections - filterSelections)
     // to see if 'All' has been added
     if (!allEvents) {
@@ -74,11 +110,25 @@ export default function EventsWithSelectors(props) {
     if (newSelections.length === 0 || difference.includes("All")) {
       newSelections = ["All"];
       setEvents(allEvents);
-    } else {
+    }
+    // If the user selects favorites, deselect all and get favorites
+    else if (difference.includes("My Favorites")) {
+      newSelections = ["My Favorites"];
+
+      setEvents(await getLikedItems())
+
+    }
+    else {
       // remove 'All' from the selected filters if present
-      const index = newSelections.indexOf("All");
-      if (index > -1) {
-        newSelections.splice(index, 1);
+      const all = newSelections.indexOf("All");
+      if (all > -1) {
+        newSelections.splice(all, 1);
+      }
+
+      const favorite = newSelections.indexOf("My Favorites");
+      if (favorite > -1) {
+        newSelections.splice(favorite, 1);
+        setEvents([])
       }
 
       // filter for events that match the selected tags
@@ -94,6 +144,7 @@ export default function EventsWithSelectors(props) {
       <div style={{ marginBottom: '50px' }}>
         <SearchWithGraphic title={title} handleSearch={handleSearch} />
         <FilterBar
+          disabled={!userHasSearched}
           filterBarSections={filterBarSections}
           filterSelections={filterSelections}
           handleSelection={handleFilterSelection}
@@ -110,7 +161,7 @@ export default function EventsWithSelectors(props) {
             :
             <Grid container spacing={4} >
               {events.map((event, index) => (
-                <EventCard key={event.title} sig={index * Math.random() * 1000} event={event} />
+                <EventCard key={event.title} sig={index} event={event} />
               ))}
             </Grid>
           :
