@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FilterBar(props) {
   const classes = useStyles();
-  const { filterBarSections, filterSelections, handleSelection } = props;
+  const { filterBarSections, filterSelections, handleSelection, disabled } = props;
 
   return (
     <Toolbar variant="regular" disableGutters={true} className={classes.toolbarSecondary}>
@@ -71,7 +71,8 @@ export default function FilterBar(props) {
             aria-label={filter}
             value={filter}
             className={classes.buttonColor}
-            key={filter}>
+            key={filter}
+            disabled={disabled}>
             {filter}
           </ToggleButton>
         ))}
@@ -81,6 +82,7 @@ export default function FilterBar(props) {
           value={filterBarSections.favorites}
           className={classes.buttonColor}
           key={filterBarSections.favorites}
+          disabled={disabled}
         >
           {filterBarSections.favorites}
         </ToggleButton>

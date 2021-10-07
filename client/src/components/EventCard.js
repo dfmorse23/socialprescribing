@@ -1,8 +1,12 @@
-import { Box, Button, Grid, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Typography, IconButton, CardActions, Snackbar } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
-
+import Alert from '@material-ui/lab/Alert';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,78 +14,160 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   cardMedia: {
-    padding: theme.spacing(3),
     paddingBottom: theme.spacing(2),
     maxHeight: 175,
-    borderRadius: 30,
+    borderRadius: 5,
   },
   cardTitleText: {
     fontWeight: 'bold',
-    paddingLeft: theme.spacing(3),
+    textAlign: 'center',
   },
   cardSubText: {
     textTransform: 'none',
     textAlign: 'center',
-    marginLeft: theme.spacing(3),
-    marginTop: theme.spacing(1),
   },
   fullHeightCard: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'space-between',
+    justifyContent: 'space-between'
   },
   spacedCardActionArea: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'center',
+  },
+  cardImageTitleArea: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   eventCardTitle: {
     '&:last-child': {
       paddingTop: 0,
       paddingBottom: 0,
       paddingLeft: theme.spacing(1),
+      textAlign: 'center',
     },
-  },
-  eventCardTag: {
-    paddingTop: 0,
   },
   customBox: {
     display: "-webkit-box",
     boxOrient: "vertical",
     lineClamp: 2,
     overflow: "hidden"
-  }
+  },
 }));
-
 
 export default function EventCard(props) {
   const classes = useStyles();
-  const { event } = props;
+  const { event, displayingFavorites } = props;
+  const { currentUser } = useAuth();
+  const history = useHistory();
+  const [liked, setLiked] = useState(displayingFavorites)
+  const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false)
+
+  const handleLikeSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setLikeSnackbarOpen(false);
+  };
+
+  const handleLike = async () => {
+    if (!currentUser) {
+      history.push('/signin')
+      return
+    }
+
+    if (liked) {
+      handleRemoveLike()
+      return
+    }
+
+    try {
+      await fetch(`http://localhost:3001/user/addFavorite/${currentUser.uid}`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ [event.title]: event }),
+      })
+
+      // show the alert snackbar
+      setLikeSnackbarOpen(true);
+
+      // set the post as liked
+      setLiked(true)
+    }
+    catch (err) {
+      console.log(err.message)
+      console.log(err)
+    }
+
+  }
+
+  const handleRemoveLike = async () => {
+    // Remove like here
+    try {
+      await fetch(`http://localhost:3001/user/removeFavorite/${currentUser.uid}`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ [event.title]: event }),
+      })
+
+      // show the alert snackbar
+      setLikeSnackbarOpen(true);
+
+      // remove the post from liked posts
+      setLiked(false)
+    }
+    catch (err) {
+      console.log(err.message)
+      console.log(err)
+    }
+  }
 
   return (
-    <Grid item xs={12} md={3}>
+    <Grid item xs={6} md={3}>
       <Card className={classes.fullHeightCard}>
-        <CardActionArea component="a" href={event.url} target="_blank" rel="noopener" className={classes.spacedCardActionArea}>
-          <div>
-            <CardMedia component="img" image={event.image} title={event.title} className={classes.cardMedia} />
-            <CardContent className={classes.eventCardTitle}>
-              <Box
-                component="div"
-                classes={{ root: classes.customBox }}
-              >
-                <Typography variant="body1" className={classes.cardTitleText}>
-                  {event.title}
-                </Typography>
-              </Box>
-            </CardContent>
-          </div>
-          <CardContent className={classes.eventCardTag}>
+        <CardActionArea onClick={() => window.open(event.url, "_blank")} >
+          <CardContent className={classes.eventCardTitle} style={{ padding: "0px" }}>
+            <CardMedia component="img" image={event.image ? event.image : `https://source.unsplash.com/collection/2178991,sig=${props.sig}`} title={event.title} className={classes.cardMedia} />
+            <Box
+              component="div"
+              classes={{ root: classes.customBox }}
+            >
+              <Typography variant="body1" className={classes.cardTitleText}>
+                {event.title}
+              </Typography>
+            </Box>
+          </CardContent>
+        </CardActionArea>
+        <CardActions className={classes.cardActionsContainer}>
+          <Grid container justifyContent="space-around" alignItems="center">
+            <IconButton aria-label="add to favorites" onClick={() => handleLike()}>
+              {liked ?
+                <FavoriteIcon />
+                :
+                <FavoriteBorderIcon />
+              }
+            </IconButton>
             <Button variant="contained" size="small" disabled className={classes.cardSubText}>
               {event.tag}
             </Button>
-          </CardContent>
-        </CardActionArea>
+          </Grid>
+        </CardActions>
       </Card>
+
+      <Snackbar className={classes.snackbar} open={likeSnackbarOpen} autoHideDuration={3000} onClose={handleLikeSnackbarClose}>
+        <Alert onClose={handleLikeSnackbarClose} severity={liked ? "success" : "error"}>
+          {liked ? 'Post added to favorites.' : 'Post removed from favorites.'}
+        </Alert>
+      </Snackbar>
     </Grid >
   );
 }

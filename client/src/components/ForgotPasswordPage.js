@@ -2,37 +2,25 @@ import { Container, CssBaseline, Grid } from '@material-ui/core';
 
 import Footer from './Footer';
 import Header from './Header';
-import SignupForm from './SignupForm';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import ForgotPasswordForm from './ForgotPasswordForm';
 
-const useStyles = makeStyles((theme) => ({
-  pagebody: {
-    backgroundColor: theme.palette.beige3,
-  },
-  pagecontainer: {
-    padding: '0',
-  },
-}));
-
-export default function SignupPage(props) {
-  const classes = useStyles();
+export default function ForgotPasswordPage(props) {
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg" className={classes.pagecontainer}>
+      <Container maxWidth="lg" >
         <Header title="social prescribing." />
-        <main className={classes.pagebody}>
+        <main>
           <Grid
             container
             direction="row"
             justifyContent="center"
             alignItems="center"
           >
-            <SignupForm />
+            <ForgotPasswordForm />
           </Grid>
-
         </main>
       </Container>
       <Footer title="social prescribing." description="Fill your social prescription today!" />
