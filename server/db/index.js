@@ -13,7 +13,7 @@ const pool = new Pool({
 
 const createFavoritesTable = `
 CREATE TABLE user_favorites (
-    user_uid UUID PRIMARY KEY,
+    user_uid varchar(128) PRIMARY KEY,
     favorites JSONB
     )`;
 
