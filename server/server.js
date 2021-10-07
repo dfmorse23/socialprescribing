@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 var cors = require("cors");
 
 // Routes
@@ -9,6 +8,7 @@ const database = require("./routes/database.js");
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 app.use("/api/scrapers", scraper);
 app.use("/user", database);
 

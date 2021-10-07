@@ -8,9 +8,14 @@ router.get("/favorites/:user_uid", (req, res) => {
         [req.params.user_uid],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send(err);
+            } else {
+                if (result.rows[0] === undefined) {
+                    res.send(undefined);
+                } else {
+                    res.send(result.rows[0]["favorites"]);
+                }
             }
-            res.send(result.rows[0]);
         }
     );
 });
@@ -21,14 +26,19 @@ router.post("/addFavorite/:user_uid", (req, res) => {
         INSERT INTO user_favorites(user_uid, favorites)
         VALUES ($1, $2)
         ON CONFLICT (user_uid)
-        DO UPDATE SET favorites = user_favorites.favorites || EXCLUDED.favorites
+        DO UPDATE SET favorites = COALESCE(user_favorites.favorites || EXCLUDED.favorites, EXCLUDED.favorites)
         `,
         [req.params.user_uid, req.body],
         (err, result) => {
             if (err) {
-                return err;
+                res.send(err);
+            } else {
+                if (result.rows[0] === undefined) {
+                    res.send(undefined);
+                } else {
+                    res.send(result.rows[0]);
+                }
             }
-            res.send(result.rows[0]);
         }
     );
 });
@@ -37,15 +47,20 @@ router.post("/removeFavorite/:user_uid", (req, res) => {
     db.query(
         `
         UPDATE user_favorites
-        SET favorites = favorites - $2
+        SET favorites = COALESCE(favorites - $2, favorites)
         WHERE user_uid = $1
         `,
         [req.params.user_uid, Object.keys(req.body)[0]],
         (err, result) => {
             if (err) {
-                return err;
+                res.send(err);
+            } else {
+                if (result.rows[0] === undefined) {
+                    res.send(undefined);
+                } else {
+                    res.send(result.rows[0]);
+                }
             }
-            res.send(result.rows[0]);
         }
     );
 });
@@ -56,9 +71,14 @@ router.post("/deleteFavorites/:user_uid", (req, res) => {
         [req.params.user_uid],
         (err, result) => {
             if (err) {
-                return err;
+                res.send(err);
+            } else {
+                if (result.rows[0] === undefined) {
+                    res.send(undefined);
+                } else {
+                    res.send(result.rows[0]);
+                }
             }
-            res.send(result.rows[0]);
         }
     );
 });
