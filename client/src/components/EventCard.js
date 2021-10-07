@@ -1,5 +1,6 @@
-import { Box, Button, Grid, Typography, IconButton, CardActions } from '@material-ui/core';
+import { Box, Button, Grid, Typography, IconButton, CardActions, Snackbar } from '@material-ui/core';
 import { Card, CardActionArea, CardContent, CardMedia } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useAuth } from '../contexts/AuthContext';
@@ -64,10 +65,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EventCard(props) {
   const classes = useStyles();
-  const { event } = props;
+  const { event, displayingFavorites } = props;
   const { currentUser } = useAuth();
   const history = useHistory();
-  const [liked, setLiked] = useState(false)
+  const [liked, setLiked] = useState(displayingFavorites)
+  const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false)
+
+  const handleLikeSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setLikeSnackbarOpen(false);
+  };
 
   const handleLike = async () => {
     if (!currentUser) {
@@ -81,22 +91,19 @@ export default function EventCard(props) {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/user/addFavorite/${currentUser.uid}`, {
+      await fetch(`http://localhost:3001/user/addFavorite/${currentUser.uid}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ [event.title]: event }),
       })
 
+      // show the alert snackbar
+      setLikeSnackbarOpen(true);
 
-      const resJson = response
-
-      console.log(currentUser.uid)
-      console.log(resJson)
-
+      // set the post as liked
       setLiked(true)
     }
     catch (err) {
-      // Show a general search failed error to the user
       console.log(err.message)
       console.log(err)
     }
@@ -105,6 +112,23 @@ export default function EventCard(props) {
 
   const handleRemoveLike = async () => {
     // Remove like here
+    try {
+      await fetch(`http://localhost:3001/user/removeFavorite/${currentUser.uid}`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ [event.title]: event }),
+      })
+
+      // show the alert snackbar
+      setLikeSnackbarOpen(true);
+
+      // remove the post from liked posts
+      setLiked(false)
+    }
+    catch (err) {
+      console.log(err.message)
+      console.log(err)
+    }
   }
 
   return (
@@ -138,6 +162,12 @@ export default function EventCard(props) {
           </Grid>
         </CardActions>
       </Card>
+
+      <Snackbar className={classes.snackbar} open={likeSnackbarOpen} autoHideDuration={3000} onClose={handleLikeSnackbarClose}>
+        <Alert onClose={handleLikeSnackbarClose} severity={liked ? "success" : "error"}>
+          {liked ? 'Post added to favorites.' : 'Post removed from favorites.'}
+        </Alert>
+      </Snackbar>
     </Grid >
   );
 }

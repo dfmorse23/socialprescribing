@@ -19,6 +19,7 @@ export default function EventsWithSelectors(props) {
   const [filterSelections, setFilterSelections] = useState(() => ['All']);
   const [allEvents, setAllEvents] = useState()
   const { currentUser } = useAuth();
+  const [displayingFavorites, setDisplayingFavorites] = useState(false)
   const history = useHistory();
 
   const handleSearch = async (searchValue) => {
@@ -100,6 +101,7 @@ export default function EventsWithSelectors(props) {
   const handleFilterSelection = async (e, newSelections) => {
     // take the difference between newSelections and filterSelection (newSelections - filterSelections)
     // to see if 'All' has been added
+    setDisplayingFavorites(false)
     if (!allEvents) {
       return
     }
@@ -115,8 +117,8 @@ export default function EventsWithSelectors(props) {
     else if (difference.includes("My Favorites")) {
       newSelections = ["My Favorites"];
 
+      setDisplayingFavorites(true)
       setEvents(await getLikedItems())
-
     }
     else {
       // remove 'All' from the selected filters if present
@@ -161,7 +163,7 @@ export default function EventsWithSelectors(props) {
             :
             <Grid container spacing={4} >
               {events.map((event, index) => (
-                <EventCard key={event.title} sig={index} event={event} />
+                <EventCard key={event.title} sig={index} event={event} displayingFavorites={displayingFavorites} />
               ))}
             </Grid>
           :
