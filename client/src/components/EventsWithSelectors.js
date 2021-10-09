@@ -118,6 +118,7 @@ export default function EventsWithSelectors(props) {
       newSelections = ["My Favorites"];
 
       setDisplayingFavorites(true)
+      setEvents([])
       setEvents(await getLikedItems())
     }
     else {
@@ -163,7 +164,7 @@ export default function EventsWithSelectors(props) {
             :
             <Grid container spacing={4} >
               {events.map((event, index) => (
-                <EventCard key={event.title} sig={index} event={event} displayingFavorites={displayingFavorites} />
+                <EventCard key={index} sig={index} event={event} displayingFavorites={displayingFavorites} />
               ))}
             </Grid>
           :
