@@ -10,6 +10,12 @@ This product was developed using multiple tools. Once scoped, event based websit
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Set-up
+
+Run: `npm install` in the main folder and the `client` folder to install necessary dependencies. 
+
+Run: `npm run dev` in the development  to start up the project after installation.
+
 ## Available Scripts
 
 In the project directory, you can run:
