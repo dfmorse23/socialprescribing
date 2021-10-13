@@ -71,6 +71,19 @@ export default function EventCard(props) {
   const [liked, setLiked] = useState(displayingFavorites)
   const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false)
 
+  const titleCase = (str) => {
+    let words = str.toLowerCase()
+    words = words.split(' ');
+
+    words.forEach((word, index) => {
+      if (word) {
+        words[index] = word[0].toUpperCase() + word.slice(1);
+      }
+    });
+
+    return words.join(' ');
+  }
+
   const handleLikeSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -142,7 +155,7 @@ export default function EventCard(props) {
               classes={{ root: classes.customBox }}
             >
               <Typography variant="body1" className={classes.cardTitleText}>
-                {event.title}
+                {titleCase(event.title)}
               </Typography>
             </Box>
           </CardContent>
