@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   cardTitleText: {
     fontWeight: 'bold',
     textAlign: 'center',
+    padding: '10px',
   },
   cardSubText: {
     textTransform: 'none',
@@ -149,20 +150,23 @@ export default function EventCard(props) {
       <Card className={classes.fullHeightCard}>
         <CardActionArea onClick={() => window.open(event.url, "_blank")} >
           <CardContent className={classes.eventCardTitle} style={{ padding: "0px" }}>
+
             <CardMedia component="img" image={event.image ? event.image : `https://source.unsplash.com/collection/2178991,sig=${props.sig}`} title={event.title} className={classes.cardMedia} />
+
+            <Typography variant="body1" className={classes.cardTitleText}>
+              {titleCase(event.title)}
+            </Typography>
+
             <Box
               component="div"
               classes={{ root: classes.customBox }}
             >
-              <Typography variant="body1" className={classes.cardTitleText}>
-                {titleCase(event.title)}
-              </Typography>
             </Box>
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.cardActionsContainer}>
-          <Grid container justifyContent="space-around" alignItems="center">
-            <IconButton aria-label="add to favorites" onClick={() => handleLike()}>
+          <Grid container justifyContent="space-between" alignItems="center">
+            <IconButton className={classes.iconButton} aria-label="add to favorites" onClick={() => handleLike()}>
               {liked ?
                 <FavoriteIcon />
                 :

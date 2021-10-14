@@ -39,8 +39,6 @@ export default function EventsWithSelectors(props) {
 
       const resJson = await response.json()
 
-      console.log(resJson)
-
       let EventBrite = []
       let Volunteering = []
       let Clevelend = []
@@ -60,7 +58,7 @@ export default function EventsWithSelectors(props) {
       console.log(err.message)
       console.log(err)
 
-      setEventSearchError('We encountered a problem getting your prescriptions.')
+      setEventSearchError(`We encountered a problem getting your prescriptions. Err: ${err.message}`)
     }
 
     setIsLoading(false)
@@ -93,7 +91,7 @@ export default function EventsWithSelectors(props) {
       console.log(err.message)
       console.log(err)
 
-      setEventSearchError('We encountered a problem getting your liked prescriptions.')
+      setEventSearchError(`We encountered a problem getting your liked prescriptions.`)
     }
 
   }
