@@ -38,20 +38,15 @@ export default function EventsWithSelectors(props) {
       })
 
       const resJson = await response.json()
+      let eventList = []
 
-      let EventBrite = []
-      let Volunteering = []
-      let Clevelend = []
-      if (resJson.hasOwnProperty('mockData')) {
-        Clevelend = resJson.mockData
-      }
-      else {
-        EventBrite = resJson[0].EventBrite
-        Volunteering = resJson[1].Volunteering
-      }
+      resJson.forEach((category) => {
+        const events = Object.values(category)[0]
+        eventList = eventList.concat(events)
+      })
 
-      setAllEvents([...EventBrite, ...Volunteering, ...Clevelend])
-      setEvents([...EventBrite, ...Volunteering, ...Clevelend])
+      setEvents(eventList)
+      setAllEvents(eventList)
     }
     catch (err) {
       // Show a general search failed error to the user
