@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-const getEvents = (zipcode) => {
+const getVolunteering = (zipcode) => {
 	return new Promise(async (resolve, reject) => {
 		fetch("https://www.volunteermatch.org/s/srp/search", {
 			headers: {
@@ -48,4 +48,4 @@ const getEvents = (zipcode) => {
 	});
 };
 
-module.exports = { getEvents: getEvents };
+module.exports = { getVolunteering };

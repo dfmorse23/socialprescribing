@@ -1,6 +1,6 @@
 const express = require("express");
-const eventBriteScraper = require("../scrapers/eventbriteScraper");
-const volunteerScraper = require("../scrapers/volunteerScraper");
+const { getCategories } = require("../scrapers/eventbriteScraper");
+const { getVolunteering } = require("../scrapers/volunteerScraper");
 const { convertZipcode } = require("../scrapers/zipcodeConverter");
 const router = express.Router();
 
@@ -17,15 +17,25 @@ router.post("/getEvents/:zipcode", (req, res) => {
 	}
 
 	const eventBriteData = new Promise((resolve, reject) => {
-		eventBriteScraper
-			.getEvents(zipcode)
+		getCategories(zipcode, [
+			"health",
+			"music",
+			"charity",
+			"community",
+			"family",
+			"hobbies",
+			"home",
+			"spirituality",
+			"school",
+			"sports",
+			"travel",
+		])
 			.then((events) => resolve(events))
 			.catch((err) => reject(err));
 	});
 
 	const volunteermatchData = new Promise((resolve, reject) => {
-		volunteerScraper
-			.getEvents(zipcode)
+		getVolunteering(zipcode)
 			.then((events) => resolve(events))
 			.catch((err) => reject(err));
 	});
