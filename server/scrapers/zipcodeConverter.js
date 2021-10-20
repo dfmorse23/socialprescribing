@@ -1,5 +1,9 @@
 const axios = require("axios");
 
+/**
+ * Returns data about a zipcode: 94103 -> {state: 'CA', city: 'San Francisco', country: 'US'}
+ * @param {String} zipcode - Zipcode
+ */
 const convertZipcode = (zipcode) => {
 	return new Promise((resolve, reject) => {
 		axios
@@ -26,4 +30,4 @@ const convertZipcode = (zipcode) => {
 	});
 };
 
-module.exports = { convertZipcode: convertZipcode };
+module.exports = { convertZipcode };
