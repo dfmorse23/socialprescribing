@@ -2,14 +2,19 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const { convertZipcode } = require("./zipcodeConverter");
 
-const getEvents = (zipcode, categories) => {
+/**
+ * Scrape multiple EventBrite categories. Returns object with an array of EventBrite event objects.
+ * @param {String} zipcode - Zipcode
+ * @param {Array<String>} categories - Array of categories: business, food, health, music, auto, charity, community, family, fashion, film, hobbies, home, performing, government, spirituality, school, science, holiday, sports, travel, other
+ */
+const getCategories = (zipcode, categories) => {
 	return new Promise((resolve, reject) => {
 		convertZipcode(zipcode)
-			.then((res) => {
+			.then((zipcodeData) => {
 				// Submit city, state, and zipcode to EventBrite
-				const city = res["city"].replace(/\s/g, "-");
-				const state = res["state"];
-				const country = res["country"];
+				const city = zipcodeData["city"].replace(/\s/g, "-");
+				const state = zipcodeData["state"];
+				const country = zipcodeData["country"];
 
 				let promises = [];
 				let eventsList = [];
@@ -26,7 +31,6 @@ const getEvents = (zipcode, categories) => {
 
 				Promise.allSettled(promises)
 					.then(() => {
-						console.log(promises);
 						resolve({ EventBrite: eventsList });
 					})
 					.catch((err) => reject(err));
@@ -43,7 +47,6 @@ const getEvents = (zipcode, categories) => {
  * @param {String} state - State abbreviation, like CA
  * @param {String} country - Country
  * @param {String} zipcode - Zipcode
- * @returns {Promise} Promise object which contains an array of EventBrite events
  */
 const getCategory = (category, city, state, country, zipcode) => {
 	let categoryUrls = {
@@ -81,6 +84,7 @@ const getCategory = (category, city, state, country, zipcode) => {
 				const eventDates = [];
 				const eventLocations = [];
 				const eventUrls = [];
+				const eventImages = [];
 
 				// Get titles
 				$("div.eds-is-hidden-accessible").each((i, el) => {
@@ -122,6 +126,17 @@ const getCategory = (category, city, state, country, zipcode) => {
 					}
 				});
 
+				// Get image links
+				$("div.eds-event-card-content__image-content > img.eds-event-card-content__image").each(
+					(i, el) => {
+						if (i % 2 == 1) {
+							console.log(el);
+							const imageUrl = $(el).attr("data-src");
+							eventImages.push(imageUrl);
+						}
+					}
+				);
+
 				const dataList = [];
 				for (let i = 0; i < eventTitles.length; i++) {
 					dataList.push({
@@ -138,6 +153,7 @@ const getCategory = (category, city, state, country, zipcode) => {
 							virtual: false,
 						},
 						url: eventUrls[i],
+						image: eventImages[i],
 						tag: "EventBrite",
 					});
 				}
@@ -150,6 +166,4 @@ const getCategory = (category, city, state, country, zipcode) => {
 	});
 };
 
-getEvents("94103", ["music", "performing"]).then((events) => console.log(events));
-
-module.exports = { getEvents: getEvents };
+module.exports = { getCategories };
