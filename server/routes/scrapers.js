@@ -1,11 +1,14 @@
 const express = require("express");
-const eventBriteScraper = require("../scrapers/eventbriteScraper");
-const volunteerScraper = require("../scrapers/volunteerScraper");
+const { getCategories } = require("../scrapers/eventbriteScraper");
+const { getVolunteering } = require("../scrapers/volunteerScraper");
+const { convertZipcode } = require("../scrapers/zipcodeConverter");
 const router = express.Router();
 
 router.post("/getEvents/:zipcode", (req, res) => {
+	let zipcode = req.params.zipcode;
+
 	// Temporarily hardcode Cleveland data
-	const intZipcode = parseInt(req.params.zipcode);
+	const intZipcode = parseInt(zipcode);
 	if (intZipcode >= 44101 && intZipcode <= 44199) {
 		console.log("Queried Cleveland zipcode");
 
@@ -14,20 +17,54 @@ router.post("/getEvents/:zipcode", (req, res) => {
 	}
 
 	const eventBriteData = new Promise((resolve, reject) => {
-		eventBriteScraper
-			.getEvents(req.params.zipcode)
+		getCategories(zipcode, [
+			"health",
+			"music",
+			"charity",
+			"community",
+			"family",
+			"hobbies",
+			"home",
+			"spirituality",
+			"school",
+			"sports",
+			"travel",
+		])
 			.then((events) => resolve(events))
 			.catch((err) => reject(err));
 	});
 
 	const volunteermatchData = new Promise((resolve, reject) => {
-		volunteerScraper
-			.getEvents(req.params.zipcode)
+		getVolunteering(zipcode)
 			.then((events) => resolve(events))
 			.catch((err) => reject(err));
 	});
 
-	Promise.all([eventBriteData, volunteermatchData])
+	const genericLinks = new Promise((resolve, reject) => {
+		let genericData = require("../generic_links.json");
+
+		convertZipcode(zipcode)
+			.then((zipcodeInfo) => {
+				let dataWithLocations = [];
+
+				// Add zipcode to urls & set location
+				for (let i = 0; i < genericData.length; i++) {
+					genericData[i]["url"] = genericData[i]["url"].concat(`${zipcode}`);
+					genericData[i]["location"] = {
+						city: zipcodeInfo["city"],
+						country: zipcodeInfo["country"],
+						postalCode: zipcode,
+						region: zipcodeInfo["state"],
+						virtual: false,
+					};
+					dataWithLocations.push(genericData[i]);
+				}
+				resolve({ Generic: dataWithLocations });
+			})
+			.catch((err) => reject(err));
+	});
+
+	Promise.all([eventBriteData, volunteermatchData, genericLinks])
 		.then((vals) => {
 			return res.json(vals);
 		})

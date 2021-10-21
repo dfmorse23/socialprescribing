@@ -2,88 +2,163 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const { convertZipcode } = require("./zipcodeConverter");
 
-const getEvents = (zipcode) => {
+/**
+ * Scrape multiple EventBrite categories. Returns object with an array of EventBrite event objects.
+ * @param {String} zipcode - Zipcode
+ * @param {Array<String>} categories - Array of categories: business, food, health, music, auto, charity, community, family, fashion, film, hobbies, home, performing, government, spirituality, school, science, holiday, sports, travel, other
+ */
+const getCategories = (zipcode, categories) => {
 	return new Promise((resolve, reject) => {
 		convertZipcode(zipcode)
-			.then((res) => {
+			.then((zipcodeData) => {
 				// Submit city, state, and zipcode to EventBrite
-				const city = res["city"].replace(/\s/g, "-");
-				const eventBriteUrl = `https://www.eventbrite.com/d/${res["state"]}--${city}/${zipcode}/`;
+				const city = zipcodeData["city"].replace(/\s/g, "-");
+				const state = zipcodeData["state"];
+				const country = zipcodeData["country"];
 
-				axios
-					.get(eventBriteUrl)
-					.then((events) => {
-						const $ = cheerio.load(events["data"]);
-						const eventTitles = [];
-						const eventDates = [];
-						const eventLocations = [];
-						const eventUrls = [];
+				let promises = [];
+				let eventsList = [];
 
-						// Get titles
-						$("div.eds-is-hidden-accessible").each((i, el) => {
-							// EventBrite lists titles twice with this class. Only record every other title.
-							if (i % 2 == 1) {
-								const title = $(el).text();
-								// Remove characters after pipe (usually contains extra description)
-								eventTitles.push(title.split("|")[0]);
+				for (let i = 0; i < categories.length; i++) {
+					promises.push(
+						getCategory(categories[i], state, city, country, zipcode).then((data) => {
+							for (let j = 0; j < data.length; j++) {
+								eventsList.push(data[j]);
 							}
-						});
+						})
+					);
+				}
 
-						// Get dates
-						$("div.eds-event-card-content__sub-title").each((i, el) => {
-							if (i % 2 == 1) {
-								const timeDate = $(el).text();
-								const timeDateSplit = timeDate.split(", ");
-								eventDates.push(timeDateSplit[1]);
-							}
-						});
-
-						// Get locations
-						$("div.eds-event-card-content__sub-content").each((i, el) => {
-							if (i % 2 == 1) {
-								// Locations
-								$(el)
-									.find("div > div.card-text--truncated__one")
-									.each((i, el) => {
-										const location = $(el).text();
-										eventLocations.push(location);
-									});
-							}
-						});
-
-						// Get URLs
-						$("div.eds-event-card-content__primary-content > a").each((i, el) => {
-							if (i % 2 == 1) {
-								const url = $(el).attr("href");
-								eventUrls.push(url);
-							}
-						});
-
-						const dataList = [];
-						for (let i = 0; i < eventTitles.length; i++) {
-							dataList.push({
-								title: eventTitles[i],
-								date: {
-									startDate: eventDates[i],
-									endDate: null,
-								},
-								location: {
-									postalCode: zipcode,
-									city: res["city"],
-									region: res["state"],
-									country: res["country"],
-									virtual: false,
-								},
-								url: eventUrls[i],
-								tag: "EventBrite",
-							});
-						}
-
-						resolve({ EventBrite: dataList });
+				Promise.allSettled(promises)
+					.then(() => {
+						resolve({ EventBrite: eventsList });
 					})
-					.catch((err) => {
-						reject(err);
+					.catch((err) => reject(err));
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	});
+};
+/**
+ * Scrape an EventBrite category, using city, state, country, and zipcode. Returns an array of event objects.
+ * @param {String} category - Single category: business, food, health, music, auto, charity, community, family, fashion, film, hobbies, home, performing, government, spirituality, school, science, holiday, sports, travel, other
+ * @param {String} city  - City, formatted like 'san-francisco'
+ * @param {String} state - State abbreviation, like CA
+ * @param {String} country - Country
+ * @param {String} zipcode - Zipcode
+ */
+const getCategory = (category, city, state, country, zipcode) => {
+	let categoryUrls = {
+		business: "business--events",
+		food: "food-and-drink--events",
+		health: "health--events",
+		music: "music--events",
+		auto: "auto-boat-and-air--events",
+		charity: "charity-and-causes--events",
+		community: "community--events",
+		family: "family-and-education--events",
+		fashion: "fashion--events",
+		film: "film-and-media--events",
+		hobbies: "hobbies--events",
+		home: "home-and-lifestyle--events",
+		performing: "arts--events",
+		government: "government--events",
+		spirituality: "spirituality--events",
+		school: "school-activities--events",
+		science: "science-and-tech--events",
+		holiday: "holiday--events",
+		sports: "sports-and-fitness--events",
+		travel: "travel-and-outdoor--events",
+		other: "other--events",
+	};
+
+	return new Promise((resolve, reject) => {
+		let url = `https://www.eventbrite.com/d/${state}--${city}/${categoryUrls[category]}/${zipcode}/`;
+
+		axios
+			.get(url)
+			.then((events) => {
+				const $ = cheerio.load(events["data"]);
+				const eventTitles = [];
+				const eventDates = [];
+				const eventLocations = [];
+				const eventUrls = [];
+				const eventImages = [];
+
+				// Get titles
+				$("div.eds-is-hidden-accessible").each((i, el) => {
+					// EventBrite lists titles twice with this class. Only record every other title.
+					if (i % 2 == 1) {
+						const title = $(el).text();
+						// Remove characters after pipe (usually contains extra description)
+						eventTitles.push(title.split("|")[0]);
+					}
+				});
+
+				// Get dates
+				$("div.eds-event-card-content__sub-title").each((i, el) => {
+					if (i % 2 == 1) {
+						const timeDate = $(el).text();
+						const timeDateSplit = timeDate.split(", ");
+						eventDates.push(timeDateSplit[1]);
+					}
+				});
+
+				// Get locations
+				$("div.eds-event-card-content__sub-content").each((i, el) => {
+					if (i % 2 == 1) {
+						// Locations
+						$(el)
+							.find("div > div.card-text--truncated__one")
+							.each((i, el) => {
+								const location = $(el).text();
+								eventLocations.push(location);
+							});
+					}
+				});
+
+				// Get URLs
+				$("div.eds-event-card-content__primary-content > a").each((i, el) => {
+					if (i % 2 == 1) {
+						const url = $(el).attr("href");
+						eventUrls.push(url);
+					}
+				});
+
+				// Get image links
+				$("div.eds-event-card-content__image-content > img.eds-event-card-content__image").each(
+					(i, el) => {
+						if (i % 2 == 1) {
+							console.log(el);
+							const imageUrl = $(el).attr("data-src");
+							eventImages.push(imageUrl);
+						}
+					}
+				);
+
+				const dataList = [];
+				for (let i = 0; i < eventTitles.length; i++) {
+					dataList.push({
+						title: eventTitles[i],
+						date: {
+							startDate: eventDates[i],
+							endDate: null,
+						},
+						location: {
+							postalCode: zipcode,
+							city: city,
+							region: state,
+							country: country,
+							virtual: false,
+						},
+						url: eventUrls[i],
+						image: eventImages[i],
+						tag: "EventBrite",
 					});
+				}
+
+				resolve(dataList);
 			})
 			.catch((err) => {
 				reject(err);
@@ -91,4 +166,4 @@ const getEvents = (zipcode) => {
 	});
 };
 
-module.exports = { getEvents: getEvents };
+module.exports = { getCategories };
