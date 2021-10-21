@@ -50,7 +50,7 @@ export default function EventsWithSelectors(props) {
             resMessage = "Please enter a valid US zipcode."
             break;
           default:
-            resMessage = "We encountered and error and were nable to find your events."
+            resMessage = `We encountered an error and were unable to retrieve events. Error: ${err}`
         }
 
         // Change error text
