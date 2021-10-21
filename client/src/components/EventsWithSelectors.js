@@ -38,8 +38,29 @@ export default function EventsWithSelectors(props) {
       })
 
       const resJson = await response.json()
-      let eventList = []
 
+      // If a non 200 response is recieved
+      if (response.status !== 200) {
+        const err = resJson.error
+        let resMessage = ""
+
+        // Choose error text
+        switch (err) {
+          case "Non-US zipcode":
+            resMessage = "Please enter a valid US zipcode."
+            break;
+          default:
+            resMessage = "We encountered and error and were nable to find your events."
+        }
+
+        // Change error text
+        setEventSearchError(resMessage)
+        setIsLoading(false)
+        return
+      }
+
+      // Get events from response and add them to the event list
+      let eventList = []
       resJson.forEach((category) => {
         const events = Object.values(category)[0]
         eventList = eventList.concat(events)
@@ -53,7 +74,7 @@ export default function EventsWithSelectors(props) {
       console.log(err.message)
       console.log(err)
 
-      setEventSearchError(`We encountered a problem getting your prescriptions. Err: ${err.message}`)
+      setEventSearchError(`Unable to connect to our event servers. Check your internet connection.`)
     }
 
     setIsLoading(false)
