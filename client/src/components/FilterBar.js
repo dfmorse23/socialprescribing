@@ -82,7 +82,7 @@ export default function FilterBar(props) {
           value={filterBarSections.favorites}
           className={classes.buttonColor}
           key={filterBarSections.favorites}
-          disabled={disabled}
+          disabled={false}
         >
           {filterBarSections.favorites}
         </ToggleButton>

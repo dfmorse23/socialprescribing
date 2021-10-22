@@ -29,6 +29,7 @@ export default function EventsWithSelectors(props) {
 
     setAllEvents([])
     setEvents([])
+    handleFilterSelection("", ["All"])
 
     try {
       const response = await fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
@@ -113,13 +114,14 @@ export default function EventsWithSelectors(props) {
   }
 
   const handleFilterSelection = async (e, newSelections) => {
-    // take the difference between newSelections and filterSelection (newSelections - filterSelections)
-    // to see if 'All' has been added
     setDisplayingFavorites(false)
-    if (!allEvents) {
+
+    if (!allEvents && !newSelections.includes("My Favorites")) {
       return
     }
 
+    // take the difference between newSelections and filterSelection (newSelections - filterSelections)
+    // to see if 'All' has been added
     const difference = newSelections.filter((x) => !filterSelections.includes(x));
 
     // if there is nothing selected or all is selected display all events
@@ -132,7 +134,6 @@ export default function EventsWithSelectors(props) {
       newSelections = ["My Favorites"];
 
       setDisplayingFavorites(true)
-      setEvents([])
       setEvents(await getLikedItems())
     }
     else {
@@ -152,7 +153,6 @@ export default function EventsWithSelectors(props) {
       const newEvents = allEvents.filter((event) => newSelections.includes(event.tag));
       setEvents(newEvents);
     }
-
     setFilterSelections(newSelections);
   };
 
@@ -167,7 +167,7 @@ export default function EventsWithSelectors(props) {
           handleSelection={handleFilterSelection}
         />
         <h2 style={{ margin: '50px 20px', color: '#ff5031', textAlign: 'center' }}>{eventSearchError}</h2>
-        {userHasSearched ?
+        {userHasSearched || displayingFavorites ?
           isLoading ?
             <Grid container spacing={4} >
               <EventSkeleton />
@@ -178,7 +178,7 @@ export default function EventsWithSelectors(props) {
             :
             <Grid container spacing={4} >
               {events.map((event, index) => (
-                <EventCard key={index} sig={index} event={event} displayingFavorites={displayingFavorites} />
+                <EventCard key={`${index}-${event.title}-${displayingFavorites}`} sig={index} event={event} displayingFavorites={displayingFavorites} />
               ))}
             </Grid>
           :
