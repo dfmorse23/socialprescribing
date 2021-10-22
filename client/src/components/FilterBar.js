@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     disableGutters: true,
     justifyContent: 'center',
     paddingBottom: theme.spacing(4.5),
+    "& div": {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
   },
   buttonColor: {
     "&.Mui-selected": {
@@ -41,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     margin: theme.spacing(0.5, 1.5),
   },
+
 
 }));
 

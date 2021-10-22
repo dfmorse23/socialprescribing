@@ -10,18 +10,18 @@ const filterBarSections = {
   all: 'All',
   favorites: 'My Favorites',
   filters: [
-    'Volunteering',
-    'Nature',
-    'Food',
-    'Housing',
-    'Goods',
-    'Transit',
-    'Health',
-    'Money',
     'Care',
     'Education',
-    'Work',
+    'Food',
+    'Goods',
+    'Health',
+    'Housing',
     'Legal',
+    'Money',
+    'Nature',
+    'Transit',
+    'Volunteering',
+    'Work'
   ],
 };
 
