@@ -27,9 +27,9 @@ export default function EventsWithSelectors(props) {
     setIsLoading(true)
     setEventSearchError('')
 
+    handleFilterSelection("", ["All", "My Favorites"])
     setAllEvents([])
     setEvents([])
-    handleFilterSelection("", ["All"])
 
     try {
       const response = await fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
@@ -127,7 +127,7 @@ export default function EventsWithSelectors(props) {
     // if there is nothing selected or all is selected display all events
     if (newSelections.length === 0 || difference.includes("All")) {
       newSelections = ["All"];
-      setEvents(allEvents);
+      setEvents(allEvents || []);
     }
     // If the user selects favorites, deselect all and get favorites
     else if (difference.includes("My Favorites")) {
@@ -151,8 +151,9 @@ export default function EventsWithSelectors(props) {
 
       // filter for events that match the selected tags
       const newEvents = allEvents.filter((event) => newSelections.includes(event.tag));
-      setEvents(newEvents);
+      setEvents(newEvents || []);
     }
+
     setFilterSelections(newSelections);
   };
 
