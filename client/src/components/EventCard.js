@@ -72,8 +72,8 @@ export default function EventCard(props) {
   const [liked, setLiked] = useState(displayingFavorites)
   const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false)
 
-  const titleCase = (str) => {
-    let words = str.toLowerCase()
+  const titleCase = (text) => {
+    let words = text.toLowerCase()
     words = words.split(' ');
 
     words.forEach((word, index) => {
