@@ -27,7 +27,7 @@ export default function EventsWithSelectors(props) {
     setIsLoading(true)
     setEventSearchError('')
 
-    handleFilterSelection("", ["All", "My Favorites"])
+    handleFilterSelection("", ["All"])
     setAllEvents([])
     setEvents([])
 
@@ -117,6 +117,7 @@ export default function EventsWithSelectors(props) {
     setDisplayingFavorites(false)
 
     if (!allEvents && !newSelections.includes("My Favorites")) {
+      setFilterSelections(newSelections)
       return
     }
 
@@ -132,7 +133,6 @@ export default function EventsWithSelectors(props) {
     // If the user selects favorites, deselect all and get favorites
     else if (difference.includes("My Favorites")) {
       newSelections = ["My Favorites"];
-
       setDisplayingFavorites(true)
       setEvents(await getLikedItems())
     }
@@ -167,7 +167,7 @@ export default function EventsWithSelectors(props) {
           filterSelections={filterSelections}
           handleSelection={handleFilterSelection}
         />
-        <h2 style={{ margin: '50px 20px', color: '#ff5031', textAlign: 'center' }}>{eventSearchError}</h2>
+        {displayingFavorites ? "" : <h2 style={{ margin: '50px 20px', color: '#ff5031', textAlign: 'center' }}>{eventSearchError}</h2>}
         {userHasSearched || displayingFavorites ?
           isLoading ?
             <Grid container spacing={4} >
