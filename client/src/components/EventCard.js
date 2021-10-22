@@ -72,17 +72,19 @@ export default function EventCard(props) {
   const [liked, setLiked] = useState(displayingFavorites)
   const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false)
 
-  const titleCase = (text) => {
-    let words = text.toLowerCase()
-    words = words.split(' ');
+  const titleCase = (text = "") => {
+    if (typeof text === 'string') {
+      let wordsArr = text.toLowerCase().split(' ');
 
-    words.forEach((word, index) => {
-      if (word) {
-        words[index] = word[0].toUpperCase() + word.slice(1);
-      }
-    });
+      wordsArr.forEach((word, index) => {
+        if (word) {
+          wordsArr[index] = word[0].toUpperCase() + word.slice(1);
+        }
+      });
 
-    return words.join(' ');
+      return wordsArr.join(' ');
+    }
+    return text
   }
 
   const handleLikeSnackbarClose = (event, reason) => {
