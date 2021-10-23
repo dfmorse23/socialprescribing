@@ -130,6 +130,10 @@ const getCategory = (category, city, state, country, zipcode) => {
 				$("div.eds-event-card-content__image-content > img.eds-event-card-content__image").each(
 					(i, el) => {
 						if (i % 2 == 1) {
+<<<<<<< HEAD
+=======
+							console.log(el);
+>>>>>>> master
 							const imageUrl = $(el).attr("data-src");
 							eventImages.push(imageUrl);
 						}
@@ -153,7 +157,11 @@ const getCategory = (category, city, state, country, zipcode) => {
 						},
 						url: eventUrls[i],
 						image: eventImages[i],
+<<<<<<< HEAD
 						tag: categoryUrls[category].tag,
+=======
+						tag: "EventBrite",
+>>>>>>> master
 					});
 				}
 
