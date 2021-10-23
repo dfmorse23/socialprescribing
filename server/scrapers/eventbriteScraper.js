@@ -50,31 +50,31 @@ const getCategories = (zipcode, categories) => {
  */
 const getCategory = (category, city, state, country, zipcode) => {
 	let categoryUrls = {
-		business: "business--events",
-		food: "food-and-drink--events",
-		health: "health--events",
-		music: "music--events",
-		auto: "auto-boat-and-air--events",
-		charity: "charity-and-causes--events",
-		community: "community--events",
-		family: "family-and-education--events",
-		fashion: "fashion--events",
-		film: "film-and-media--events",
-		hobbies: "hobbies--events",
-		home: "home-and-lifestyle--events",
-		performing: "arts--events",
-		government: "government--events",
-		spirituality: "spirituality--events",
-		school: "school-activities--events",
-		science: "science-and-tech--events",
-		holiday: "holiday--events",
-		sports: "sports-and-fitness--events",
-		travel: "travel-and-outdoor--events",
-		other: "other--events",
+		business: { url: "business--events", tag: "Work" },
+		food: { url: "food-and-drink--events", tag: "Food" },
+		health: { url: "health--events", tag: "Health" },
+		music: { url: "music--events", tag: "Health" },
+		auto: { url: "auto-boat-and-air--events", tag: "Education" },
+		charity: { url: "charity-and-causes--events", tag: "Volunteering" },
+		community: { url: "community--events", tag: "Volunteering" },
+		family: { url: "family-and-education--events", tag: "Education" },
+		fashion: { url: "fashion--events", tag: "Goods" },
+		film: { url: "film-and-media--events", tag: "film placeholder" },
+		hobbies: { url: "hobbies--events", tag: "Nature" },
+		home: { url: "home-and-lifestyle--events", tag: "Housing" },
+		performing: { url: "arts--events", tag: "Health" },
+		government: { url: "government--events", tag: "Legal" },
+		spirituality: { url: "spirituality--events", tag: "Education" },
+		school: { url: "school-activities--events", tag: "Education" },
+		science: { url: "science-and-tech--events", tag: "Education" },
+		holiday: { url: "holiday--events", tag: "holiday placeholder" },
+		sports: { url: "sports-and-fitness--events", tag: "Health" },
+		travel: { url: "travel-and-outdoor--events", tag: "Transit" },
+		// other: { "url": "other--events", tag: "" }, Probably don't want to use this, returns a lot of misc events
 	};
 
 	return new Promise((resolve, reject) => {
-		let url = `https://www.eventbrite.com/d/${state}--${city}/${categoryUrls[category]}/${zipcode}/`;
+		let url = `https://www.eventbrite.com/d/${state}--${city}/${categoryUrls[category].url}/${zipcode}/`;
 
 		axios
 			.get(url)
@@ -130,7 +130,6 @@ const getCategory = (category, city, state, country, zipcode) => {
 				$("div.eds-event-card-content__image-content > img.eds-event-card-content__image").each(
 					(i, el) => {
 						if (i % 2 == 1) {
-							console.log(el);
 							const imageUrl = $(el).attr("data-src");
 							eventImages.push(imageUrl);
 						}
@@ -154,7 +153,7 @@ const getCategory = (category, city, state, country, zipcode) => {
 						},
 						url: eventUrls[i],
 						image: eventImages[i],
-						tag: "EventBrite",
+						tag: categoryUrls[category].tag,
 					});
 				}
 
