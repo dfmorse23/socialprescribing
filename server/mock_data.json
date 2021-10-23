@@ -75,6 +75,21 @@
         "cost": "Free",
         "type": "Solo/Community group",
         "tag": "Nature"
+      },
+      {
+        "title": "Assembly for the Arts",
+        "date": {
+          "startDate": "Varies",
+          "endDate": null
+        },
+        "description": "List of local arts events available to the public. Filter ederly friendly kinds of art (e.g. theater better than walking gallery)",
+        "location": "Varies",
+        "url": "https://clevelandartsevents.com/",
+        "email": "Jeremy@assemblycle.org",
+        "contactName": "Jeremy Johnson",
+        "cost": "Varies",
+        "type": "Solo/Community group",
+        "tag": "Arts"
       }
     ]
   }
