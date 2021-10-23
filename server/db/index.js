@@ -3,6 +3,8 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const { Pool } = require("pg");
 
+console.log(process.env.AWS_DB);
+
 const pool = new Pool({
     user: process.env.AWS_USER,
     host: process.env.AWS_HOST,

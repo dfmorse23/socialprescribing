@@ -107,8 +107,9 @@ export default function EventsWithSelectors(props) {
       // Show a general search failed error to the user
       console.log(err.message)
       console.log(err)
+      setIsLoading(false);
 
-      setEventSearchError(`We encountered a problem getting your liked prescriptions.`)
+      setEventSearchError(`We encountered a problem getting your linked prescriptions.`)
     }
 
   }
@@ -178,7 +179,7 @@ export default function EventsWithSelectors(props) {
             </Grid>
             :
             <Grid container spacing={4} >
-              {events.map((event, index) => (
+              {events && events.map((event, index) => (
                 <EventCard key={`${index}-${event.title}-${displayingFavorites}`} sig={index} event={event} displayingFavorites={displayingFavorites} />
               ))}
             </Grid>

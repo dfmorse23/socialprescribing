@@ -130,7 +130,6 @@ const getCategory = (category, city, state, country, zipcode) => {
 				$("div.eds-event-card-content__image-content > img.eds-event-card-content__image").each(
 					(i, el) => {
 						if (i % 2 == 1) {
-							console.log(el);
 							const imageUrl = $(el).attr("data-src");
 							eventImages.push(imageUrl);
 						}

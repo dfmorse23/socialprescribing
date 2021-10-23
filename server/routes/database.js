@@ -3,16 +3,22 @@ const db = require("../db");
 const router = express.Router();
 
 router.get("/favorites/:user_uid", (req, res) => {
+    console.log('hello 7')
     db.query(
         "SELECT * FROM user_favorites WHERE user_uid = $1",
         [req.params.user_uid],
         (err, result) => {
             if (err) {
+                console.log('hello 1')
+                console.log(err)
                 res.send(err);
             } else {
                 if (result.rows[0] === undefined) {
-                    res.send(undefined);
+                    console.log('hello 2')
+
+                    res.send([]);
                 } else {
+                    console.log('this is result', result.rows[0]);
                     res.send(result.rows[0]["favorites"]);
                 }
             }
