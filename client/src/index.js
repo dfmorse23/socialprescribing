@@ -10,6 +10,7 @@ import { HashRouter, Route } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 import SignupPage from './components/SignupPage';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // import Blog from './components/Blog';
 
@@ -32,20 +33,22 @@ const theme = createTheme({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme} >
-      <AuthProvider>
-        <HashRouter>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/signin" component={() => (
-            <LandingPage signin={true} />
-          )} />
-          <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
-        </HashRouter>
-      </AuthProvider>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ErrorBoundary>
+    <React.StrictMode>
+      <ThemeProvider theme={theme} >
+        <AuthProvider>
+          <HashRouter>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/signin" component={() => (
+              <LandingPage signin={true} />
+            )} />
+            <Route exact path="/signup" component={SignupPage} />
+            <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
+          </HashRouter>
+        </AuthProvider>
+      </ThemeProvider>
+    </React.StrictMode>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 
