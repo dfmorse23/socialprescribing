@@ -7,13 +7,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: 'inherit',
-    marginTop: theme.spacing(8),
     // I literally have no idea why there is this random spacing at the bottom
     // but -2 theme spacing removes it
     marginBottom: -theme.spacing(2),
   },
   footerContainer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.beige3,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
   },
@@ -42,7 +41,7 @@ export default function Footer(props) {
 
   return (
     <footer className={classes.footer}>
-      <Container maxWidth={false} className={classes.footerContainer}>
+      <Container maxWidth="lg" className={classes.footerContainer}>
         <Grid container alignItems="center">
           <Grid item xs={12} md={3}>
             <Typography

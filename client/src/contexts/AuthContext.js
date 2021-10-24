@@ -6,8 +6,11 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  setPersistence,
   GoogleAuthProvider,
   signInWithPopup,
+  browserSessionPersistence,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 const AuthContext = React.createContext()
@@ -26,12 +29,28 @@ export function AuthProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
-  function login(email, password, rememberMe) {
+  async function login(email, password, rememberMe) {
+    await setUserPersistance(rememberMe)
+
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  function googleOAuth() {
+  async function googleOAuth(rememberMe) {
+    await setUserPersistance(rememberMe)
+
     return signInWithPopup(auth, provider)
+  }
+
+  async function setUserPersistance(rememberMe) {
+    // Firebase sets default persistance to remember users (inMemoryPersistence)
+    // So if the user doesnt want to be remembered we change persistance to (browserSessionPersistence)
+    if (!rememberMe) {
+      await setPersistence(auth, browserSessionPersistence)
+    }
+  }
+
+  function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email)
   }
 
   function signout() {
@@ -53,6 +72,7 @@ export function AuthProvider({ children }) {
     login,
     signout,
     googleOAuth,
+    resetPassword,
   }
 
   return (

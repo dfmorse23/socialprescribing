@@ -46,13 +46,25 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: '20px',
   },
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: theme.palette.green1,
+      },
+    },
+    '& .MuiFormLabel-root': {
+      '&.Mui-focused': {
+        color: theme.palette.green1,
+      },
+    }
+  },
 }));
 
 export default function SignInModal(props) {
   const history = useHistory();
   const classes = useStyles();
   const isOpen = props.isModalOpen || false
-  const [rememberMe, setRememberMe] = useState(false)
+  const [rememberMe, setRememberMe] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
@@ -66,7 +78,7 @@ export default function SignInModal(props) {
       setValidationError('')
       setLoading(true)
 
-      await login(email, password)
+      await login(email, password, rememberMe)
 
       history.push('/#')
 
@@ -83,7 +95,7 @@ export default function SignInModal(props) {
       setValidationError('')
       setLoading(true)
 
-      await googleOAuth()
+      await googleOAuth(rememberMe)
 
       history.push('/#')
 
@@ -129,7 +141,7 @@ export default function SignInModal(props) {
           </Grid>
 
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link href="/#/forgotpassword" variant="body2">
               Forgot Password?
             </Link>
           </Grid>

@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     disableGutters: true,
     justifyContent: 'center',
     paddingBottom: theme.spacing(4.5),
+    "& div": {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
   },
   buttonColor: {
     "&.Mui-selected": {
@@ -42,11 +46,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5, 1.5),
   },
 
+
 }));
 
 export default function FilterBar(props) {
   const classes = useStyles();
-  const { filterBarSections, filterSelections, handleSelection } = props;
+  const { filterBarSections, filterSelections, handleSelection, disabled } = props;
 
   return (
     <Toolbar variant="regular" disableGutters={true} className={classes.toolbarSecondary}>
@@ -71,7 +76,8 @@ export default function FilterBar(props) {
             aria-label={filter}
             value={filter}
             className={classes.buttonColor}
-            key={filter}>
+            key={filter}
+            disabled={disabled}>
             {filter}
           </ToggleButton>
         ))}
@@ -81,6 +87,7 @@ export default function FilterBar(props) {
           value={filterBarSections.favorites}
           className={classes.buttonColor}
           key={filterBarSections.favorites}
+          disabled={false}
         >
           {filterBarSections.favorites}
         </ToggleButton>

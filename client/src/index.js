@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 import SignupPage from './components/SignupPage';
+import ForgotPasswordPage from './components/ForgotPasswordPage';
 
 // import Blog from './components/Blog';
 
@@ -19,6 +20,7 @@ const theme = createTheme({
     green3: '#ACD4CC',
     beige1: '#F3ECBF',
     beige2: '#FAFAF2',
+    beige3: 'rgb(	251, 247, 225, 0.64)',
     titleColor: '#049579',
   },
   typography: {
@@ -39,6 +41,7 @@ ReactDOM.render(
             <LandingPage signin={true} />
           )} />
           <Route exact path="/signup" component={SignupPage} />
+          <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
         </HashRouter>
       </AuthProvider>
     </ThemeProvider>
