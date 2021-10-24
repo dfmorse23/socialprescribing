@@ -22,11 +22,15 @@ In the project directory, you can run:
 
 ### `npm run start`
 
-Runs the app in the development mode.\
+Runs the client in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+### `npm run dev`
+
+Runs the client and server concurrently using the `concurrently` command. Note that if you don't use this command, you would have to `npm run start` in both the project directory and the client directory. 
 
 ### `npm run test`
 
