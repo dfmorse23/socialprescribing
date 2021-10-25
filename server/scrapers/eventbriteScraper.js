@@ -1,6 +1,12 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const Filter = require("bad-words");
 const { convertZipcode } = require("./zipcodeConverter");
+
+// Initialize bad-words filter w/ new words
+let filter = new Filter();
+let newBadWords = ["gay", "lesbian", "queer"];
+filter.addWords(...newBadWords);
 
 /**
  * Scrape multiple EventBrite categories. Returns object with an array of EventBrite event objects.
@@ -138,23 +144,26 @@ const getCategory = (category, city, state, country, zipcode) => {
 
 				const dataList = [];
 				for (let i = 0; i < eventTitles.length; i++) {
-					dataList.push({
-						title: eventTitles[i],
-						date: {
-							startDate: eventDates[i],
-							endDate: null,
-						},
-						location: {
-							postalCode: zipcode,
-							city: city,
-							region: state,
-							country: country,
-							virtual: false,
-						},
-						url: eventUrls[i],
-						image: eventImages[i],
-						tag: categoryUrls[category].tag,
-					});
+					// Add event if no profanity detected
+					if (filter.isProfane(eventTitles[i]) == false) {
+						dataList.push({
+							title: eventTitles[i],
+							date: {
+								startDate: eventDates[i],
+								endDate: null,
+							},
+							location: {
+								postalCode: zipcode,
+								city: city,
+								region: state,
+								country: country,
+								virtual: false,
+							},
+							url: eventUrls[i],
+							image: eventImages[i],
+							tag: categoryUrls[category].tag,
+						});
+					}
 				}
 
 				resolve(dataList);
