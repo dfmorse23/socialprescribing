@@ -32,6 +32,21 @@
         "tag": "Volunteering"
       },
       {
+        "title": "Specific Volunteering Opportunities",
+        "date": {
+          "startDate": "Varies",
+          "endDate": null
+        },
+        "description": "Choose from a currated list of volunteer opportunities just in Cleveland",
+        "location": "Varies",
+        "url": "http://www.bit.ly/cleveland-volunteering",
+        "email": null,
+        "contactName": null,
+        "cost": "Free",
+        "type": "Community group",
+        "tag": "Volunteering"
+      },
+      {
         "title": "Holden Arboretum & Botanical Gardens",
         "date": {
           "startDate": "Varies",
