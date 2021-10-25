@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     fontWeight: 'bold',
   },
-  submit: {
+  backButton: {
     backgroundColor: theme.palette.green1,
     '&:hover': {
       backgroundColor: theme.palette.green3,
@@ -58,7 +58,7 @@ export default function Error404Page(props) {
             <img src={Page404Art} className={`${classes.errorImage}`} alt="Lost person reading map" />
             <h1 className={classes.errorTitle} ><span className={classes.themeText}>404</span> - Page Not Found</h1>
             <h3>The page you're looking for could not be found.</h3>
-            <Button variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={navigateHome}>
+            <Button variant="contained" color="primary" className={`${classes.button} ${classes.backButton}`} type="Submit" onClick={navigateHome}>
               Back to Homepage
             </Button>
           </Grid>

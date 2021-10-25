@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     fontWeight: 'bold',
   },
-  submit: {
+  backButton: {
     backgroundColor: theme.palette.green1,
     '&:hover': {
       backgroundColor: theme.palette.green3,
@@ -43,12 +43,13 @@ export default function ErrorPage(props) {
 
   const navigateHome = () => {
     history.push('/#')
+    history.go(0)
   }
 
   return (
     <React.Fragment>
-      <div className={classes.fullPage}>
-        <CssBaseline />
+      <CssBaseline />
+      <Grid className={classes.fullPage}>
         <Container maxWidth="sm">
           <Grid container
             direction="column"
@@ -58,12 +59,12 @@ export default function ErrorPage(props) {
             <img src={PageErrorArt} className={`${classes.errorImage}`} alt="error" />
             <h1 className={classes.errorTitle}><span className={classes.themeText}>Oops!</span> Something went wrong!</h1>
             <h3>The application has encountered an unknown error.</h3>
-            <Button variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={navigateHome}>
+            <Button variant="contained" color="primary" className={`${classes.button} ${classes.backButton}`} type="Submit" onClick={navigateHome}>
               Back to Homepage
             </Button>
           </Grid>
         </Container>
-      </div>
+      </Grid>
     </React.Fragment>
   );
 }

@@ -199,7 +199,6 @@ export default function EventsWithSelectors(props) {
             <h1 style={{ margin: '50px 20px' }}> Search your ZIP code</h1>
           </Grid>
         }
-        <p>{events}</p>
       </div>
     </React.Fragment >
   );
