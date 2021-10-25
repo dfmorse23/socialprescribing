@@ -15,6 +15,7 @@ export default function EventsWithSelectors(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [userHasSearched, setUserHasSearched] = useState(false)
   const [eventSearchError, setEventSearchError] = useState()
+  const [getLikesError, setGetLikesError] = useState()
   const [events, setEvents] = useState([]);
   const [filterSelections, setFilterSelections] = useState(() => ['All']);
   const [allEvents, setAllEvents] = useState()
@@ -82,6 +83,7 @@ export default function EventsWithSelectors(props) {
   };
 
   const getLikedItems = async () => {
+    setGetLikesError("")
     setIsLoading(true)
     // Get the user's liked items
     if (!currentUser) {
@@ -95,6 +97,7 @@ export default function EventsWithSelectors(props) {
         method: "GET",
         headers: { "Content-type": "application/json" },
       })
+
       const resJson = await response.json()
 
       const events = Object.values(resJson)
@@ -108,7 +111,9 @@ export default function EventsWithSelectors(props) {
       console.log(err.message)
       console.log(err)
 
-      setEventSearchError(`We encountered a problem getting your liked prescriptions.`)
+      setIsLoading(false)
+      setGetLikesError(`We encountered a problem getting your liked prescriptions.`)
+      return []
     }
 
   }
@@ -168,6 +173,7 @@ export default function EventsWithSelectors(props) {
           handleSelection={handleFilterSelection}
         />
         {displayingFavorites ? "" : <h2 style={{ margin: '50px 20px', color: '#ff5031', textAlign: 'center' }}>{eventSearchError}</h2>}
+        {!displayingFavorites ? "" : <h2 style={{ margin: '50px 20px', color: '#ff5031', textAlign: 'center' }}>{getLikesError}</h2>}
         {userHasSearched || displayingFavorites ?
           isLoading ?
             <Grid container spacing={4} >
@@ -178,7 +184,7 @@ export default function EventsWithSelectors(props) {
             </Grid>
             :
             <Grid container spacing={4} >
-              {events.map((event, index) => (
+              {events && events.map((event, index) => (
                 <EventCard key={`${index}-${event.title}-${displayingFavorites}`} sig={index} event={event} displayingFavorites={displayingFavorites} />
               ))}
             </Grid>

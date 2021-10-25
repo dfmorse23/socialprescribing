@@ -25,6 +25,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3"
+  },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [

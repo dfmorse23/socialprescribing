@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     margin: '10px 0',
     borderRadius: '5px',
-    backgroundImage: 'linear-gradient(to right, #d9d9d9 0%, rgba(0, 0, 0, 0.05) 20%, #d9d9d9 40%, #d9d9d9 100%)',
+    backgroundImage: 'linear-gradient(to right, #d9d9d9 0%, #c4c4c4 20%, #d9d9d9 40%, #d9d9d9 100%)',
     backgroundRepeat: 'noRepeat',
     backgroundDize: '450px 400px',
     animation: '$shimmer 1s linear infinite',
