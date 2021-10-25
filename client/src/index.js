@@ -11,6 +11,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import SignupPage from './components/SignupPage';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
 import ErrorBoundary from './components/ErrorBoundary';
+import Error404Page from './components/Error404Page';
 
 // import Blog from './components/Blog';
 
@@ -44,6 +45,9 @@ ReactDOM.render(
             )} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
+
+            {/* 404 page */}
+            <Route component={Error404Page} />
           </HashRouter>
         </AuthProvider>
       </ThemeProvider>
