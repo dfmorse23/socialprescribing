@@ -107,7 +107,7 @@ export default function EventCard(props) {
     }
 
     try {
-      await fetch(`http://localhost:3001/user/addFavorite/${currentUser.uid}`, {
+      await fetch(`/user/addFavorite/${currentUser.uid}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ [event.title]: event }),
@@ -129,7 +129,7 @@ export default function EventCard(props) {
   const handleRemoveLike = async () => {
     // Remove like here
     try {
-      await fetch(`http://localhost:3001/user/removeFavorite/${currentUser.uid}`, {
+      await fetch(`/user/removeFavorite/${currentUser.uid}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ [event.title]: event }),
