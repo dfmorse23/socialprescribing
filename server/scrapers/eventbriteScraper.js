@@ -5,7 +5,7 @@ const { convertZipcode } = require("./zipcodeConverter");
 
 // Initialize bad-words filter w/ new words
 let filter = new Filter();
-let newBadWords = ["gay", "lesbian", "queer"];
+let newBadWords = ["gay", "lesbian", "kinky"];
 filter.addWords(...newBadWords);
 
 /**
@@ -80,6 +80,10 @@ const getCategory = (category, city, state, country, zipcode) => {
 	};
 
 	return new Promise((resolve, reject) => {
+		if (!(category in categoryUrls)) {
+			reject(`Unsupported EventBrite category: ${category}`);
+		}
+
 		let url = `https://www.eventbrite.com/d/${state}--${city}/${categoryUrls[category].url}/${zipcode}/`;
 
 		axios
