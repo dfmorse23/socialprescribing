@@ -33,7 +33,7 @@ export default function EventsWithSelectors(props) {
     setEvents([])
 
     try {
-      const response = await fetch(`http://localhost:3001/api/scrapers/getEvents/${searchValue}`, {
+      const response = await fetch(`/api/scrapers/getEvents/${searchValue}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ searchValue }),
@@ -93,7 +93,7 @@ export default function EventsWithSelectors(props) {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/user/favorites/${currentUser.uid}`, {
+      const response = await fetch(`/user/favorites/${currentUser.uid}`, {
         method: "GET",
         headers: { "Content-type": "application/json" },
       })

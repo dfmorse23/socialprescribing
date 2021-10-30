@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch server server/server.js",
-    "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
-    "dev": "concurrently \"npm run start\" \"npm run client\""
+    "start": "nodemon --exec babel-node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "build": "babel server/server.js --out-file server.compiled.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
   "homepage": "https://github.com/hannahle/sp-prototype#readme",
   "dependencies": {
     "axios": "^0.21.3",
+    "babel-node": "0.0.1-security",
     "cheerio": "^1.0.0-rc.10",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
@@ -29,7 +33,16 @@
     "express": "^4.17.1",
     "inherits": "^2.0.3",
     "node-fetch": "^2.0.0",
+    "nodemon": "^2.0.14",
+    "pg": "^8.7.1",
     "prettier": "^2.4.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "nodemon": "^2.0.6"
   }
 }
