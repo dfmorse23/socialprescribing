@@ -5,7 +5,7 @@ const { convertZipcode } = require("./zipcodeConverter");
 
 // Initialize bad-words filter w/ new words
 let filter = new Filter();
-let newBadWords = ["gay", "lesbian", "kinky"];
+let newBadWords = ["gay", "lesbian", "kinky", "spank"];
 filter.addWords(...newBadWords);
 
 /**
