@@ -3,7 +3,6 @@ import { Paper, Typography } from "@material-ui/core";
 
 import PropTypes from "prop-types";
 import React from "react";
-import SearchBar from "material-ui-search-bar";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import LocationSearchInput from './LocationSearchInput'
@@ -70,8 +69,6 @@ export default function SearchWithGraphic(props) {
   // TODO:: use the search bar onRequestSearch to populate results
   return (
     <Card className={classes.card}>
-      <LocationSearchInput />
-
       <CardContent className={classes.titleCard}>
         <Paper className={classes.title} style={{ backgroundImage: `url(${title.image})` }}>
           {<img style={{ display: "none" }} src={title.image} alt={title.imageText} />}
@@ -94,13 +91,7 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        <SearchBar
-          className={classes.searchBar}
-          value={searchValue}
-          placeholder="Search ZIP code..."
-          onChange={(newSearchValue) => setSearchValue(newSearchValue)}
-          onRequestSearch={() => handleSearch(searchValue)}
-        />
+        <LocationSearchInput />
       </CardContent>
     </Card>
   );
