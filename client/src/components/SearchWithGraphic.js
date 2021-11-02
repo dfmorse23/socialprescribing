@@ -106,43 +106,52 @@ const loadScript = (url, callback) => {
   callback()
 };
 
-const handleScriptLoad = (updateQuery, autoCompleteRef) => {
+const handleScriptLoad = (updateQuery, autoCompleteRef, setLatLon) => {
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current,
     { types: ["(cities)"], componentRestrictions: { country: "us" } }
   );
-  autoComplete.setFields(["address_components", "formatted_address"]);
+  autoComplete.setFields(["address_components", "formatted_address", "geometry"]);
   autoComplete.addListener("place_changed", () => {
-    handlePlaceSelect(updateQuery)
+    handlePlaceSelect(updateQuery, setLatLon)
   }
   );
 }
 
-const handlePlaceSelect = async (updateQuery) => {
+const handlePlaceSelect = async (updateQuery, setLatLon) => {
   const addressObject = autoComplete.getPlace()
   const q = addressObject.formatted_address
-  if (q) {
-    updateQuery(q);
+  let latlon = ''
+
+  if (addressObject.hasOwnProperty('geometry')) {
+    latlon = { "lat": addressObject.geometry.location.lat(), "lon": addressObject.geometry.location.lng() }
   }
+  else {
+    latlon = { "lat": undefined, "lon": undefined }
+  }
+
+  setLatLon(latlon)
+  updateQuery(q || "");
 }
 
 export default function SearchWithGraphic(props) {
   const classes = useStyles();
   const { title, handleSearch } = props;
   const [searchValue, setSearchValue] = useState("");
+  const [searchLatLon, setSearchLatLon] = useState("");
 
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
-      () => handleScriptLoad(setSearchValue, autoCompleteRef)
+      () => handleScriptLoad(setSearchValue, autoCompleteRef, setSearchLatLon)
     );
   }, []);
 
-  // TODO:: use the search bar onRequestSearch to populate results
   return (
     <Card className={classes.card}>
+      <p>{searchLatLon.lat}</p>
       <CardContent className={classes.titleCard}>
         <Paper className={classes.title} style={{ backgroundImage: `url(${title.image})` }}>
           {<img style={{ display: "none" }} src={title.image} alt={title.imageText} />}
@@ -165,7 +174,7 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        <form onSubmit={() => { handleSearch(searchValue) }} className={classes.searchForm}>
+        <form onSubmit={() => { handleSearch(searchLatLon) }} className={classes.searchForm}>
           <input
             type="text"
             className={classes.searchBar}

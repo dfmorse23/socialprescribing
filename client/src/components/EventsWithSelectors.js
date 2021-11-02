@@ -32,11 +32,13 @@ export default function EventsWithSelectors(props) {
     setAllEvents([])
     setEvents([])
 
+    const zipCode = await getZipFromCoordinates(searchValue)
+
     try {
-      const response = await fetch(`/api/scrapers/getEvents/${searchValue}`, {
+      const response = await fetch(`/api/scrapers/getEvents/${zipCode}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ searchValue }),
+        body: JSON.stringify({ zipCode }),
       })
 
       const resJson = await response.json()
@@ -49,7 +51,7 @@ export default function EventsWithSelectors(props) {
         // Choose error text
         switch (err) {
           case "Non-US zipcode":
-            resMessage = "Please enter a valid US zipcode."
+            resMessage = "Please Select A Valid U.S. City"
             break;
           default:
             resMessage = `We encountered an error and were unable to retrieve events. Error: ${err}`
@@ -81,6 +83,35 @@ export default function EventsWithSelectors(props) {
 
     setIsLoading(false)
   };
+
+  const getZipFromCoordinates = async (latlon) => {
+    const { lat, lon } = latlon
+    let addressComponents = []
+
+    try {
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`, {
+        method: "GET",
+      })
+
+      const resJson = await response.json()
+      addressComponents = resJson.results[0].address_components
+    }
+    catch {
+      // If geocoding fails
+      // return nothing to force a Non-US Zipcode error
+      return
+    }
+
+    let zipCode = ""
+    for (let item of addressComponents) {
+      if (item.types.includes("postal_code")) {
+        zipCode = item.long_name
+      }
+    }
+
+    return zipCode
+
+  }
 
   const getLikedItems = async () => {
     setGetLikesError("")
