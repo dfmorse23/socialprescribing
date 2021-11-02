@@ -4,9 +4,7 @@ import { Paper, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState } from "react";
-import LocationSearchInput from './LocationSearchInput'
-
+import { useState, useEffect, useRef } from "react";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -58,13 +56,74 @@ const useStyles = makeStyles((theme) => ({
   },
   searchBar: {
     margin: "0 auto",
+    width: '100%',
+    padding: '12px 12px 12px 15px',
+    border: '0',
+    boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);',
+    fontSize: '1.2em',
+    font: 'inherit',
+    outline: 'none',
+    borderRadius: '5px',
   },
-}));
+}))
+
+let autoComplete;
+
+const loadScript = (url, callback) => {
+  if (!document.querySelector('#mapsAPI')) {
+    let script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (script.readyState) {
+      script.onreadystatechange = function () {
+        if (script.readyState === "loaded" || script.readyState === "complete") {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {
+      script.onload = () => callback();
+    }
+
+    script.src = url;
+    script.id = 'mapsAPI'
+    document.getElementsByTagName("head")[0].appendChild(script);
+  }
+};
+
+const handleScriptLoad = (updateQuery, autoCompleteRef) => {
+  autoComplete = new window.google.maps.places.Autocomplete(
+    autoCompleteRef.current,
+    { types: ["(cities)"], componentRestrictions: { country: "us" } }
+  );
+  autoComplete.setFields(["address_components", "formatted_address"]);
+  autoComplete.addListener("place_changed", () => {
+    handlePlaceSelect(updateQuery)
+  }
+  );
+}
+
+const handlePlaceSelect = async (updateQuery) => {
+  const addressObject = autoComplete.getPlace()
+  const q = addressObject.formatted_address
+  if (q) {
+    updateQuery(q);
+  }
+}
 
 export default function SearchWithGraphic(props) {
   const classes = useStyles();
   const { title, handleSearch } = props;
   const [searchValue, setSearchValue] = useState("");
+
+  const autoCompleteRef = useRef(null);
+
+  useEffect(() => {
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
+      () => handleScriptLoad(setSearchValue, autoCompleteRef)
+    );
+  }, []);
 
   // TODO:: use the search bar onRequestSearch to populate results
   return (
@@ -91,7 +150,26 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        <LocationSearchInput />
+        {/* <SearchBar
+          className={classes.searchBar}
+          value={searchValue}
+          placeholder="Search ZIP code..."
+          onChange={(newSearchValue) => setSearchValue(newSearchValue)}
+          onRequestSearch={() => handleSearch(searchValue)}
+        /> */}
+        <form onSubmit={() => { handleSearch(searchValue) }}>
+          <input
+            type="text"
+            className={classes.searchBar}
+            ref={autoCompleteRef}
+            onChange={event => {
+              setSearchValue(event.target.value)
+            }}
+            placeholder="Search for a location..."
+            value={searchValue}
+          />
+          <button type="submit">{searchValue}</button>
+        </form>
       </CardContent>
     </Card>
   );
