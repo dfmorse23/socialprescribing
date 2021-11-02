@@ -130,8 +130,13 @@ const handlePlaceSelect = async (updateQuery, setLatLon) => {
     latlon = { "lat": undefined, "lon": undefined }
   }
 
+  console.log(q)
+  console.log(latlon)
+
   setLatLon(latlon)
-  updateQuery(q || "");
+  if (q) {
+    updateQuery(q || "");
+  }
 }
 
 export default function SearchWithGraphic(props) {
@@ -173,7 +178,9 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        <form onSubmit={() => { handleSearch(searchLatLon) }} className={classes.searchForm}>
+        <form onSubmit={() => {
+          handleSearch(searchLatLon)
+        }} className={classes.searchForm}>
           <input
             type="text"
             className={classes.searchBar}
