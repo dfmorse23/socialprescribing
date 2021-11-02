@@ -1,11 +1,14 @@
 const { convertZipcode } = require("./zipcodeConverter");
+let path = require("path");
 let fs = require("fs");
+let jsonPath = path.join(__dirname, "..", "generic_links.json");
+console.log(jsonPath);
 
 const getGenericLinks = (zipcode) => {
 	return new Promise((resolve, reject) => {
 		convertZipcode(zipcode)
 			.then((zipcodeData) => {
-				let genericData = JSON.parse(fs.readFileSync("./generic_links.json").toString());
+				let genericData = JSON.parse(fs.readFileSync(jsonPath).toString());
 				let genericLinksZipcoded = [];
 
 				// Add zipcode to urls & set location
