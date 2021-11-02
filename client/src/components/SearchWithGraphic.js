@@ -173,7 +173,7 @@ export default function SearchWithGraphic(props) {
             onChange={event => {
               setSearchValue(event.target.value)
             }}
-            placeholder="Search for a location..."
+            placeholder="Search any location..."
             value={searchValue}
           />
           <button className={classes.searchIcon} type="submit"> <SearchIcon color="disabled" /> </button>

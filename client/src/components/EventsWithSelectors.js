@@ -195,8 +195,8 @@ export default function EventsWithSelectors(props) {
             justifyContent="center"
             alignItems="center"
           >
-            <SearchIcon fontSize='large' />
-            <h1 style={{ margin: '50px 20px' }}> Search your ZIP code</h1>
+            <SearchIcon fontSize='large' color="disabled" />
+            <h1 style={{ margin: '50px 20px', color: '#aaaaaa' }}> Search any location</h1>
           </Grid>
         }
       </div>
