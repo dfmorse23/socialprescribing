@@ -1,10 +1,10 @@
+import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent } from "@material-ui/core";
 import { Paper, Typography } from "@material-ui/core";
 
+import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from "prop-types";
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState, useEffect, useRef } from "react";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -65,6 +65,19 @@ const useStyles = makeStyles((theme) => ({
     outline: 'none',
     borderRadius: '5px',
   },
+  searchForm: {
+    display: 'flex',
+  },
+  searchIcon: {
+    position: 'absolute',
+    right: '0',
+    borderRadius: '5px',
+    padding: '12px',
+    backgroundColor: 'white',
+    border: 'none',
+    display: 'flex',
+    alignItems: 'center'
+  },
 }))
 
 let autoComplete;
@@ -88,7 +101,9 @@ const loadScript = (url, callback) => {
     script.src = url;
     script.id = 'mapsAPI'
     document.getElementsByTagName("head")[0].appendChild(script);
+    return
   }
+  callback()
 };
 
 const handleScriptLoad = (updateQuery, autoCompleteRef) => {
@@ -150,14 +165,7 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        {/* <SearchBar
-          className={classes.searchBar}
-          value={searchValue}
-          placeholder="Search ZIP code..."
-          onChange={(newSearchValue) => setSearchValue(newSearchValue)}
-          onRequestSearch={() => handleSearch(searchValue)}
-        /> */}
-        <form onSubmit={() => { handleSearch(searchValue) }}>
+        <form onSubmit={() => { handleSearch(searchValue) }} className={classes.searchForm}>
           <input
             type="text"
             className={classes.searchBar}
@@ -168,7 +176,7 @@ export default function SearchWithGraphic(props) {
             placeholder="Search for a location..."
             value={searchValue}
           />
-          <button type="submit">{searchValue}</button>
+          <button className={classes.searchIcon} type="submit"> <SearchIcon color="disabled" /> </button>
         </form>
       </CardContent>
     </Card>
