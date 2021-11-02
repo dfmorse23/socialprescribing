@@ -151,7 +151,6 @@ export default function SearchWithGraphic(props) {
 
   return (
     <Card className={classes.card}>
-      <p>{searchLatLon.lat}</p>
       <CardContent className={classes.titleCard}>
         <Paper className={classes.title} style={{ backgroundImage: `url(${title.image})` }}>
           {<img style={{ display: "none" }} src={title.image} alt={title.imageText} />}
