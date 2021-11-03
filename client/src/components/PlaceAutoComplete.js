@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     right: '0',
     borderRadius: '5px',
-    padding: '12px',
+    padding: '11px',
     backgroundColor: 'white',
     border: 'none',
     display: 'flex',
@@ -55,10 +55,8 @@ const PlaceAutoComplete = (props) => {
     suggestions: { status, data },
     setValue,
   } = usePlacesAutocomplete({
+    cache: 48 * 60 * 60,
     componentRestrictions: { country: 'us' },
-    requestOptions: {
-      types: ["geometry", "postal_code", "address"]
-    }
   });
 
   const classes = useStyles();
