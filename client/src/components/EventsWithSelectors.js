@@ -32,6 +32,8 @@ export default function EventsWithSelectors(props) {
     setAllEvents([])
     setEvents([])
 
+    console.log(searchValue)
+
     const zipCode = await getZipFromCoordinates(searchValue)
 
     try {

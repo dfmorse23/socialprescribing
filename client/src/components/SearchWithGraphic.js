@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Card, CardContent } from "@material-ui/core";
 import { Paper, Typography } from "@material-ui/core";
 
-import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
+import PlaceAutoComplete from "./PlaceAutoComplete";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -54,105 +54,11 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     zIndex: 1000,
   },
-  searchBar: {
-    margin: "0 auto",
-    width: '100%',
-    padding: '12px 12px 12px 15px',
-    border: '0',
-    boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);',
-    fontSize: '1.2em',
-    font: 'inherit',
-    outline: 'none',
-    borderRadius: '5px',
-  },
-  searchForm: {
-    display: 'flex',
-  },
-  searchIcon: {
-    position: 'absolute',
-    right: '0',
-    borderRadius: '5px',
-    padding: '12px',
-    backgroundColor: 'white',
-    border: 'none',
-    display: 'flex',
-    alignItems: 'center'
-  },
 }))
-
-let autoComplete;
-
-const loadScript = (url, callback) => {
-  if (!document.querySelector('#mapsAPI')) {
-    let script = document.createElement("script");
-    script.type = "text/javascript";
-
-    if (script.readyState) {
-      script.onreadystatechange = function () {
-        if (script.readyState === "loaded" || script.readyState === "complete") {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else {
-      script.onload = () => callback();
-    }
-
-    script.src = url;
-    script.id = 'mapsAPI'
-    document.getElementsByTagName("head")[0].appendChild(script);
-    return
-  }
-  callback()
-};
-
-const handleScriptLoad = (updateQuery, autoCompleteRef, setLatLon) => {
-  autoComplete = new window.google.maps.places.Autocomplete(
-    autoCompleteRef.current,
-    { types: ["(cities)"], componentRestrictions: { country: "us" } }
-  );
-  autoComplete.setFields(["address_components", "formatted_address", "geometry"]);
-  autoComplete.addListener("place_changed", () => {
-    handlePlaceSelect(updateQuery, setLatLon)
-  }
-  );
-}
-
-const handlePlaceSelect = async (updateQuery, setLatLon) => {
-  const addressObject = autoComplete.getPlace()
-  const q = addressObject.formatted_address
-  let latlon = ''
-
-  if (addressObject.hasOwnProperty('geometry')) {
-    latlon = { "lat": addressObject.geometry.location.lat(), "lon": addressObject.geometry.location.lng() }
-  }
-  else {
-    latlon = { "lat": undefined, "lon": undefined }
-  }
-
-  console.log(q)
-  console.log(latlon)
-
-  setLatLon(latlon)
-  if (q) {
-    updateQuery(q || "");
-  }
-}
 
 export default function SearchWithGraphic(props) {
   const classes = useStyles();
   const { title, handleSearch } = props;
-  const [searchValue, setSearchValue] = useState("");
-  const [searchLatLon, setSearchLatLon] = useState("");
-
-  const autoCompleteRef = useRef(null);
-
-  useEffect(() => {
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
-      () => handleScriptLoad(setSearchValue, autoCompleteRef, setSearchLatLon)
-    );
-  }, []);
 
   return (
     <Card className={classes.card}>
@@ -178,21 +84,7 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        <form onSubmit={() => {
-          handleSearch(searchLatLon)
-        }} className={classes.searchForm}>
-          <input
-            type="text"
-            className={classes.searchBar}
-            ref={autoCompleteRef}
-            onChange={event => {
-              setSearchValue(event.target.value)
-            }}
-            placeholder="Search any location..."
-            value={searchValue}
-          />
-          <button className={classes.searchIcon} type="submit"> <SearchIcon color="disabled" /> </button>
-        </form>
+        <PlaceAutoComplete handleSearch={handleSearch} />
       </CardContent>
     </Card>
   );

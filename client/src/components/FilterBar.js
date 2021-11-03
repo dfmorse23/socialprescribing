@@ -45,8 +45,6 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     margin: theme.spacing(0.5, 1.5),
   },
-
-
 }));
 
 export default function FilterBar(props) {
