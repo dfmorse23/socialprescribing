@@ -32,11 +32,7 @@ export default function EventsWithSelectors(props) {
     setAllEvents([])
     setEvents([])
 
-    console.log(searchValue)
-
     const zipCode = await getZipFromCoordinates(searchValue)
-
-    console.log(zipCode)
 
     try {
       const response = await fetch(`/api/scrapers/getEvents/${zipCode}`, {
