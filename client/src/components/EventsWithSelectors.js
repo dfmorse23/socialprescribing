@@ -36,6 +36,8 @@ export default function EventsWithSelectors(props) {
 
     const zipCode = await getZipFromCoordinates(searchValue)
 
+    console.log(zipCode)
+
     try {
       const response = await fetch(`/api/scrapers/getEvents/${zipCode}`, {
         method: "POST",
@@ -87,6 +89,7 @@ export default function EventsWithSelectors(props) {
   };
 
   const getZipFromCoordinates = async (latlon) => {
+
     const { lat, lon } = latlon
     let addressComponents = []
 
@@ -98,10 +101,11 @@ export default function EventsWithSelectors(props) {
       const resJson = await response.json()
       addressComponents = resJson.results[0].address_components
     }
-    catch {
+    catch (err) {
       // If geocoding fails
       // return nothing to force a Non-US Zipcode error
-      return
+      console.log(err)
+      return -1
     }
 
     let zipCode = ""
@@ -111,7 +115,10 @@ export default function EventsWithSelectors(props) {
       }
     }
 
-    return zipCode
+    if (zipCode) {
+      return zipCode
+    }
+    return -1
 
   }
 
