@@ -111,11 +111,11 @@ export default function EventsWithSelectors(props) {
       }
     }
 
+    // If geocoding is successful, but no zipcode is found
     if (zipCode) {
       return zipCode
     }
     return -1
-
   }
 
   const getLikedItems = async () => {

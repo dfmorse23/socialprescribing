@@ -104,8 +104,13 @@ const PlaceAutoComplete = (props) => {
     return { lat, lon }
   }
 
+  const submitForm = async (e) => {
+    e.preventDefault()
+    return props.handleSearch(await getLocationCoords())
+  }
+
   return (
-    <form onSubmit={async () => props.handleSearch(await getLocationCoords())} className={classes.searchForm}>
+    <form onSubmit={(e) => submitForm(e)} className={classes.searchForm}>
       <Combobox onSelect={handleSelect} aria-labelledby="demo" className={classes.inputWrapper}>
         <ComboboxInput value={value} onChange={handleInput} disabled={!ready} className={classes.searchBar} />
         <ComboboxPopover>
