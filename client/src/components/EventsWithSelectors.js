@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import EventSkeleton from './EventSkeleton'
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router';
+import ReactGA from 'react-ga';
 
 export default function EventsWithSelectors(props) {
   const { title, filterBarSections } = props;
@@ -38,6 +39,13 @@ export default function EventsWithSelectors(props) {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ searchValue }),
       })
+
+      // Send search location analytics
+      ReactGA.event({
+        category: 'Search',
+        action: 'Searched for events',
+        value: searchValue
+      });
 
       const resJson = await response.json()
 

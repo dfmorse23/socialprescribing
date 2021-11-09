@@ -10,8 +10,11 @@ import { HashRouter, Route } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 import SignupPage from './components/SignupPage';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
+import ReactGA from 'react-ga';
+import RouteChangeTracker from './components/RouteChangeTracker';
 
-// import Blog from './components/Blog';
+const TRACKING_ID = "UA-212335392-1"; // YOUR_OWN_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 const theme = createTheme({
   palette: {
@@ -36,6 +39,7 @@ ReactDOM.render(
     <ThemeProvider theme={theme} >
       <AuthProvider>
         <HashRouter>
+          <RouteChangeTracker />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/signin" component={() => (
             <LandingPage signin={true} />

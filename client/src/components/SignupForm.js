@@ -2,6 +2,7 @@ import { Grid, FormControl, OutlinedInput, FormLabel, Button, SvgIcon, Link } fr
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from '../contexts/AuthContext'
 import { useHistory } from 'react-router';
+import ReactGA from 'react-ga';
 
 import React, { useState } from 'react';
 
@@ -78,6 +79,12 @@ export default function SignupForm(props) {
       setValidationError('')
       setLoading(true)
       await signup(email, password, true)
+
+      // Send account created analytics
+      ReactGA.event({
+        category: 'User',
+        action: 'Created an Account'
+      });
 
       history.push('/#')
 
