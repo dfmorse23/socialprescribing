@@ -32,7 +32,6 @@ export default function SignupPage(props) {
           >
             <SignupForm />
           </Grid>
-
         </main>
       </Container>
       <Footer title="social prescribing." description="Fill your social prescription today!" />

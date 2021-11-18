@@ -6,10 +6,12 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createTheme } from '@material-ui/core/styles';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter, Route } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 import SignupPage from './components/SignupPage';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
+import ErrorBoundary from './components/ErrorBoundary';
+import Error404Page from './components/Error404Page';
 
 // import Blog from './components/Blog';
 
@@ -32,20 +34,29 @@ const theme = createTheme({
 });
 
 ReactDOM.render(
+
   <React.StrictMode>
     <ThemeProvider theme={theme} >
       <AuthProvider>
         <HashRouter>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/signin" component={() => (
-            <LandingPage signin={true} />
-          )} />
-          <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
+          <ErrorBoundary theme={theme}>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/signin" component={() => (
+                <LandingPage signin={true} />
+              )} />
+              <Route exact path="/signup" component={SignupPage} />
+              <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
+
+              {/* 404 page */}
+              <Route path="*" component={Error404Page} />
+            </Switch>
+          </ErrorBoundary>
         </HashRouter>
       </AuthProvider>
     </ThemeProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
+  ,
   document.getElementById('root')
 );
 
