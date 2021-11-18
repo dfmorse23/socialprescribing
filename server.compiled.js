@@ -11,11 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/scrapers", scraper);
-app.use("/user", database);
+app.use("/user", database); // Set static folder
+
+app.use(express.static("client/build"));
 app.get("/", (req, res) => {
-  return res.json({
-    response: "Hello World"
-  });
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
