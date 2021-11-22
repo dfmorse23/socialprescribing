@@ -112,7 +112,7 @@ const PlaceAutoComplete = (props) => {
   return (
     <form onSubmit={(e) => submitForm(e)} className={classes.searchForm}>
       <Combobox onSelect={handleSelect} aria-labelledby="demo" className={classes.inputWrapper}>
-        <ComboboxInput value={value} onChange={handleInput} disabled={!ready} className={classes.searchBar} />
+        <ComboboxInput value={value} onChange={handleInput} disabled={!ready} className={classes.searchBar} placeholder="Search your location." />
         <ComboboxPopover>
           <ComboboxList className={classes.suggestionList}>
             {status === "OK" &&

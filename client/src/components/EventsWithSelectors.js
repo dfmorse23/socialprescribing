@@ -232,7 +232,7 @@ export default function EventsWithSelectors(props) {
             alignItems="center"
           >
             <SearchIcon fontSize='large' color="disabled" />
-            <h1 style={{ margin: '50px 20px', color: '#aaaaaa' }}> Search any location</h1>
+            <h1 style={{ margin: '50px 20px', color: '#aaaaaa' }}> Find prescriptions near you.</h1>
           </Grid>
         }
       </div>
