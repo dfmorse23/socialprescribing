@@ -22,6 +22,7 @@ export default function EventsWithSelectors(props) {
   const { currentUser } = useAuth();
   const [displayingFavorites, setDisplayingFavorites] = useState(false)
   const history = useHistory();
+  const imageSeed = Math.random() * 100
 
   const handleSearch = async (searchValue) => {
     setUserHasSearched(true)
@@ -221,7 +222,7 @@ export default function EventsWithSelectors(props) {
             :
             <Grid container spacing={4} >
               {events && events.map((event, index) => (
-                <EventCard key={`${index}-${event.title}-${displayingFavorites}`} sig={index} event={event} displayingFavorites={displayingFavorites} />
+                <EventCard key={`${index}-${event.title}-${displayingFavorites}`} sig={index + imageSeed} event={event} displayingFavorites={displayingFavorites} />
               ))}
             </Grid>
           :

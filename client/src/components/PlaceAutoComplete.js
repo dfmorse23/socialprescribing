@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'inherit',
     fontSize: '1.2em',
     fontWeight: 'bold',
+  },
+  popover: {
+    zIndex: '9999'
   }
 }))
 
@@ -111,9 +114,9 @@ const PlaceAutoComplete = (props) => {
 
   return (
     <form onSubmit={(e) => submitForm(e)} className={classes.searchForm}>
-      <Combobox onSelect={handleSelect} aria-labelledby="demo" className={classes.inputWrapper}>
+      <Combobox onSelect={handleSelect} className={classes.inputWrapper}>
         <ComboboxInput value={value} onChange={handleInput} disabled={!ready} className={classes.searchBar} placeholder="Search your location." />
-        <ComboboxPopover>
+        <ComboboxPopover className={classes.popover}>
           <ComboboxList className={classes.suggestionList}>
             {status === "OK" &&
               data.map(({ place_id, description }) => (

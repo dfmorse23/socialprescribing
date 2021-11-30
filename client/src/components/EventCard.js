@@ -71,7 +71,6 @@ export default function EventCard(props) {
   const history = useHistory();
   const [liked, setLiked] = useState(displayingFavorites)
   const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false)
-  const imageSeed = Math.random() * 100
 
   const titleCase = (text = "") => {
     if (typeof text === 'string') {
@@ -154,7 +153,7 @@ export default function EventCard(props) {
         <CardActionArea onClick={() => window.open(event.url, "_blank")} >
           <CardContent className={classes.eventCardTitle} style={{ padding: "0px" }}>
 
-            <CardMedia component="img" image={event.image ? event.image : `https://picsum.photos/seed/${props.sig + imageSeed}/200/300`} title={event.title} className={classes.cardMedia} />
+            <CardMedia component="img" image={event.image ? event.image : `https://picsum.photos/seed/${props.sig}/200/300`} title={event.title} className={classes.cardMedia} />
 
             <Typography variant="body1" className={classes.cardTitleText}>
               {titleCase(event.title)}
