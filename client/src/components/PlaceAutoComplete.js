@@ -1,5 +1,4 @@
 import usePlacesAutocomplete, { getDetails } from "use-places-autocomplete";
-import "@reach/combobox/styles.css";
 import SearchBar from './SearchBar'
 
 let PlaceAutoComplete = (props) => {
