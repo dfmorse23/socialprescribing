@@ -91,7 +91,7 @@ export default function EventsWithSelectors(props) {
     let addressComponents = []
 
     try {
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`, {
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${process.env.REACT_APP_MAPS_JS_API}`, {
         method: "GET",
       })
 

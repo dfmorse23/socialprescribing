@@ -1,10 +1,11 @@
 import React from "react";
 import { Card, CardContent } from "@material-ui/core";
 import { Paper, Typography } from "@material-ui/core";
-
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import PlaceAutoComplete from "./PlaceAutoComplete";
+import SearchBar from './SearchBar'
+import useScript from '../hooks/useScript'
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchWithGraphic(props) {
   const classes = useStyles();
   const { title, handleSearch } = props;
+  const loaded = useScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_JS_API}&libraries=places`) === 'ready'
 
   return (
     <Card className={classes.card}>
@@ -84,7 +86,7 @@ export default function SearchWithGraphic(props) {
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        <PlaceAutoComplete handleSearch={handleSearch} />
+        {loaded ? <PlaceAutoComplete handleSearch={handleSearch} /> : <SearchBar />}
       </CardContent>
     </Card>
   );
