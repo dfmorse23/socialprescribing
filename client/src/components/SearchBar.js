@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     borderTopLeftRadius: '0px',
     borderBottomLeftRadius: '0px',
   },
+  suggestionPopover: {
+    zIndex: '9999',
+  },
 }))
 
 let SearchBar = (props) => {
@@ -68,7 +71,7 @@ let SearchBar = (props) => {
     <form onSubmit={(e) => submitForm(e)} className={classes.searchForm}>
       <Combobox onSelect={handleSelect} aria-labelledby="demo" className={classes.inputWrapper}>
         <ComboboxInput value={value} onChange={handleInput} disabled={!ready} className={classes.searchBar} placeholder="Search your location." />
-        <ComboboxPopover>
+        <ComboboxPopover className={classes.suggestionPopover}>
           <ComboboxList className={classes.suggestionList}>
             {status === "OK" &&
               data.map(({ place_id, description }) => (
