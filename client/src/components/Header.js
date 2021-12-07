@@ -52,7 +52,7 @@ export default function Header(props) {
           alignItems="center"
           justifyContent='space-between'
         >
-          <Link href="#" underline="none">
+          <Link href="https://www.socialprescribingusa.com" underline="none">
             <Typography
               component='h2'
               variant="h5"
