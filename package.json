@@ -9,8 +9,9 @@
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "railway": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn build --prefix client",
-    "build": "npm run build --prefix client"
+    "railway": "NPM_CONFIG_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client build",
+    "build": "yarn --cwd client build",
+    "init": "yarn install && yarn --cwd client install"
   },
   "repository": {
     "type": "git",
