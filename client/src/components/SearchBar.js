@@ -8,7 +8,6 @@ import {
 import "@reach/combobox/styles.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
-import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
@@ -67,10 +66,6 @@ let SearchBar = (props) => {
     data = null,
     status = null,
   } = props;
-
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
 
   const classes = useStyles();
 
