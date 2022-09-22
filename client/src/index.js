@@ -47,7 +47,6 @@ ReactDOM.render(
               )} />
               <Route exact path="/signup" component={SignupPage} />
               <Route exact path="/forgotpassword" component={ForgotPasswordPage} />
-
               {/* 404 page */}
               <Route path="*" component={Error404Page} />
             </Switch>

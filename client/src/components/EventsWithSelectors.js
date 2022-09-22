@@ -96,6 +96,7 @@ export default function EventsWithSelectors(props) {
       })
 
       const resJson = await response.json()
+      console.log(resJson)
       addressComponents = resJson.results[0].address_components
     }
     catch (err) {
