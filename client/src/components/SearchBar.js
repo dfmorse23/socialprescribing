@@ -80,7 +80,7 @@ let SearchBar = (props) => {
           </ComboboxList>
         </ComboboxPopover>
       </Combobox>
-      <button className={`${classes.searchIcon} ${!ready ? classes.searchButtonDisabled : ""}`} type="submit"> <SearchIcon color="disabled" /> </button>
+      <button className={`${classes.searchIcon}`} type="submit"> <SearchIcon  /> </button>
     </form>
   );
 };
