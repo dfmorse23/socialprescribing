@@ -228,7 +228,7 @@ export default function EventCard(props) {
         imageUrl={
           event.image
             ? event.image
-            : `https://picsum.photos/seed/${props.sig}/800/800`
+            : `https://picsum.photos/seed/${props.sig}/2000/800`
         }
         title={event.title}
         open={openModal}
