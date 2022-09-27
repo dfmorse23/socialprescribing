@@ -33,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 const headerSections = [
   { title: 'About', url: '#' },
-  { title: 'For Healthcare Workers', url: '#' },
-  { title: 'For Leaders', url: '#' },
-  { title: 'Resources', url: '#' },
 ]
 
 export default function Header(props) {
