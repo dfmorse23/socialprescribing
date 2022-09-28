@@ -1,5 +1,8 @@
 const express = require("express");
 var cors = require("cors");
+const session = require("express-session");
+
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 // Routes
 const scraper = require("./routes/scrapers.js");
@@ -7,8 +10,19 @@ const database = require("./routes/database.js");
 
 const app = express();
 
+// middleware
 app.use(cors());
 app.use(express.json());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        secure: process.env.NODE_ENV === "production",
+    }
+}))
+
 app.use("/api/scrapers", scraper);
 app.use("/user", database);
 

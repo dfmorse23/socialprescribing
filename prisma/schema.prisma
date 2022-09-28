@@ -21,9 +21,12 @@ model User {
 
 model Favorite {
   id Int @id @default(autoincrement())
-  userId String
-  title String
+  tag String
   url String
+  date DateTime
+  title String
+  location String
   
+  userId String
   user User @relation(fields: [userId], references: [id])
 }
