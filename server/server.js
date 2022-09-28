@@ -2,11 +2,13 @@ const express = require("express");
 var cors = require("cors");
 const session = require("express-session");
 
+const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 // Routes
 const scraper = require("./routes/scrapers.js");
 const database = require("./routes/database.js");
+const auth = require("./routes/auth.js");
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use(session({
 
 app.use("/api/scrapers", scraper);
 app.use("/user", database);
+app.use("/auth", auth);
 
 // Set static folder
 app.use(express.static("client/build"));
