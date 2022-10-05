@@ -32,10 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const headerSections = [
-  { title: 'About', url: '#' },
-  { title: 'For Healthcare Workers', url: '#' },
-  { title: 'For Leaders', url: '#' },
-  { title: 'Resources', url: '#' },
+  { title: 'About', url: 'https://socialprescribingusa.com/about.html' },
 ]
 
 export default function Header(props) {
@@ -52,7 +49,7 @@ export default function Header(props) {
           alignItems="center"
           justifyContent='space-between'
         >
-          <Link href="https://www.socialprescribingusa.com" underline="none">
+          <Link href="https://socialprescribingusa.com/" underline="none">
             <Typography
               component='h2'
               variant="h5"

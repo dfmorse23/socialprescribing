@@ -19,7 +19,7 @@ sudo npm install -g yarn
 ## Install dependencies 
 
 ```bash 
-yarn init
+yarn initialize
 ```
 
 ## Run project while developing
