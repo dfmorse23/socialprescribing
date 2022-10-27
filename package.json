@@ -27,6 +27,7 @@
     "axios": "^0.21.3",
     "babel-node": "0.0.1-security",
     "bad-words": "^3.0.4",
+    "bcrypt": "^5.1.0",
     "cheerio": "^1.0.0-rc.10",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
