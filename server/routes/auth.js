@@ -77,7 +77,7 @@ router.post('/login', async (req, res) => {
     if (!isMatch) {
         return res.status(400).json({ message: 'Invalid credentials', success: false })
     }
-
+let {password, ...userWithoutPassword} = user
     req.session.loggedIn = true;
     req.session.user = user;
 
