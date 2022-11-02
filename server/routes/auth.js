@@ -79,7 +79,7 @@ router.post('/login', async (req, res) => {
     }
 let {password, ...userWithoutPassword} = user
     req.session.loggedIn = true;
-    req.session.user = user;
+    req.session.user = userWithoutPassword;
 
     return res.status(200).json({ message: 'User logged in', success: true })
 });
