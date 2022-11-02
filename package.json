@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/hannahle/sp-prototype#readme",
   "dependencies": {
-    "axios": "^0.21.3",
+    "axios": "^0.27.2",
     "babel-node": "0.0.1-security",
     "bad-words": "^3.0.4",
     "cheerio": "^1.0.0-rc.10",
