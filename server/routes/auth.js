@@ -50,7 +50,7 @@ router.post('/signup', async (req, res) => {
     })
 let {password, ...userWithoutPassword}  = newUser
     req.session.loggedIn = true;
-    req.session.userId = newUser;
+    req.session.userId = userWithoutPassword;
 
     return res.status(200).json({ message: 'User created', success: true })
 });
