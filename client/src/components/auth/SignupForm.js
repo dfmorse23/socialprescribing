@@ -1,7 +1,7 @@
 import { Grid, FormControl, OutlinedInput, FormLabel, Button, Link } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContextold'
+import { useHistory } from 'react-router';
 
 import React, { useState } from 'react';
 
@@ -48,29 +48,51 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: '20px',
   },
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: theme.palette.bluePrimary,
+      },
+    },
+    '& .MuiFormLabel-root': {
+      '&.Mui-focused': {
+        color: theme.palette.bluePrimary,
+      },
+    }
+  },
 }));
 
-export default function ForgotPasswordForm(props) {
+export default function SignupForm(props) {
   const classes = useStyles();
+  const history = useHistory();
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
-  const [successMessage, setSuccessMessage] = useState()
   const [loading, setLoading] = useState(false)
-  const { resetPassword } = useAuth()
+  const { signup } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      setSuccessMessage('')
       setValidationError('')
       setLoading(true)
+      await signup(email, password, true)
 
-      await resetPassword(email)
-      setSuccessMessage('Check your inbox for the reset email.')
+      history.push('/#')
 
     } catch (err) {
-      setValidationError('Reset email could not be sent.')
+
+      switch (err.code) {
+        case 'auth/invalid-email':
+          setValidationError('Please use a valid email')
+          break;
+        case 'auth/email-already-in-use':
+          setValidationError('Email is already in use.')
+          break;
+        default:
+          setValidationError('Account could not be created.')
+      }
     }
 
     setLoading(false)
@@ -80,10 +102,8 @@ export default function ForgotPasswordForm(props) {
     <React.Fragment>
       <div className={classes.paper}>
         <Grid>
-          <p>Forgot your password?</p>
-          <h2>Send Password Reset Email</h2>
-          {successMessage ? <Alert severity="success">{successMessage}</Alert> : ""}
-          {validationError ? <Alert severity="error">{validationError}</Alert> : ""}
+          <p>Welcome,</p>
+          <h2>Create an Account</h2>
         </Grid>
         <form className={classes.root} noValidate autoComplete="off">
           <FormControl className={classes.formControl} required variant={"outlined"}>
@@ -91,10 +111,15 @@ export default function ForgotPasswordForm(props) {
             <OutlinedInput id="email" aria-describedby="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
           </FormControl>
 
+          <FormControl className={classes.formControl} required variant={"outlined"}>
+            <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
+            <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </FormControl>
 
+          {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
 
           <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
-            Reset Password
+            Signup Now
           </Button>
 
           <Grid container
@@ -103,7 +128,7 @@ export default function ForgotPasswordForm(props) {
             alignItems="center"
           >
             <Grid item>
-              <p>Back to&nbsp;</p>
+              <p>Already have an account? &nbsp;</p>
             </Grid>
             <Grid item>
               <Link href="/#/signin" variant="body2">

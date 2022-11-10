@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContextold'
 
 const useStyles = makeStyles((theme) => ({
   modal: {

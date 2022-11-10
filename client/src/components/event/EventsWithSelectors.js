@@ -1,10 +1,10 @@
 import { useState } from "react";
 import EventCard from './EventCard';
-import FilterBar from './FilterBar';
+import FilterBar from '../search/FilterBar';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SearchWithGraphic from './SearchWithGraphic';
+import SearchWithGraphic from '../search/SearchWithGraphic';
 import SearchIcon from '@material-ui/icons/Search';
 import EventSkeleton from './EventSkeleton'
 // import { useAuth } from '../contexts/AuthContext';

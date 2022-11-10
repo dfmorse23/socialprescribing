@@ -8,7 +8,7 @@ const Modal = ({ open, handleClose, children, styles }) => {
     transform: "translate(-50%, -50%)",
     width: 900,
     height: 500,
-    bgcolor: styles.bgcolor ? styles.bgcolor : "background.paper",
+    bgcolor: styles && styles.bgcolor ? styles.bgcolor : "background.paper",
     boxShadow: 24,
     borderRadius: 5,
     p: 4,

@@ -1,9 +1,9 @@
 import { Container, CssBaseline, Grid } from '@material-ui/core';
 
-import Footer from './Footer';
-import Header from './Header';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import React from 'react';
-import ForgotPasswordForm from './ForgotPasswordForm';
+import ForgotPasswordForm from '../components/auth/ForgotPasswordForm';
 
 export default function ForgotPasswordPage(props) {
 

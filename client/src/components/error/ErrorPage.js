@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container, CssBaseline, Button } from '@material-ui/core';
-import PageErrorArt from '../images/PageErrorArt.svg'
+import PageErrorArt from '../../images/PageErrorArt.svg'
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({

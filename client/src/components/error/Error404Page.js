@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container, CssBaseline, Button } from '@material-ui/core';
-import Page404Art from '../images/Page404Art.svg'
+import Page404Art from '../../images/Page404Art.svg'
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,9 +1,9 @@
 import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 
-import EventsWithSelectors from "./EventsWithSelectors";
-import Footer from "./Footer";
-import Header from "./Header";
-import SignInModal from "./SignInModal";
+import EventsWithSelectors from "../components/event/EventsWithSelectors";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import SignInModal from "../components/auth/SignInModal";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
