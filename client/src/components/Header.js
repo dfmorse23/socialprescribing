@@ -1,4 +1,4 @@
-import { Button, Toolbar, Link, Typography, Grid, Box } from "@material-ui/core";
+import { Button, Toolbar, Link, Typography, Grid, } from "@material-ui/core";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import {} from "react-router-dom";
@@ -7,11 +7,13 @@ import { useAuth } from "../contexts/AuthContext";
 import Modal from "./Modal";
 
 const useStyles = makeStyles((theme) => ({
+  // Theme for toolbar
   toolbar: {
-    background: theme.palette.beige3,
+    background: theme.palette.backgroundcolor,
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  // Theme for title 
   toolbarTitle: {
     flex: 1,
     fontWeight: "bold",
@@ -23,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     marginRight: theme.spacing(4),
   },
+  // theme for sign in button and signin hover
   toolbarAuthButton: {
-    backgroundColor: theme.palette.green1,
-    color: "white",
+    backgroundColor: theme.palette.bluePrimary,
+    color: 'white',
     "&:hover": {
-      backgroundColor: "#17b08e",
+      backgroundColor: theme.palette.blueSecondary
     },
   },
 }));

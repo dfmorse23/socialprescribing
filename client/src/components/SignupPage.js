@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   pagebody: {
-    backgroundColor: theme.palette.beige3,
+    backgroundColor: theme.palette.backgroundcolor,
   },
   pagecontainer: {
     padding: '0',
