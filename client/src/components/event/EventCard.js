@@ -81,9 +81,8 @@ const useStyles = makeStyles((theme) => ({
 export default function EventCard(props) {
   const classes = useStyles();
   const { event, displayingFavorites } = props;
-  const { currentUser } = useAuth();
   const history = useHistory();
-  const [liked, setLiked] = useState(displayingFavorites);
+  const [liked] = useState(displayingFavorites);
   const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
@@ -113,54 +112,54 @@ export default function EventCard(props) {
     setLikeSnackbarOpen(false);
   };
 
-  const handleLike = async () => {
-    if (!currentUser) {
-      history.push("/signin");
-      return;
-    }
+  // const handleLike = async () => {
+  //   if (!currentUser) {
+  //     history.push("/signin");
+  //     return;
+  //   }
 
-    if (liked) {
-      handleRemoveLike();
-      return;
-    }
+  //   if (liked) {
+  //     handleRemoveLike();
+  //     return;
+  //   }
 
-    try {
-      await fetch(`/user/addFavorite/${currentUser.uid}`, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ [event.title]: event }),
-      });
+  //   try {
+  //     await fetch(`/user/addFavorite/${currentUser.uid}`, {
+  //       method: "POST",
+  //       headers: { "Content-type": "application/json" },
+  //       body: JSON.stringify({ [event.title]: event }),
+  //     });
 
-      // show the alert snackbar
-      setLikeSnackbarOpen(true);
+  //     // show the alert snackbar
+  //     setLikeSnackbarOpen(true);
 
-      // set the post as liked
-      setLiked(true);
-    } catch (err) {
-      console.log(err.message);
-      console.log(err);
-    }
-  };
+  //     // set the post as liked
+  //     setLiked(true);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //     console.log(err);
+  //   }
+  // };
 
-  const handleRemoveLike = async () => {
-    // Remove like here
-    try {
-      await fetch(`/user/removeFavorite/${currentUser.uid}`, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ [event.title]: event }),
-      });
+  // const handleRemoveLike = async () => {
+  //   // Remove like here
+  //   try {
+  //     await fetch(`/user/removeFavorite/${currentUser.uid}`, {
+  //       method: "POST",
+  //       headers: { "Content-type": "application/json" },
+  //       body: JSON.stringify({ [event.title]: event }),
+  //     });
 
-      // show the alert snackbar
-      setLikeSnackbarOpen(true);
+  //     // show the alert snackbar
+  //     setLikeSnackbarOpen(true);
 
-      // remove the post from liked posts
-      setLiked(false);
-    } catch (err) {
-      console.log(err.message);
-      console.log(err);
-    }
-  };
+  //     // remove the post from liked posts
+  //     setLiked(false);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //     console.log(err);
+  //   }
+  // };
 
   //() => window.open(event.url, "_blank")
   return (
@@ -194,9 +193,9 @@ export default function EventCard(props) {
             <IconButton
               className={classes.iconButton}
               aria-label="add to favorites"
-              onClick={() => handleLike()}
+              // onClick={() => handleLike()}
             >
-              {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {/* {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />} */}
             </IconButton>
             <Button
               variant="contained"
