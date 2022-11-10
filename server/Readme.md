@@ -4,6 +4,8 @@
 
 ## Auth Setup
 
+We are using POSTGRESQL as our database. So, you need to have a postgresql server running on your machine. You can install it from [here](https://www.postgresql.org/download/).`
+
 - Make sure that DATABASE_URL is in the root .env file
 - Install all dependencies with `yarn install`
 - Deploy schema to database
