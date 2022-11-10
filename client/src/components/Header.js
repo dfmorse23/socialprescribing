@@ -115,7 +115,7 @@ const Header = (props) => {
                 <Link
                   className={classes.toolbarButton}
                   color="inherit"
-                  href={"#/"}
+                  href={"/#"}
                   style={{ textDecoration: "none" }}
                 >
                   {currentUser.name}

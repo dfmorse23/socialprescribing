@@ -49,6 +49,7 @@ router.post("/getEvents/:zipcode", (req, res) => {
 
 	Promise.all([eventBriteData, volunteermatchData, genericLinks])
 		.then((vals) => {
+			console.log(res.json(eventBriteData))
 			return res.json(vals);
 		})
 		.catch((err) => {
