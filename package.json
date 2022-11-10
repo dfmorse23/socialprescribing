@@ -8,7 +8,11 @@
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "railway": "NPM_CONFIG_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client build",
+    "railway": "run-s railway:*",
+    "railway:1-generate": "prisma generate",
+    "railway:2-migrate": "prisma migrate deploy",
+    "railway:3-client": "NPM_CONFIG_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client build",
+    "build": "run-s build:*",
     "initialize": "yarn install && yarn --cwd client install"
   },
   "repository": {
@@ -47,6 +51,7 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5"
   }
 }
