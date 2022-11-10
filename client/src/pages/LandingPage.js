@@ -1,10 +1,20 @@
-import { Container, CssBaseline } from "@material-ui/core";
+import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 
-import EventsWithSelectors from "./EventsWithSelectors";
-import Footer from "./Footer";
-import Header from "./Header";
-import SignInModal from "./SignInModal";
+import EventsWithSelectors from "../components/event/EventsWithSelectors";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import SignInModal from "../components/auth/SignInModal";
 import React from "react";
+
+const useStyles = makeStyles((theme) => ({
+  picture: {
+    // borderRadius: "200px",
+    // width: "200px",
+    // height: "200px",
+    // margin: "auto",
+    marginTop: "20px",
+  },
+}));
 
 const filterBarSections = {
   all: "All",
@@ -35,6 +45,7 @@ const title = {
 
 export default function LandingPage(props) {
   const isModalOpen = props.signin;
+  const classes = useStyles();
 
   return (
     <React.Fragment>
@@ -42,12 +53,14 @@ export default function LandingPage(props) {
       <Container maxWidth="lg">
         <Header title="social prescribing." />
         <SignInModal isModalOpen={isModalOpen} />
-        <main>
-          <EventsWithSelectors
-            title={title}
-            filterBarSections={filterBarSections}
-          />
-        </main>
+        {/* <main> */}
+        <EventsWithSelectors
+          // borderRadius="10"
+          title={title}
+          filterBarSections={filterBarSections}
+          className={classes.picture}
+        />
+        {/* </main> */}
       </Container>
       <Footer
         title="social prescribing."

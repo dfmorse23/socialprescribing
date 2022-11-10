@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import PlaceAutoComplete from "./PlaceAutoComplete";
 import SearchBar from "./SearchBar";
-import useScript from "../hooks/useScript";
+import useScript from "../../hooks/useScript";
 
 const useStyles = makeStyles((theme) => ({
   card: {

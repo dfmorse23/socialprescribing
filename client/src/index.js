@@ -1,17 +1,19 @@
 import "./index.css";
 
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./pages/LandingPage";
 import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import SignupPage from "./components/SignupPage";
-import ForgotPasswordPage from "./components/ForgotPasswordPage";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Error404Page from "./components/Error404Page";
+import { AuthProvider } from "./contexts/AuthContextnew";
+import SignupPage from "./pages/SignupPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ErrorBoundary from "./components/error/ErrorBoundary";
+import Error404Page from "./components/error/Error404Page";
+import { queryClient } from "./api";
+import { QueryClientProvider } from "react-query";
 
 // import Blog from './components/Blog';
 
@@ -36,6 +38,7 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <HashRouter>
           <ErrorBoundary theme={theme}>
@@ -58,6 +61,7 @@ ReactDOM.render(
           </ErrorBoundary>
         </HashRouter>
       </AuthProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link, Button } from '@material-ui/core';
+import { Modal, FormControl, OutlinedInput, FormLabel, Grid, Link, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
-import { useAuth } from '../contexts/AuthContext'
+import axios /* `u` is a variable that is being used to store the value of the `useState` hook. */
+from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -64,29 +65,52 @@ export default function SignInModal(props) {
   const history = useHistory();
   const classes = useStyles();
   const isOpen = props.isModalOpen || false
-  const [rememberMe, setRememberMe] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  // const { login } = useAuth()
 
-  const handleSubmit = async (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+
+  //   try {
+  //     setValidationError('')
+  //     setLoading(true)
+
+  //     // await login(email, password, rememberMe)
+
+  //     history.push('/#')
+
+  //   } catch (err) {
+  //     console.log(err)
+  //     setValidationError('Invalid credentials. Please try again.')
+  //   }
+
+  //   setLoading(false)
+  // }
+  const handleSubmit = async e => {
     e.preventDefault()
-
     try {
-      setValidationError('')
+      if (!email || !password) {
+        setValidationError('Please fill out all fields.')
+        return
+      } else {
+        setValidationError('')
       setLoading(true)
-
-      await login(email, password, rememberMe)
-
+      await axios.post('/auth/login', { email, password }).then(res => {
+        if (res.data.success) {
+          window.location.href = '/'
+        } else {
+          setValidationError(res.data.message)
+        }
+      })
       history.push('/#')
-
+      }
     } catch (err) {
       console.log(err)
       setValidationError('Invalid credentials. Please try again.')
     }
-
     setLoading(false)
   }
 
@@ -109,26 +133,6 @@ export default function SignInModal(props) {
 
         {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
 
-        <Grid container
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Grid item>
-            <FormControlLabel
-              control={
-                <Checkbox checked={rememberMe} color="default" onChange={(e) => setRememberMe(Boolean(e.target.checked))} name="rememberMe" />
-              }
-              label="Remember Me"
-            />
-          </Grid>
-
-          <Grid item>
-            <Link href="/#/forgotpassword" variant="body2">
-              Forgot Password?
-            </Link>
-          </Grid>
-        </Grid>
 
         <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
           Login Now
@@ -158,7 +162,7 @@ export default function SignInModal(props) {
       <Modal
         open={isOpen}
         className={classes.modal}
-        onClose={() => history.push("/#")}
+        onClose={() => history.push("/")}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

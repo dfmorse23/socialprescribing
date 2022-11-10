@@ -5,9 +5,6 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 
 router.get("/check", async (req, res) => {
-  let newUser = req.session.user;
-  delete newUser.passwordHash;
-
   let data = {
     loggedIn: req.session.loggedIn || false,
     user: req.session.user || null,

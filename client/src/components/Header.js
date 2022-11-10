@@ -1,10 +1,11 @@
 import { Button, Toolbar, Link, Typography, Grid, } from "@material-ui/core";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { useAuth } from "../contexts/AuthContext";
 import Modal from "./Modal";
+import { AuthContext } from "../contexts/AuthContextnew";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   // Theme for toolbar
@@ -48,13 +49,19 @@ const headerSections = [
   },
 ];
 
-export default function Header(props) {
+const Header = (props) => {
   const classes = useStyles();
   const { title } = props;
-  const { currentUser, signout } = useAuth();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const {currentUser} = useContext(AuthContext)
+
+  const signout = async () => {
+    await axios.post('/auth/logout').then(() => {
+      window.location.href = '/'
+    })
+  }
 
   // TODO:: this needs to be responsive -- probably use grid
   return (
@@ -93,7 +100,7 @@ export default function Header(props) {
                 ) : (
                   <Typography
                     onClick={handleOpen}
-                    variant="p"
+                    variant="subtitle2"
                     color="inherit"
                     key={section.title}
                     style={{ textDecoration: "none" }}
@@ -108,15 +115,15 @@ export default function Header(props) {
                 <Link
                   className={classes.toolbarButton}
                   color="inherit"
-                  href={"#"}
+                  href={"/#"}
                   style={{ textDecoration: "none" }}
                 >
-                  {currentUser.email}
+                  {currentUser.name}
                 </Link>
                 <Button
                   size="medium"
                   className={`${classes.toolbarAuthButton} ${classes.toolbarButton}`}
-                  onClick={() => signout()}
+                  onClick={signout}
                 >
                   Logout
                 </Button>
@@ -151,3 +158,5 @@ Header.propTypes = {
   headerSections: PropTypes.array,
   title: PropTypes.string,
 };
+
+export default Header
