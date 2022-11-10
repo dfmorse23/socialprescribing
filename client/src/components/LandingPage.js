@@ -42,8 +42,8 @@ export default function LandingPage(props) {
       <Container maxWidth="lg" >
         <Header title="social prescribing." />
         <SignInModal isModalOpen={isModalOpen} />
-        <main>
-          <EventsWithSelectors title={title} filterBarSections={filterBarSections} />
+        <main >
+          <EventsWithSelectors  title={title} filterBarSections={filterBarSections}/>
         </main>
       </Container>
       <Footer title="social prescribing." description="Fill your social prescription today!" />
