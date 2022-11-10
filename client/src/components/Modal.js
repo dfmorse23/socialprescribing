@@ -1,4 +1,4 @@
-import { Modal as ModalComponent, Box, Typography } from "@material-ui/core";
+import { Modal as ModalComponent, Box } from "@material-ui/core";
 
 const Modal = ({ open, handleClose, children, styles }) => {
   const style = {
