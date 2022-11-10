@@ -5,6 +5,7 @@ import {} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "./Modal";
 import { AuthContext } from "../contexts/AuthContextnew";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   // Theme for toolbar
@@ -55,6 +56,12 @@ const Header = (props) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const {currentUser} = useContext(AuthContext)
+
+  const signout = async () => {
+    await axios.post('/auth/logout').then(() => {
+      window.location.href = '/'
+    })
+  }
 
   // TODO:: this needs to be responsive -- probably use grid
   return (
@@ -108,15 +115,15 @@ const Header = (props) => {
                 <Link
                   className={classes.toolbarButton}
                   color="inherit"
-                  href={"#"}
+                  href={"#/"}
                   style={{ textDecoration: "none" }}
                 >
-                  {currentUser.email}
+                  {currentUser.name}
                 </Link>
                 <Button
                   size="medium"
                   className={`${classes.toolbarAuthButton} ${classes.toolbarButton}`}
-                  // onClick={() => signout()}
+                  onClick={signout}
                 >
                   Logout
                 </Button>

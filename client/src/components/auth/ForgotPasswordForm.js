@@ -106,7 +106,7 @@ export default function ForgotPasswordForm(props) {
               <p>Back to&nbsp;</p>
             </Grid>
             <Grid item>
-              <Link href="/#/signin" variant="body2">
+              <Link href="#/signin" variant="body2">
                 Login
               </Link>
             </Grid>

@@ -42,7 +42,7 @@ export default function Error404Page(props) {
   const history = useHistory();
 
   const navigateHome = () => {
-    history.push('/#')
+    history.push('/')
   }
 
   return (

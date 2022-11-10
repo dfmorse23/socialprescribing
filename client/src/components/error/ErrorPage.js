@@ -42,7 +42,7 @@ export default function ErrorPage(props) {
   const history = useHistory();
 
   const navigateHome = () => {
-    history.push('/#')
+    history.push('/')
     history.go(0)
   }
 

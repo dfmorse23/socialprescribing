@@ -14,10 +14,10 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { useAuth } from "../../contexts/AuthContext";
-import { useHistory } from "react-router";
+// import FavoriteIcon from "@material-ui/icons/Favorite";
+// import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+// import { useAuth } from "../../contexts/AuthContext";
+// import { useHistory } from "react-router";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EventCard(props) {
   const classes = useStyles();
   const { event, displayingFavorites } = props;
-  const history = useHistory();
+  // const history = useHistory();
   const [liked] = useState(displayingFavorites);
   const [likeSnackbarOpen, setLikeSnackbarOpen] = useState(false);
 
@@ -114,7 +114,7 @@ export default function EventCard(props) {
 
   // const handleLike = async () => {
   //   if (!currentUser) {
-  //     history.push("/signin");
+  //     history.push("#/signin");
   //     return;
   //   }
 

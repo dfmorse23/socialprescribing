@@ -7,14 +7,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   setPersistence,
-  GoogleAuthProvider,
-  signInWithPopup,
   browserSessionPersistence,
   sendPasswordResetEmail,
 } from "firebase/auth";
 
 const AuthContext = React.createContext()
-const provider = new GoogleAuthProvider();
 const auth = getAuth(app)
 
 export function useAuth() {
