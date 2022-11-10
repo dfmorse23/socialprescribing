@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   backButton: {
-    backgroundColor: theme.palette.green1,
+    backgroundColor: theme.palette.bluePrimary,
     '&:hover': {
-      backgroundColor: theme.palette.green3,
+      backgroundColor: theme.palette.blueSecondary,
     },
   },
   errorImage: {
@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '80px',
   },
   themeText: {
-    color: theme.palette.green1,
+    color: theme.palette.bluePrimary,
   },
   fullPage: {
     width: '100vw',
     height: '100vh',
-    backgroundColor: theme.palette.beige2,
+    backgroundColor: theme.palette.backgroundcolor,
   },
   errorTitle: {
     marginBottom: '0',

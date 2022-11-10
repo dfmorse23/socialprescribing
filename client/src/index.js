@@ -16,14 +16,15 @@ import Error404Page from "./components/Error404Page";
 // import Blog from './components/Blog';
 
 const theme = createTheme({
+  // Blue 1 - Primary Color
+  // Blue 2 - Secondary Color
+  // Background Color - Background Color
+  // Title Color - Title Color
   palette: {
-    green1: "#17B793",
-    green2: "#A4E2B4",
-    green3: "#ACD4CC",
-    beige1: "#F3ECBF",
-    beige2: "#FAFAF2",
-    beige3: "rgb(	251, 247, 225, 0.64)",
-    titleColor: "#049579",
+    bluePrimary: "#4361EE",
+    blueSecondary: "#7B8CEC",
+    backgroundColor: "#FAFAFA",
+    titleColor: "#4361EE",
   },
   typography: {
     fontFamily: [
