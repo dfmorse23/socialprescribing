@@ -1,3 +1,4 @@
+# Ensure you have proper env variables set. (Refer to .env.sample)
 
 # Auth Api Calls
 

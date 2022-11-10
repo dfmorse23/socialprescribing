@@ -8,6 +8,7 @@ import {
 import "@reach/combobox/styles.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
@@ -62,7 +63,7 @@ let SearchBar = (props) => {
     handleSelect = null,
     handleInput = null,
     ready = null,
-    value = '',
+    value = "",
     data = null,
     status = null,
   } = props;
@@ -96,7 +97,7 @@ let SearchBar = (props) => {
           </ComboboxList>
         </ComboboxPopover>
       </Combobox>
-      <button
+      <Button
         className={`${classes.searchIcon} ${
           !ready ? classes.searchButtonDisabled : ""
         }`}
@@ -104,7 +105,7 @@ let SearchBar = (props) => {
       >
         {" "}
         <SearchIcon color="disabled" />{" "}
-      </button>
+      </Button>
     </form>
   );
 };
