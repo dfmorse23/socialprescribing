@@ -7,21 +7,22 @@ import React from 'react';
 import SearchWithGraphic from './SearchWithGraphic';
 import SearchIcon from '@material-ui/icons/Search';
 import EventSkeleton from './EventSkeleton'
-import { useAuth } from '../contexts/AuthContext';
-import { useHistory } from 'react-router';
+// import { useAuth } from '../contexts/AuthContext';
+// import { useHistory } from 'react-router';
 
 export default function EventsWithSelectors(props) {
   const { title, filterBarSections } = props;
   const [isLoading, setIsLoading] = useState(false)
   const [userHasSearched, setUserHasSearched] = useState(false)
   const [eventSearchError, setEventSearchError] = useState()
-  const [getLikesError, setGetLikesError] = useState()
+  const [getLikesError] = useState()
+  // const [getLikesError, _setGetLikesError] = useState()
   const [events, setEvents] = useState([]);
   const [filterSelections, setFilterSelections] = useState(() => ['All']);
   const [allEvents, setAllEvents] = useState()
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   const [displayingFavorites, setDisplayingFavorites] = useState(false)
-  const history = useHistory();
+  // const history = useHistory();
   const imageSeed = Math.random() * 100
 
   const handleSearch = async (searchValue) => {
@@ -120,41 +121,41 @@ export default function EventsWithSelectors(props) {
     return -1
   }
 
-  const getLikedItems = async () => {
-    setGetLikesError("")
-    setIsLoading(true)
-    // Get the user's liked items
-    if (!currentUser) {
-      // Redirect the user to login
-      history.push('/signin')
-      return
-    }
+  // const getLikedItems = async () => {
+  //   setGetLikesError("")
+  //   setIsLoading(true)
+  //   // Get the user's liked items
+  //   if (!currentUser) {
+  //     // Redirect the user to login
+  //     history.push('/signin')
+  //     return
+  //   }
 
-    try {
-      const response = await fetch(`/user/favorites/${currentUser.uid}`, {
-        method: "GET",
-        headers: { "Content-type": "application/json" },
-      })
+  //   try {
+  //     const response = await fetch(`/user/favorites/${currentUser.uid}`, {
+  //       method: "GET",
+  //       headers: { "Content-type": "application/json" },
+  //     })
 
-      const resJson = await response.json()
+  //     const resJson = await response.json()
 
-      const events = Object.values(resJson)
+  //     const events = Object.values(resJson)
 
-      setIsLoading(false)
-      return events
+  //     setIsLoading(false)
+  //     return events
 
-    }
-    catch (err) {
-      // Show a general search failed error to the user
-      console.log(err.message)
-      console.log(err)
+  //   }
+  //   catch (err) {
+  //     // Show a general search failed error to the user
+  //     console.log(err.message)
+  //     console.log(err)
 
-      setIsLoading(false)
-      setGetLikesError(`We encountered a problem getting your liked prescriptions.`)
-      return []
-    }
+  //     setIsLoading(false)
+  //     setGetLikesError(`We encountered a problem getting your liked prescriptions.`)
+  //     return []
+  //   }
 
-  }
+  // }
 
   const handleFilterSelection = async (e, newSelections) => {
     setDisplayingFavorites(false)
@@ -177,7 +178,7 @@ export default function EventsWithSelectors(props) {
     else if (difference.includes("My Favorites")) {
       newSelections = ["My Favorites"];
       setDisplayingFavorites(true)
-      setEvents(await getLikedItems())
+      // setEvents(await getLikedItems())
     }
     else {
       // remove 'All' from the selected filters if present

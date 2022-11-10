@@ -35,12 +35,6 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  async function googleOAuth(rememberMe) {
-    await setUserPersistance(rememberMe)
-
-    return signInWithPopup(auth, provider)
-  }
-
   async function setUserPersistance(rememberMe) {
     // Firebase sets default persistance to remember users (inMemoryPersistence)
     // So if the user doesnt want to be remembered we change persistance to (browserSessionPersistence)
@@ -71,7 +65,6 @@ export function AuthProvider({ children }) {
     signup,
     login,
     signout,
-    googleOAuth,
     resetPassword,
   }
 
