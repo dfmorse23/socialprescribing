@@ -13,6 +13,7 @@ We are using POSTGRESQL as our database. So, you need to have a postgresql serve
 ### Development
 ```bash
 yarn prisma migrate dev --name init
+yarn primsa generate
 ```
 
 or 
