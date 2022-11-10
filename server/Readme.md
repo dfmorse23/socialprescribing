@@ -1,6 +1,24 @@
 
 # Auth Api Calls
 
+## Auth Setup
+
+- Make sure that DATABASE_URL is in the root .env file
+- Install all dependencies with `yarn install`
+- Deploy schema to database
+
+### Development
+```bash
+yarn prisma migrate dev --name init
+```
+
+or 
+
+### Production
+```bash
+yarn prisma migrate deploy
+```
+
 ## GET /auth/check
 returns a block of data that is being stored in the session
 
