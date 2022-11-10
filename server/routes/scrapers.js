@@ -2,13 +2,12 @@ const express = require("express");
 const { getCategories } = require("../scrapers/eventbriteScraper");
 const { getVolunteering } = require("../scrapers/volunteerScraper");
 const { getGenericLinks } = require("../scrapers/genericLinks");
-const { convertZipcode } = require("../scrapers/zipcodeConverter");
 const router = express.Router();
 
 router.post("/getEvents/:zipcode", (req, res) => {
 	let zipcode = req.params.zipcode;
 
-	// Temporarily hardcode Cleveland data
+	// Return genericLinks data is Cleveland zipcode is queried
 	const intZipcode = parseInt(zipcode);
 	if (intZipcode >= 44101 && intZipcode <= 44199) {
 		console.log("Queried Cleveland zipcode");
@@ -17,6 +16,7 @@ router.post("/getEvents/:zipcode", (req, res) => {
 		return res.json(data);
 	}
 
+	// Run scrapers
 	const eventBriteData = new Promise((resolve, reject) => {
 		getCategories(zipcode, [
 			"health",
@@ -47,6 +47,7 @@ router.post("/getEvents/:zipcode", (req, res) => {
 			.catch((err) => reject(err));
 	});
 
+	// Return scraper data
 	Promise.all([eventBriteData, volunteermatchData, genericLinks])
 		.then((vals) => {
 			return res.json(vals);
