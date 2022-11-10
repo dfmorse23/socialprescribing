@@ -33,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
   },
   submit: {
-    backgroundColor: '#50c45b',
+    backgroundColor: theme.palette.bluePrimary,
     '&:hover': {
-      backgroundColor: '#49b353',
+      backgroundColor: theme.palette.blueSecondary,
     },
   },
   oAuth: {

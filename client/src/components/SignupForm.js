@@ -33,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
   },
   submit: {
-    backgroundColor: '#50c45b',
+    backgroundColor: theme.palette.bluePrimary,
     '&:hover': {
-      backgroundColor: '#49b353',
+      backgroundColor: theme.palette.blueSecondary,
     },
   },
   oAuth: {
@@ -51,12 +51,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
-        borderColor: theme.palette.green1,
+        borderColor: theme.palette.bluePrimary,
       },
     },
     '& .MuiFormLabel-root': {
       '&.Mui-focused': {
-        color: theme.palette.green1,
+        color: theme.palette.bluePrimary,
       },
     }
   },
