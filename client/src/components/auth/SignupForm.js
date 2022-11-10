@@ -1,6 +1,6 @@
 import { Grid, FormControl, OutlinedInput, FormLabel, Button, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from '../../contexts/AuthContextold'
+import { useAuth } from '../../contexts/AuthContext'
 import { useHistory } from 'react-router';
 
 import React, { useState } from 'react';

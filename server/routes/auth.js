@@ -5,8 +5,9 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 
 router.get("/check", async (req, res) => {
-  let newUser = req.session.user;
-  delete newUser.passwordHash;
+  // let newUser = req.session.user;
+  //throws error if use is not logged in so i commented it for now since the passwordHash is not even put when logging in
+  // delete newUser.passwordHash;
 
   let data = {
     loggedIn: req.session.loggedIn || false,

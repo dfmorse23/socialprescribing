@@ -24,7 +24,7 @@
   "homepage": "https://github.com/hannahle/sp-prototype#readme",
   "dependencies": {
     "@prisma/client": "4.4.0",
-    "axios": "^0.21.3",
+    "axios": "^1.1.3",
     "babel-node": "0.0.1-security",
     "bad-words": "^3.0.4",
     "bcrypt": "^5.1.0",

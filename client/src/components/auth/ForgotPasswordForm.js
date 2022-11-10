@@ -1,7 +1,7 @@
 import { Grid, FormControl, OutlinedInput, FormLabel, Button, Link } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from '../../contexts/AuthContextold'
+import { useAuth } from '../../contexts/AuthContext'
 
 import React, { useState } from 'react';
 

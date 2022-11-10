@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, FormControl, OutlinedInput, FormLabel, FormControlLabel, Grid, Checkbox, Link, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
-import { useAuth } from '../../contexts/AuthContextold'
+import { useAuth } from '../../contexts/AuthContext'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -69,7 +69,7 @@ export default function SignInModal(props) {
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  // const { login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -78,7 +78,7 @@ export default function SignInModal(props) {
       setValidationError('')
       setLoading(true)
 
-      await login(email, password, rememberMe)
+      // await login(email, password, rememberMe)
 
       history.push('/#')
 
