@@ -8,33 +8,48 @@ const session = require("express-session");
 const connectRedis = require("connect-redis");
 const redis = require("redis");
 
-const RedisStore = connectRedis(session);
-const redisClient = redis.createClient({
-  url: process.env.REDIS_URL,
-});
-
 const app = express();
 
 // middleware
 app.use(cors());
 app.use(express.json());
-app.use(
-  session({
-    store:
-      process.env.NODE_ENV === "production"
-        ? new RedisStore({ client: redisClient })
-        : null,
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-      secure: false,
-      sameSite: "lax",
+if (process.env.NODE_ENV === "production") {
+  const RedisStore = connectRedis(session);
+  const redisClient = redis.createClient({
+    url: process.env.REDIS_URL,
+  });
+  app.use(
+    session({
+      store:
+        process.env.NODE_ENV === "production"
+          ? new RedisStore({ client: redisClient })
+          : null,
+      secret: process.env.SESSION_SECRET,
       resave: false,
-    },
-  })
-);
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        secure: false,
+        sameSite: "lax",
+        resave: false,
+      },
+    })
+  );
+} else {
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        secure: false,
+        sameSite: "lax",
+        resave: false,
+      },
+    })
+  );
+}
 
 // Routes
 const scraper = require("./routes/scrapers.js");
