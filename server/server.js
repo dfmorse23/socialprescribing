@@ -5,11 +5,6 @@ const session = require("express-session");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
-// Routes
-const scraper = require("./routes/scrapers.js");
-const database = require("./routes/database.js");
-const auth = require("./routes/auth.js");
-
 const app = express();
 
 // middleware
@@ -18,16 +13,29 @@ app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
         secure: process.env.NODE_ENV === "production",
-    }
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        resave: false,
+    },
 }))
 
+// Routes
+const scraper = require("./routes/scrapers.js");
+const database = require("./routes/database.js");
+const auth = require("./routes/auth.js");
+
+// LEGACY ROUTES
 app.use("/api/scrapers", scraper);
 app.use("/user", database);
-app.use("/auth", auth);
+
+const v2 = express.Router();
+v2.use("/auth", auth);
+
+app.use("/v2", v2);
 
 // Set static folder
 app.use(express.static("client/build"));
