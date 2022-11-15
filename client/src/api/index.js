@@ -6,6 +6,6 @@ axios.defaults.withCredentials = true;
 export const queryClient = new QueryClient();
 
 export const checkAuth = async () => {
-  const res = await axios.get(`/auth/check`);
+  const res = await axios.get(`/v2/auth/check`);
   return res.data;
 };

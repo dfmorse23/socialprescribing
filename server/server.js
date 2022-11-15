@@ -7,8 +7,6 @@ require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 const app = express();
 
-console.log(process.env.SESSION_SECRET)
-
 // middleware
 app.use(cors());
 app.use(express.json());
