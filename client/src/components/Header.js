@@ -1,4 +1,4 @@
-import { Button, Toolbar, Link, Typography, Grid, } from "@material-ui/core";
+import { Button, Toolbar, Link, Typography, Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
 import {} from "react-router-dom";
@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "./Modal";
 import { AuthContext } from "../contexts/AuthContextnew";
 import axios from "axios";
+import { ReactComponent as MainLogo } from "../images/mainlogo.svg";
 
 const useStyles = makeStyles((theme) => ({
   // Theme for toolbar
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  // Theme for title 
+  // Theme for title
   toolbarTitle: {
     flex: 1,
     fontWeight: "bold",
@@ -29,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
   // theme for sign in button and signin hover
   toolbarAuthButton: {
     backgroundColor: theme.palette.bluePrimary,
-    color: 'white',
+    color: "white",
     "&:hover": {
-      backgroundColor: theme.palette.blueSecondary
+      backgroundColor: theme.palette.blueSecondary,
     },
   },
 }));
@@ -55,7 +56,7 @@ const Header = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const {currentUser} = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   const signout = async () => {
     await axios.post('/v2/auth/logout').then(() => {
@@ -69,8 +70,16 @@ const Header = (props) => {
       <Toolbar className={classes.toolbar}>
         <Grid container alignItems="center" justifyContent="space-between">
           {/* Title of site ---------------- */}
-          <Link href="https://socialprescribingusa.com/" underline="none">
+          <Link
+            style={{ display: "flex" }}
+            href="https://socialprescribingusa.com/"
+            underline="none"
+          >
+            <div style={{ marginTop: 5 }}>
+              <MainLogo />
+            </div>
             <Typography
+              style={{ marginLeft: 10 }}
               component="h2"
               variant="h5"
               color="inherit"
@@ -152,11 +161,11 @@ const Header = (props) => {
       </Modal>
     </React.Fragment>
   );
-}
+};
 
 Header.propTypes = {
   headerSections: PropTypes.array,
   title: PropTypes.string,
 };
 
-export default Header
+export default Header;
