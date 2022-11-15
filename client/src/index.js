@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContextnew";
 import SignupPage from "./pages/SignupPage";
+import SigninPage from "./pages/SigninPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import Error404Page from "./components/error/Error404Page";
@@ -47,7 +48,7 @@ ReactDOM.render(
               <Route
                 exact
                 path="/signin"
-                component={() => <LandingPage signin={true} />}
+                component={() => <SigninPage />}
               />
               <Route exact path="/signup" component={SignupPage} />
               <Route

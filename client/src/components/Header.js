@@ -58,7 +58,7 @@ const Header = (props) => {
   const {currentUser} = useContext(AuthContext)
 
   const signout = async () => {
-    await axios.post('/auth/logout').then(() => {
+    await axios.post('/v2/auth/logout').then(() => {
       window.location.href = '/'
     })
   }

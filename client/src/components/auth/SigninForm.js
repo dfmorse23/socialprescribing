@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInModal(props) {
+export default function SigninForm(props) {
   const history = useHistory();
   const classes = useStyles();
   const isOpen = props.isModalOpen || false
@@ -159,16 +159,45 @@ export default function SignInModal(props) {
   );
 
   return (
-    <div>
-      <Modal
-        open={isOpen}
-        className={classes.modal}
-        onClose={() => history.push("/")}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </Modal>
-    </div>
+    <div className={classes.paper}>
+      <Grid>
+        <p>Welcome back</p>
+        <h2>Login to your account</h2>
+      </Grid>
+      <form className={classes.root} noValidate autoComplete="off">
+        <FormControl className={classes.formControl} required variant={"outlined"}>
+          <FormLabel className={classes.formLabel} htmlFor="email" shrink='false' name="email">Email</FormLabel>
+          <OutlinedInput id="email" aria-describedby="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </FormControl>
+
+        <FormControl className={classes.formControl} required variant={"outlined"}>
+          <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
+          <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </FormControl>
+
+        {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
+
+
+        <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
+          Login Now
+        </Button>
+
+        <Grid container
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <Grid item>
+            <p>Don't have an account? &nbsp;</p>
+          </Grid>
+          <Grid item>
+            <Link href="/#/signup/" variant="body2">
+              Join Today
+            </Link>
+          </Grid>
+        </Grid>
+
+      </form >
+    </div >
   );
 }
