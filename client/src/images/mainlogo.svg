@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="24" fill="none" viewBox="0 0 17 24">
+  <g clip-path="url(#a)">
+    <path fill="#fff" d="M0 .5h17v23H0z"/>
+    <path fill="#415EE6" d="M4.002 13.4c-.027-.22.178-.4.428-.4h8.14c.25 0 .455.18.428.4C12.76 15.318 10.837 17 8.5 17s-4.26-1.681-4.498-3.6Z"/>
+    <path fill="#415EE6" fill-rule="evenodd" d="M5.322 14c.486 1.126 1.745 2 3.178 2 1.433 0 2.692-.874 3.178-2H5.322Zm-.892-1c-.25 0-.455.18-.428.4C4.24 15.318 6.163 17 8.5 17s4.26-1.681 4.498-3.6c.027-.22-.178-.4-.428-.4H4.43Z" clip-rule="evenodd"/>
+    <path fill="#415EE6" fill-rule="evenodd" d="M0 12.5a8.5 8.5 0 1 1 17 0 8.5 8.5 0 0 1-17 0Zm8.5-5.924a5.924 5.924 0 1 0 0 11.848 5.924 5.924 0 0 0 0-11.848Z" clip-rule="evenodd"/>
+    <path fill="#415EE6" fill-rule="evenodd" d="M0 4h3v6l-1.5 3.429L3 15.786V26H0V4Z" clip-rule="evenodd"/>
+    <circle cx="6" cy="11" r="1" fill="#415EE6"/>
+    <circle cx="11" cy="11" r="1" fill="#415EE6"/>
+  </g>
+  <defs>
+    <clipPath id="a">
+      <path fill="#fff" d="M0 0h17v23H0z" transform="translate(0 .5)"/>
+    </clipPath>
+  </defs>
+</svg>

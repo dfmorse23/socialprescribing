@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     fontWeight: "bold",
     whiteSpace: "no-wrap",
-    color: theme.palette.titleColor,
+    color: theme.palette.textColor,
     paddingRight: theme.spacing(4),
   },
   toolbarButton: {
