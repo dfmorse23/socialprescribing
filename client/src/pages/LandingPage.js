@@ -3,7 +3,6 @@ import { Container, CssBaseline, makeStyles } from "@material-ui/core";
 import EventsWithSelectors from "../components/event/EventsWithSelectors";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import SignInModal from "../components/auth/SignInModal";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +43,6 @@ const title = {
 };
 
 export default function LandingPage(props) {
-  const isModalOpen = props.signin;
   const classes = useStyles();
 
   return (
@@ -52,7 +50,6 @@ export default function LandingPage(props) {
       <CssBaseline />
       <Container maxWidth="lg">
         <Header title="social prescribing." />
-        <SignInModal isModalOpen={isModalOpen} />
         {/* <main> */}
         <EventsWithSelectors
           // borderRadius="10"
