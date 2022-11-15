@@ -68,33 +68,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SigninForm(props) {
-  const history = useHistory();
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validationError, setValidationError] = useState();
   const [loading, setLoading] = useState(false);
-  // const { login } = useAuth()
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-
-  //   try {
-  //     setValidationError('')
-  //     setLoading(true)
-
-  //     // await login(email, password, rememberMe)
-
-  //     history.push('/#')
-
-  //   } catch (err) {
-  //     console.log(err)
-  //     setValidationError('Invalid credentials. Please try again.')
-  //   }
-
-  //   setLoading(false)
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
