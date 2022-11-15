@@ -13,7 +13,7 @@
     "railway:2-migrate": "prisma migrate deploy",
     "railway:3-client": "NPM_CONFIG_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client build",
     "build": "run-s build:*",
-    "initialize": "yarn install && yarn --cwd client install"
+    "initialize": "yarn install && yarn --cwd client install && npx prisma migrate deploy && npx prisma generate"
   },
   "repository": {
     "type": "git",
