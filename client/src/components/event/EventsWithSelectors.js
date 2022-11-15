@@ -5,8 +5,8 @@ import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchWithGraphic from '../search/SearchWithGraphic';
-import SearchIcon from '@material-ui/icons/Search';
 import EventSkeleton from './EventSkeleton'
+import emptyState from '../../images/emptyState.svg'
 // import { useAuth } from '../contexts/AuthContext';
 // import { useHistory } from 'react-router';
 
@@ -230,12 +230,13 @@ export default function EventsWithSelectors(props) {
           :
           <Grid
             container
-            direction="row"
+            direction="column"
             justifyContent="center"
             alignItems="center"
           >
-            <SearchIcon fontSize='large' color="disabled" />
-            <h1 style={{ margin: '50px 20px', color: '#aaaaaa' }}> Find prescriptions near you.</h1>
+            <h2 style={{ margin: '50px 20px', color: '#535874'}}> Discover local activities near you </h2>
+            <img src={emptyState} alt="empty state image" />
+
           </Grid>
         }
       </div>
