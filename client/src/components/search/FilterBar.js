@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none',
   },
   buttonGroup: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     border: 'none',
     '&:not(:first-child)': {
       borderRadius: theme.shape.borderRadius,
