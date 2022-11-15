@@ -1,27 +1,40 @@
 const express = require("express");
 var cors = require("cors");
-const session = require("express-session");
 
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+
+const session = require("express-session");
+const connectRedis = require("connect-redis");
+const redis = require("redis");
+
+const RedisStore = connectRedis(session);
+const redisClient = redis.createClient({
+  url: process.env.REDIS_URL,
+});
 
 const app = express();
 
 // middleware
 app.use(cors());
 app.use(express.json());
-app.use(session({
+app.use(
+  session({
+    store:
+      process.env.NODE_ENV === "production"
+        ? new RedisStore({ client: redisClient })
+        : null,
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-        resave: false,
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      sameSite: "lax",
+      resave: false,
     },
-}))
+  })
+);
 
 // Routes
 const scraper = require("./routes/scrapers.js");
@@ -41,10 +54,10 @@ app.use("/v2", v2);
 app.use(express.static("client/build"));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+  console.log(`Server listening on ${PORT}`);
 });
