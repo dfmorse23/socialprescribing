@@ -94,7 +94,7 @@ export default function SignupForm(props) {
     } else {
       setValidationError("");
       await axios
-        .post("/auth/signup", { name, email, password })
+        .post("/v2/auth/signup", { name, email, password })
         .then((res) => {
           setLoading(false)
           if (res.data.success) {

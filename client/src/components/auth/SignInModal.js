@@ -99,7 +99,7 @@ export default function SignInModal(props) {
       } else {
         setValidationError('')
       setLoading(true)
-      await axios.post('/auth/login', { email, password }).then(res => {
+      await axios.post('/v2/auth/login', { email, password }).then(res => {
         if (res.data.success) {
           window.location.href = '/'
         } else {
