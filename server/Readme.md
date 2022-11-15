@@ -1,14 +1,24 @@
-# Ensure you have proper env variables set. (Refer to .env.sample)
 
 # Auth Api Calls
 
 ## Auth Setup
 
-We are using POSTGRESQL as our database. So, you need to have a postgresql server running on your machine. You can install it from [here](https://www.postgresql.org/download/).`
+We are using POSTGRESQL as our database. So, you need to have a postgresql server running on your machine. You can install it from [here](https://www.postgresql.org/download/) or try installing it using brew on mac:
+    
+```bash
+brew install postgresql
+brew services start postgresql
+```
 
-- Make sure that DATABASE_URL is in the root .env file
-- Install all dependencies with `yarn install`
-- Deploy schema to database
+- Make sure that DATABASE_URL is in the ROOT PROJECT .env file
+- Ensure you have proper env variables set. (Refer to .env.sample)
+- Install all dependencies and deploy schema to database using the command: 
+```bash
+yarn initialize
+```
+
+## Migrations
+if you want to make changes to the schema, you can use the following commands to migrate the database:
 
 ### Development
 ```bash
