@@ -3,9 +3,11 @@ var cors = require("cors");
 const session = require("express-session");
 
 const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 const app = express();
+
+console.log(process.env.SESSION_SECRET)
 
 // middleware
 app.use(cors());
