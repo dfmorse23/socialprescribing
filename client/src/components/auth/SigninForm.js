@@ -8,7 +8,6 @@ import {
   Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router";
 import axios /* `u` is a variable that is being used to store the value of the `useState` hook. */ from "axios";
 
 const useStyles = makeStyles((theme) => ({
