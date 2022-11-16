@@ -35,9 +35,9 @@ const filterBarSections = {
 };
 
 const title = {
-  title: "Social Prescribing for Self-care",
+  title: "Find a Social Prescription",
   description:
-    "Search 100+ curated links and resources for social prescriptions in your neighborhood",
+    "Take control of your wellness by finding local resources and community activities that can help you thrive. Search 100+ curated links and resources for social prescriptions in your neighbourhood.",
   image: "https://source.unsplash.com/tvc5imO5pXk/2400x1275",
   imgText: "main image description",
 };

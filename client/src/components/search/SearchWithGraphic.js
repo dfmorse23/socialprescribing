@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   card: {
     overflow: "visible",
     boxShadow: "none",
-
   },
   titleCard: {
     padding: 0,
@@ -20,10 +19,15 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     color: theme.palette.common.white,
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
+    backgroundPosition: "center 15%",
     boxShadow: "none",
     borderRadius: 0,
+    left: '50%',
+    marginLeft: '-50vw',
+    marginRight: '-50vw',
+    maxWidth: '100vw',
+    right: '50%',
+    width: '100vw',
   },
   overlay: {
     position: "absolute",
@@ -31,19 +35,24 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: "rgba(0,0,0,.3)",
+    backgroundColor: "rgba(0,0,0,.4)",
   },
   titleGrouping: {
     position: "relative",
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(10),
     [theme.breakpoints.up("md")]: {
-      paddingTop: theme.spacing(20),
-      paddingBottom: theme.spacing(20),
+      paddingTop: theme.spacing(16),
+      paddingBottom: theme.spacing(16),
     },
   },
   mainTitle: {
     fontWeight: "bold",
+    fontSize: "4.5em"
+  },
+  description: {
+    paddingLeft: '30%',
+    paddingRight: '30%',
   },
   searchBarCard: {
     margin: "-24px auto 0",
@@ -90,6 +99,7 @@ export default function SearchWithGraphic(props) {
               color="inherit"
               paragraph
               align="center"
+              className={classes.description}
             >
               {title.description}
             </Typography>

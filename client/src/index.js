@@ -28,6 +28,12 @@ const theme = createTheme({
     blueSecondary: "#7B8CEC",
     backgroundColor: "#FAFAFA",
     titleColor: "#4361EE",
+    greyPrimary: "#363C57",
+    greyMedium: "#535874",
+    greyLight: "#7F85A0",
+  },
+  shape: {
+    roundBtn: '100px',
   },
   typography: {
     fontFamily: [

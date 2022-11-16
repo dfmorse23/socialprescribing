@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.2em",
     font: "inherit",
     outline: "none",
-    borderRadius: "5px",
+    borderRadius: "8px",
   },
   searchForm: {
     display: "flex",
@@ -82,7 +82,7 @@ let SearchBar = (props) => {
           onChange={handleInput}
           disabled={!ready}
           className={classes.searchBar}
-          placeholder="Search your location."
+          placeholder="Enter Zip Code or City"
         />
         <ComboboxPopover className={classes.suggestionPopover}>
           <ComboboxList className={classes.suggestionList}>
