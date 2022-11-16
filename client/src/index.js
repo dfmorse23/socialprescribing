@@ -28,7 +28,7 @@ const theme = createTheme({
     blueSecondary: "#7B8CEC",
     backgroundColor: "#FAFAFA",
     titleColor: "#4361EE",
-    textColor: "#363C57"
+    textColor: "#363C57",
     greyPrimary: "#363C57",
     greyMedium: "#535874",
     greyLight: "#7F85A0",
