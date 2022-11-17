@@ -27,7 +27,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="#/">
-        social prescription.
+        Social Prescribing USA.
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

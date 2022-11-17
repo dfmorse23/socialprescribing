@@ -61,7 +61,7 @@ export default function LandingPage(props) {
       </Container>
       <Footer
         title="social prescribing usa."
-        description="Fill your social prescription today!"
+        // description="Fill your social prescription today!"
       />
     </React.Fragment>
   );
