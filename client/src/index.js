@@ -35,10 +35,7 @@ const theme = createTheme({
   },
   shape: {
     roundBtn: '100px',
-    textColor: "#363C57"
-  },
-
-
+  }, 
   typography: {
     fontFamily: [
       'Poppins',
