@@ -81,7 +81,7 @@ export default function FilterBar(props) {
             {filter}
           </ToggleButton>
         ))}
-        <Divider flexItem orientation="vertical" className={classes.divider} />
+        {/* <Divider flexItem orientation="vertical" className={classes.divider} />
         <ToggleButton
           aria-label={filterBarSections.favorites}
           value={filterBarSections.favorites}
@@ -90,7 +90,7 @@ export default function FilterBar(props) {
           disabled={false}
         >
           {filterBarSections.favorites}
-        </ToggleButton>
+        </ToggleButton> */}
       </ToggleButtonGroup>
     </Toolbar >
   );
