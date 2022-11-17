@@ -34,7 +34,7 @@ export default function SignupPage(props) {
           </Grid>
         </main>
       </Container>
-      <Footer title="social prescribing." description="Fill your social prescription today!" />
+      <Footer title="social prescribing usa." description="Fill your social prescription today!" />
     </React.Fragment >
   );
 }

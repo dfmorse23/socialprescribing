@@ -49,7 +49,7 @@ export default function LandingPage(props) {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="social prescribing." />
+        <Header title="social prescribing usa." />
         {/* <main> */}
         <EventsWithSelectors
           // borderRadius="10"
@@ -60,7 +60,7 @@ export default function LandingPage(props) {
         {/* </main> */}
       </Container>
       <Footer
-        title="social prescribing."
+        title="social prescribing usa."
         description="Fill your social prescription today!"
       />
     </React.Fragment>
