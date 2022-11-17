@@ -46,9 +46,9 @@ export default function LandingPage(props) {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <CssBaseline />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" >
         <Header title="social prescribing usa." />
         {/* <main> */}
         <EventsWithSelectors

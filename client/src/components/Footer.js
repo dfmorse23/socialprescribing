@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: -theme.spacing(2),
   },
   footerContainer: {
-    backgroundColor: theme.palette.backgroundcolor,
+    backgroundColor: theme.palette.backgroundColor,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
   },

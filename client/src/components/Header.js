@@ -11,7 +11,7 @@ import { ReactComponent as MainLogo } from "../images/mainlogo.svg";
 const useStyles = makeStyles((theme) => ({
   // Theme for toolbar
   toolbar: {
-    background: theme.palette.backgroundcolor,
+    background: theme.palette.backgroundColor,
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
