@@ -4,10 +4,19 @@ const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
-router.get("/check", async (req, res) => {
-  let newUser = req.session.user;
-  delete newUser.passwordHash;
+/*
+  Session Data:
+  {
+    loggedIn: boolean,
+    user: {
+      id: number,
+      name: string,
+      email: string,
+    }
+  }
+*/
 
+router.get("/check", async (req, res) => {
   let data = {
     loggedIn: req.session.loggedIn || false,
     user: req.session.user || null,
@@ -54,9 +63,10 @@ router.post("/signup", async (req, res) => {
         .status(400)
         .json({ message: "Error creating user", success: false });
     });
-  let { removePass, ...userWithoutPassword } = newUser;
+  
+  delete newUser.passwordHash;
   req.session.loggedIn = true;
-  req.session.userId = userWithoutPassword;
+  req.session.user = newUser;
 
   return res.status(200).json({ message: "User created", success: true });
 });
@@ -89,9 +99,10 @@ router.post("/login", async (req, res) => {
       .status(400)
       .json({ message: "Invalid credentials", success: false });
   }
-  let { removePass, ...userWithoutPassword } = user;
+  
+  delete user.passwordHash;
   req.session.loggedIn = true;
-  req.session.user = userWithoutPassword;
+  req.session.user = user;
 
   return res.status(200).json({ message: "User logged in", success: true });
 });
@@ -99,7 +110,7 @@ router.post("/login", async (req, res) => {
 router.post("/logout", async (req, res) => {
   req.session.loggedIn = false;
   req.session.user = null;
-
+  req.session.destroy()
   return res.status(200).json({ message: "User logged out", success: true });
 });
 

@@ -18,29 +18,31 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonColor: {
     "&.Mui-selected": {
-      backgroundColor: alpha(theme.palette.titleColor, .25),
-      color: 'inherit'
+      backgroundColor: theme.palette.bluePrimary,
+      color: theme.palette.backgroundColor
     },
     "&:hover": {
-      backgroundColor: alpha(theme.palette.titleColor, .25),
+      backgroundColor: alpha(theme.palette.bluePrimary, .25),
     },
     "&.Mui-selected:hover": {
       backgroundColor: alpha(theme.palette.titleColor, .25),
     },
 
-    color: 'inherit',
+    color: theme.palette.greyPrimary,
+    backgroundColor: alpha(theme.palette.greyLight, .175),
     textTransform: 'none',
   },
   buttonGroup: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     border: 'none',
-    '&:not(:first-child)': {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:first-child': {
-      borderRadius: theme.shape.borderRadius,
-    },
+    '&:not(.MuiDivider-root)': {
+      borderRadius: theme.shape.roundBtn,
+      maxWidth: '30%',
+      minWidth: '6.5%',
+      height: 39,
+      marginTop: 10
+    }
   },
   divider: {
     margin: theme.spacing(0.5, 1.5),

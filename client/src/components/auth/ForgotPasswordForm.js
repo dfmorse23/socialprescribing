@@ -1,7 +1,7 @@
 import { Grid, FormControl, OutlinedInput, FormLabel, Button, Link } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from '../contexts/AuthContext'
-import { useHistory } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext'
 
 import React, { useState } from 'react';
 
@@ -33,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
   },
   submit: {
-    backgroundColor: '#50c45b',
+    backgroundColor: theme.palette.bluePrimary,
     '&:hover': {
-      backgroundColor: '#49b353',
+      backgroundColor: theme.palette.blueSecondary,
     },
   },
   oAuth: {
@@ -48,51 +48,29 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: '20px',
   },
-  root: {
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-focused fieldset': {
-        borderColor: theme.palette.green1,
-      },
-    },
-    '& .MuiFormLabel-root': {
-      '&.Mui-focused': {
-        color: theme.palette.green1,
-      },
-    }
-  },
 }));
 
-export default function SignupForm(props) {
+export default function ForgotPasswordForm(props) {
   const classes = useStyles();
-  const history = useHistory();
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
+  const [successMessage, setSuccessMessage] = useState()
   const [loading, setLoading] = useState(false)
-  const { signup } = useAuth()
+  const { resetPassword } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
+      setSuccessMessage('')
       setValidationError('')
       setLoading(true)
-      await signup(email, password, true)
 
-      history.push('/#')
+      await resetPassword(email)
+      setSuccessMessage('Check your inbox for the reset email.')
 
     } catch (err) {
-
-      switch (err.code) {
-        case 'auth/invalid-email':
-          setValidationError('Please use a valid email')
-          break;
-        case 'auth/email-already-in-use':
-          setValidationError('Email is already in use.')
-          break;
-        default:
-          setValidationError('Account could not be created.')
-      }
+      setValidationError('Reset email could not be sent.')
     }
 
     setLoading(false)
@@ -102,8 +80,10 @@ export default function SignupForm(props) {
     <React.Fragment>
       <div className={classes.paper}>
         <Grid>
-          <p>Welcome,</p>
-          <h2>Create an Account</h2>
+          <p>Forgot your password?</p>
+          <h2>Send Password Reset Email</h2>
+          {successMessage ? <Alert severity="success">{successMessage}</Alert> : ""}
+          {validationError ? <Alert severity="error">{validationError}</Alert> : ""}
         </Grid>
         <form className={classes.root} noValidate autoComplete="off">
           <FormControl className={classes.formControl} required variant={"outlined"}>
@@ -111,15 +91,10 @@ export default function SignupForm(props) {
             <OutlinedInput id="email" aria-describedby="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
           </FormControl>
 
-          <FormControl className={classes.formControl} required variant={"outlined"}>
-            <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
-            <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </FormControl>
 
-          {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
 
           <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
-            Signup Now
+            Reset Password
           </Button>
 
           <Grid container
@@ -128,10 +103,10 @@ export default function SignupForm(props) {
             alignItems="center"
           >
             <Grid item>
-              <p>Already have an account? &nbsp;</p>
+              <p>Back to&nbsp;</p>
             </Grid>
             <Grid item>
-              <Link href="/#/signin" variant="body2">
+              <Link href="#/signin" variant="body2">
                 Login
               </Link>
             </Grid>

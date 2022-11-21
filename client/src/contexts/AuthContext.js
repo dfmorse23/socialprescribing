@@ -3,18 +3,14 @@ import app from '../firebase'
 
 import {
   getAuth,
-  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   setPersistence,
-  GoogleAuthProvider,
-  signInWithPopup,
   browserSessionPersistence,
   sendPasswordResetEmail,
 } from "firebase/auth";
 
 const AuthContext = React.createContext()
-const provider = new GoogleAuthProvider();
 const auth = getAuth(app)
 
 export function useAuth() {
@@ -22,8 +18,8 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState()
-  const [loading, setLoading] = useState(true)
+  const [currentUser, ] = useState()
+  const [loading, ] = useState(true)
 
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
@@ -33,12 +29,6 @@ export function AuthProvider({ children }) {
     await setUserPersistance(rememberMe)
 
     return signInWithEmailAndPassword(auth, email, password);
-  }
-
-  async function googleOAuth(rememberMe) {
-    await setUserPersistance(rememberMe)
-
-    return signInWithPopup(auth, provider)
   }
 
   async function setUserPersistance(rememberMe) {
@@ -58,12 +48,11 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      setCurrentUser(user)
-      setLoading(false)
-    })
+   const main = () => {
 
-    return unsubscribe
+   }
+   
+   main()
   }, [])
 
   const value = {
@@ -71,7 +60,6 @@ export function AuthProvider({ children }) {
     signup,
     login,
     signout,
-    googleOAuth,
     resetPassword,
   }
 

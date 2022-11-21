@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: -theme.spacing(2),
   },
   footerContainer: {
-    backgroundColor: theme.palette.beige3,
+    backgroundColor: theme.palette.backgroundcolor,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
   },
@@ -26,7 +26,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="#">
+      <Link color="inherit" href="#/">
         social prescription.
       </Link>{' '}
       {new Date().getFullYear()}

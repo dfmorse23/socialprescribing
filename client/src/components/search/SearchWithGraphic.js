@@ -4,14 +4,13 @@ import { Paper, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import PlaceAutoComplete from "./PlaceAutoComplete";
-import SearchBar from './SearchBar'
-import useScript from '../hooks/useScript'
+import SearchBar from "./SearchBar";
+import useScript from "../../hooks/useScript";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     overflow: "visible",
     boxShadow: "none",
-    backgroundColor: "inherit",
   },
   titleCard: {
     padding: 0,
@@ -20,10 +19,15 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     color: theme.palette.common.white,
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
+    backgroundPosition: "center 15%",
     boxShadow: "none",
     borderRadius: 0,
+    left: '50%',
+    marginLeft: '-50vw',
+    marginRight: '-50vw',
+    maxWidth: '100vw',
+    right: '50%',
+    width: '100vw',
   },
   overlay: {
     position: "absolute",
@@ -31,19 +35,24 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: "rgba(0,0,0,.3)",
+    backgroundColor: "rgba(0,0,0,.4)",
   },
   titleGrouping: {
     position: "relative",
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(10),
     [theme.breakpoints.up("md")]: {
-      paddingTop: theme.spacing(20),
-      paddingBottom: theme.spacing(20),
+      paddingTop: theme.spacing(16),
+      paddingBottom: theme.spacing(16),
     },
   },
   mainTitle: {
     fontWeight: "bold",
+    fontSize: "4.5em"
+  },
+  description: {
+    paddingLeft: '30%',
+    paddingRight: '30%',
   },
   searchBarCard: {
     margin: "-24px auto 0",
@@ -55,18 +64,23 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     zIndex: 1000,
   },
-}))
+}));
 
 export default function SearchWithGraphic(props) {
   const classes = useStyles();
   const { title, handleSearch } = props;
-  const loaded = useScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_JS_API}&libraries=places`) === 'ready'
+  const loaded =
+    useScript(
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_JS_API}&libraries=places`
+    ) === "ready";
 
   return (
     <Card className={classes.card}>
       <CardContent className={classes.titleCard}>
-        <Paper className={classes.title} style={{ backgroundImage: `url(${title.image})` }}>
-          {<img style={{ display: "none" }} src={title.image} alt={title.imageText} />}
+        <Paper
+          className={classes.title}
+          style={{ backgroundImage: `url(${title.image})`, }}
+        >
           <div className={classes.overlay} />
           <div className={classes.titleGrouping}>
             <Typography
@@ -79,14 +93,25 @@ export default function SearchWithGraphic(props) {
             >
               {title.title}
             </Typography>
-            <Typography component="h3" variant="subtitle2" color="inherit" paragraph align="center">
+            <Typography
+              component="h3"
+              variant="subtitle2"
+              color="inherit"
+              paragraph
+              align="center"
+              className={classes.description}
+            >
               {title.description}
             </Typography>
           </div>
         </Paper>
       </CardContent>
       <CardContent className={classes.searchBarCard}>
-        {loaded ? <PlaceAutoComplete handleSearch={handleSearch} /> : <SearchBar />}
+        {loaded ? (
+          <PlaceAutoComplete handleSearch={handleSearch} />
+        ) : (
+          <SearchBar />
+        )}
       </CardContent>
     </Card>
   );

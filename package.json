@@ -8,8 +8,12 @@
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "railway": "NPM_CONFIG_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client build",
-    "initialize": "yarn install && yarn --cwd client install"
+    "railway": "run-s railway:*",
+    "railway:1-generate": "prisma generate",
+    "railway:2-migrate": "prisma migrate deploy",
+    "railway:3-client": "NPM_CONFIG_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client build",
+    "build": "run-s build:*",
+    "initialize": "yarn install && yarn --cwd client install && npx prisma migrate deploy && npx prisma generate"
   },
   "repository": {
     "type": "git",
@@ -23,13 +27,14 @@
   },
   "homepage": "https://github.com/hannahle/sp-prototype#readme",
   "dependencies": {
-    "@prisma/client": "4.4.0",
-    "axios": "^0.21.3",
+    "@prisma/client": "^4.6.1",
+    "axios": "^1.1.3",
     "babel-node": "0.0.1-security",
     "bad-words": "^3.0.4",
     "bcrypt": "^5.1.0",
     "cheerio": "^1.0.0-rc.10",
     "concurrently": "^6.2.1",
+    "connect-redis": "^6.1.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -39,7 +44,8 @@
     "nodemon": "^2.0.14",
     "pg": "^8.7.1",
     "prettier": "^2.4.0",
-    "prisma": "^4.4.0",
+    "prisma": "^4.6.1",
+    "redis": "3.0.2",
     "request": "^2.88.2"
   },
   "devDependencies": {
@@ -47,6 +53,7 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5"
   }
 }
