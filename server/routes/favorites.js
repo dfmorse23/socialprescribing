@@ -14,7 +14,7 @@ router.get("/favorites/:user_uid", async (req, res) => {
     if (!user_uid) {
         res.status(400).send({ message: "user_uid is required" });
     }
-    const favorites = await primsa.user_favorites.findMany({
+    const favorites = await prisma.favorites.findMany({
         where: {
             userId: user_uid,
         },
