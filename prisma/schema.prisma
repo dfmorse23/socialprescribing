@@ -21,12 +21,21 @@ model User {
 
 model Favorite {
   id Int @id @default(autoincrement())
+  
+  eventId String
+  Event Event @relation(fields: [eventId], references: [id])
+
+  userId String
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Event {
+  id String @id @default(uuid())
   tag String
   url String
   date DateTime
   title String
   location String
-  
-  userId String
-  user User @relation(fields: [userId], references: [id])
+
+  favorites Favorite[]
 }
