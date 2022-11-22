@@ -14,7 +14,10 @@ router.get("/:user_id", async (req, res) => {
     // console.log(req.params);
 
     if (!user_id) {
-        return res.status(400).send({ message: "user_id is required" });
+        return res.status(400).send({ 
+            message: "user_id is required",
+            success: false
+        });
     }
     
     const favorites = await prisma.favorite.findMany({
@@ -26,7 +29,10 @@ router.get("/:user_id", async (req, res) => {
         },
     });
 
-    return res.send(favorites);
+    return res.json({
+        favorites,
+        success: true
+    });
 });
 
 router.post("/:user_id", async (req, res) => {
@@ -35,11 +41,17 @@ router.post("/:user_id", async (req, res) => {
     // console.log(req.body);
 
     if (!user_id) {
-        return res.status(400).send({ message: "user_id is required" });
+        return res.status(400).send({ 
+            message: "user_id is required",
+            success: false 
+        });
     }
 
     if (!tag || !url || !date || !title || !location) {
-        return res.status(400).send({ message: "tag, url, date, title, location are required" });
+        return res.status(400).send({ 
+            message: "tag, url, date, title, location are required",
+            success: false
+        });
     }
 
     const user = await prisma.user.findFirst({
@@ -49,7 +61,10 @@ router.post("/:user_id", async (req, res) => {
     });
 
     if (!user) {
-        return res.status(400).send({ message: "user does not exist" });
+        return res.status(400).send({ 
+            message: "user does not exist",
+            success: false
+        });
     }
 
     date = new Date(date);
@@ -85,6 +100,7 @@ router.post("/:user_id", async (req, res) => {
         return res.status(200).send({
             message: "favorite added",
             favorite,
+            success: true
         });
     }
 
@@ -117,6 +133,7 @@ router.post("/:user_id", async (req, res) => {
     return res.status(200).send({
         message: "favorite cached and added",
         favorite,
+        success: true
     });
 
 });
@@ -125,7 +142,10 @@ router.delete("/:user_id/:favorite_id", async (req, res) => {
     const { user_id, favorite_id } = req.params;
 
     if (!user_id || !favorite_id) {
-        return res.status(400).send({ message: "user_id and favorite_id are required" });
+        return res.status(400).send({ 
+            message: "user_id and favorite_id are required",
+            success: false
+        });
     }
 
     const favorite = await prisma.favorite.findFirst({
@@ -135,7 +155,10 @@ router.delete("/:user_id/:favorite_id", async (req, res) => {
     });
 
     if (!favorite) {
-        return res.status(400).send({ message: "favorite does not exist" });
+        return res.status(400).send({ 
+            message: "favorite does not exist",
+            success: false 
+        });
     }
 
     await prisma.favorite.delete({
@@ -144,7 +167,10 @@ router.delete("/:user_id/:favorite_id", async (req, res) => {
         },
     });
 
-    return res.status(200).send({ message: "favorite deleted" });
+    return res.status(200).send({ 
+        message: "favorite deleted",
+        success: true
+    });
 });
 
 module.exports = router;
