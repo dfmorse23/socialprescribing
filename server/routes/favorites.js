@@ -21,6 +21,9 @@ router.get("/:user_id", async (req, res) => {
         where: {
             userId: user_id,
         },
+        include: {
+            event: true,
+        },
     });
 
     return res.send(favorites);
@@ -116,6 +119,32 @@ router.post("/:user_id", async (req, res) => {
         favorite,
     });
 
+});
+
+router.delete("/:user_id/:favorite_id", async (req, res) => {
+    const { user_id, favorite_id } = req.params;
+
+    if (!user_id || !favorite_id) {
+        return res.status(400).send({ message: "user_id and favorite_id are required" });
+    }
+
+    const favorite = await prisma.favorite.findFirst({
+        where: {
+            id: favorite_id,
+        },
+    });
+
+    if (!favorite) {
+        return res.status(400).send({ message: "favorite does not exist" });
+    }
+
+    await prisma.favorite.delete({
+        where: {
+            id: favorite_id,
+        },
+    });
+
+    return res.status(200).send({ message: "favorite deleted" });
 });
 
 module.exports = router;
