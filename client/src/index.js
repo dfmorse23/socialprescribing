@@ -26,15 +26,16 @@ const theme = createTheme({
   palette: {
     bluePrimary: "#4361EE",
     blueSecondary: "#7B8CEC",
-    backgroundColor: "#FAFAFA",
-    titleColor: "#4361EE",
+    backgroundColor: "#FFFFFF",
+    titleColor: "#363C57",
+    textColor: "#363C57",
     greyPrimary: "#363C57",
     greyMedium: "#535874",
     greyLight: "#7F85A0",
   },
   shape: {
     roundBtn: '100px',
-  },
+  }, 
   typography: {
     fontFamily: [
       'Poppins',
@@ -44,7 +45,7 @@ const theme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <HashRouter>

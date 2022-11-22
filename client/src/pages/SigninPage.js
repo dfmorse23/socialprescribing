@@ -8,7 +8,7 @@ import SigninForm from '../components/auth/SigninForm';
 
 const useStyles = makeStyles((theme) => ({
   pagebody: {
-    backgroundColor: theme.palette.backgroundcolor,
+    backgroundColor: theme.palette.backgroundColor,
   },
   pagecontainer: {
     padding: '0',

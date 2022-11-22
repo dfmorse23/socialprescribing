@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   fullPage: {
     width: '100vw',
     height: '100vh',
-    backgroundColor: theme.palette.backgroundcolor,
+    backgroundColor: theme.palette.backgroundColor,
   },
   errorTitle: {
     marginBottom: '0',

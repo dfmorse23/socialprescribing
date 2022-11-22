@@ -46,10 +46,10 @@ export default function LandingPage(props) {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <CssBaseline />
-      <Container maxWidth="lg">
-        <Header title="social prescribing." />
+      <Container maxWidth="lg" >
+        <Header title="social prescribing usa." />
         {/* <main> */}
         <EventsWithSelectors
           // borderRadius="10"
@@ -60,8 +60,8 @@ export default function LandingPage(props) {
         {/* </main> */}
       </Container>
       <Footer
-        title="social prescribing."
-        description="Fill your social prescription today!"
+        title="social prescribing usa."
+        // description="Fill your social prescription today!"gi
       />
     </React.Fragment>
   );
