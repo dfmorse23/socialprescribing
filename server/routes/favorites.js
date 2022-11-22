@@ -9,13 +9,13 @@ const prisma = require("../../prisma/client");
  * delete favorites?
  */
 
-router.get("/:user_id", async (req, res) => {
-    const { user_id } = req.params;
+router.get("/", async (req, res) => {
     // console.log(req.params);
+    const user_id = req.session.user.id;
 
     if (!user_id) {
-        return res.status(400).send({ 
-            message: "user_id is required",
+        return res.status(401).send({ 
+            message: "not authenticated",
             success: false
         });
     }
@@ -35,14 +35,14 @@ router.get("/:user_id", async (req, res) => {
     });
 });
 
-router.post("/:user_id", async (req, res) => {
-    const { user_id } = req.params;
+router.post("/", async (req, res) => {
+    const user_id = req.session.user.id;
     let { tag, url, date, title, location } = req.body;
     // console.log(req.body);
 
     if (!user_id) {
-        return res.status(400).send({ 
-            message: "user_id is required",
+        return res.status(401).send({ 
+            message: "not authenticated",
             success: false 
         });
     }
@@ -138,12 +138,20 @@ router.post("/:user_id", async (req, res) => {
 
 });
 
-router.delete("/:user_id/:favorite_id", async (req, res) => {
-    const { user_id, favorite_id } = req.params;
+router.delete("/:favorite_id", async (req, res) => {
+    const { favorite_id } = req.params;
+    const user_id = req.session.user.id;
 
-    if (!user_id || !favorite_id) {
+    if (!user_id) {
+        return res.status(401).send({
+            message: "not authenticated",
+            success: false
+        });
+    }
+
+    if (!favorite_id) {
         return res.status(400).send({ 
-            message: "user_id and favorite_id are required",
+            message: "favorite_id are required",
             success: false
         });
     }
