@@ -38,7 +38,9 @@ const title = {
   title: "Find a Social Prescription",
   description:
     "Take control of your wellness by finding local resources and community activities that can help you thrive. Search 100+ curated links and resources for social prescriptions in your neighbourhood.",
-  image: "https://source.unsplash.com/tvc5imO5pXk/2400x1275",
+  // image: require("../images/bg.jpg"),
+  image:
+    "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1138&q=80",
   imgText: "main image description",
 };
 
@@ -46,9 +48,9 @@ export default function LandingPage(props) {
   const classes = useStyles();
 
   return (
-    <React.Fragment >
+    <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg" >
+      <Container maxWidth="lg">
         <Header title="social prescribing usa." />
         {/* <main> */}
         <EventsWithSelectors
