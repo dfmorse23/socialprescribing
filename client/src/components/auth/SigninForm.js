@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, FormControl, OutlinedInput, FormLabel, Grid, Link, Button } from '@material-ui/core';
+import { FormControl, OutlinedInput, FormLabel, Grid, Link, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 import axios /* `u` is a variable that is being used to store the value of the `useState` hook. */
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SigninForm(props) {
   const history = useHistory();
   const classes = useStyles();
-  const isOpen = props.isModalOpen || false
+  // const isOpen = props.isModalOpen || false
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validationError, setValidationError] = useState()
@@ -115,48 +115,48 @@ export default function SigninForm(props) {
     setLoading(false)
   }
 
-  const body = (
-    <div className={classes.paper}>
-      <Grid>
-        <p>Welcome back</p>
-        <h2>Login to your account</h2>
-      </Grid>
-      <form className={classes.root} noValidate autoComplete="off">
-        <FormControl className={classes.formControl} required variant={"outlined"}>
-          <FormLabel className={classes.formLabel} htmlFor="email" shrink='false' name="email">Email</FormLabel>
-          <OutlinedInput id="email" aria-describedby="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </FormControl>
+  // const body = (
+  //   <div className={classes.paper}>
+  //     <Grid>
+  //       <p>Welcome back</p>
+  //       <h2>Login to your account</h2>
+  //     </Grid>
+  //     <form className={classes.root} noValidate autoComplete="off">
+  //       <FormControl className={classes.formControl} required variant={"outlined"}>
+  //         <FormLabel className={classes.formLabel} htmlFor="email" shrink='false' name="email">Email</FormLabel>
+  //         <OutlinedInput id="email" aria-describedby="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+  //       </FormControl>
 
-        <FormControl className={classes.formControl} required variant={"outlined"}>
-          <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
-          <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </FormControl>
+  //       <FormControl className={classes.formControl} required variant={"outlined"}>
+  //         <FormLabel className={classes.formLabel} htmlFor="password" shrink='false' name="password">Password</FormLabel>
+  //         <OutlinedInput id="password" aria-describedby="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+  //       </FormControl>
 
-        {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
+  //       {validationError ? <p style={{ color: 'red' }}>{validationError}</p> : ''}
 
 
-        <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
-          Login Now
-        </Button>
+  //       <Button disabled={loading} variant="contained" color="primary" className={`${classes.button} ${classes.submit}`} type="Submit" onClick={handleSubmit}>
+  //         Login Now
+  //       </Button>
 
-        <Grid container
-          direction="row"
-          justifyContent="flex-start"
-          alignItems="center"
-        >
-          <Grid item>
-            <p>Don't have an account? &nbsp;</p>
-          </Grid>
-          <Grid item>
-            <Link href="/#/signup/" variant="body2">
-              Join Today
-            </Link>
-          </Grid>
-        </Grid>
+  //       <Grid container
+  //         direction="row"
+  //         justifyContent="flex-start"
+  //         alignItems="center"
+  //       >
+  //         <Grid item>
+  //           <p>Don't have an account? &nbsp;</p>
+  //         </Grid>
+  //         <Grid item>
+  //           <Link href="/#/signup/" variant="body2">
+  //             Join Today
+  //           </Link>
+  //         </Grid>
+  //       </Grid>
 
-      </form >
-    </div >
-  );
+  //     </form >
+  //   </div >
+  // );
 
   return (
     <div className={classes.paper}>

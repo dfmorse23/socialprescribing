@@ -235,7 +235,7 @@ export default function EventsWithSelectors(props) {
             alignItems="center"
           >
             <h2 style={{ margin: '50px 20px', color: '#535874'}}> Discover local activities near you </h2>
-            <img src={emptyState} alt="empty state image" />
+            <img src={emptyState} alt="empty state" />
 
           </Grid>
         }
