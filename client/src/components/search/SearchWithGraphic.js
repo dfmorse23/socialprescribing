@@ -79,7 +79,7 @@ export default function SearchWithGraphic(props) {
       <CardContent className={classes.titleCard}>
         <Paper
           className={classes.title}
-          style={{ backgroundImage: `url(${title.image})`, backgroundPositionY: -300 }}
+          style={{ backgroundImage: `url(${title.image})`, backgroundRepeat: 'no-repeat' }}
         >
           <div className={classes.overlay} />
           <div className={classes.titleGrouping}>
