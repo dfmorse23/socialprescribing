@@ -43,11 +43,11 @@ const headerSections = [
     url: "https://socialprescribingusa.com/about.html",
     action: "url",
   },
-  {
-    title: "Learn More",
-    url: "https://socialprescribingusa.com/about.html",
-    action: "modal",
-  },
+  // {
+  //   title: "Learn More",
+  //   url: "https://socialprescribingusa.com/about.html",
+  //   action: "modal",
+  // },
 ];
 
 const Header = (props) => {
