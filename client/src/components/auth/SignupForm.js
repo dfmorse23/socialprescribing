@@ -109,6 +109,9 @@ export default function SignupForm(props) {
   return (
     <React.Fragment>
       <div className={classes.paper}>
+        <Link href="/#/" variant="body2">
+          ← Back
+        </Link>
         <Grid>
           <p>Welcome,</p>
           <h2>Create an Account</h2>

@@ -160,6 +160,9 @@ export default function SigninForm(props) {
 
   return (
     <div className={classes.paper}>
+      <Link href="/#/" variant="body2">
+        ← Back
+      </Link>
       <Grid>
         <p>Welcome back</p>
         <h2>Login to your account</h2>
