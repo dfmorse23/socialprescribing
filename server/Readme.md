@@ -9,7 +9,10 @@ We are using POSTGRESQL as our database. So, you need to have a postgresql serve
 brew install postgresql
 brew services start postgresql
 ```
-
+- Create a new database using the command: 
+```bash
+createdb [name]
+```
 - Make sure that DATABASE_URL is in the ROOT PROJECT .env file
 - Ensure you have proper env variables set. (Refer to .env.sample)
 - Install all dependencies and deploy schema to database using the command: 
