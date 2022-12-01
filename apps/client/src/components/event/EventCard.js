@@ -194,9 +194,7 @@ export default function EventCard(props) {
               className={classes.iconButton}
               aria-label="add to favorites"
               // onClick={() => handleLike()}
-            >
-              {/* {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />} */}
-            </IconButton>
+            ></IconButton>
             <Button
               variant="contained"
               size="small"
@@ -223,6 +221,7 @@ export default function EventCard(props) {
         </Alert>
       </Snackbar>
       <EventModal
+        altText={`${event.title} image`}
         sig={props.sig}
         imageUrl={
           event.image
