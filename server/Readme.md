@@ -9,8 +9,14 @@ We are using POSTGRESQL as our database. So, you need to have a postgresql serve
 brew install postgresql
 brew services start postgresql
 ```
-
+- Create a new database using the command: 
+```bash
+createdb [name]
+```
 - Make sure that DATABASE_URL is in the ROOT PROJECT .env file
+```bash
+ postgres://YourUserName:YourPassword@localHost:5432/YourDatabaseName
+```
 - Ensure you have proper env variables set. (Refer to .env.sample)
 - Install all dependencies and deploy schema to database using the command: 
 ```bash
@@ -32,6 +38,7 @@ or
 ```bash
 yarn prisma migrate deploy
 ```
+# Routes
 
 ## GET /v2/auth/check
 returns a block of data that is being stored in the session

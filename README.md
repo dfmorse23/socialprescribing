@@ -22,6 +22,10 @@ sudo npm install -g yarn
 yarn initialize
 ```
 
+### Please read the [server README](/server/Readme.md) for more information on setting up the server
+
+
+
 ## Run project while developing
 
 ```bash 
