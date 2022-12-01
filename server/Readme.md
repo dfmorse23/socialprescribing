@@ -32,6 +32,7 @@ or
 ```bash
 yarn prisma migrate deploy
 ```
+# Routes
 
 ## GET /v2/auth/check
 returns a block of data that is being stored in the session
