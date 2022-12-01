@@ -14,6 +14,9 @@ brew services start postgresql
 createdb [name]
 ```
 - Make sure that DATABASE_URL is in the ROOT PROJECT .env file
+```bash
+ postgres://YourUserName:YourPassword@localHost:5432/YourDatabaseName
+```
 - Ensure you have proper env variables set. (Refer to .env.sample)
 - Install all dependencies and deploy schema to database using the command: 
 ```bash
