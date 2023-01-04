@@ -1,29 +1,37 @@
-import { Box, Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react";
 import { ReactComponent as MainLogo } from "../images/logo.svg";
 import React from "react";
 
 const Nav = () => {
   return (
-    <Flex p="5" w={"100%"} justify="space-around">
-      <Flex>
+    <Flex p={10} w={"100%"} justify="space-around">
+      {/* Logo and Title Text -------------------------- */}
+      <Flex align="center">
+        {/* Logo SVG */}
         <MainLogo />
-        <Heading size={"md"} paddingLeft={2} fontWeight>
-          social prescribing usa
+        <Heading
+          fontSize={"24px"}
+          fontWeight={600}
+          paddingLeft={2}
+          color={"text"}
+        >
+          social prescribing usa.
         </Heading>
       </Flex>
-      <Flex>
-        <ButtonGroup>
-          <Button size={"s"} variant={"link"} color="Text">
+      {/* Nav Buttons -------------------------- */}
+      <Flex color={"Text"}>
+        <ButtonGroup size={"s"} fontWeight={""}>
+          <Button variant={"link"} color={"text"}>
             Home
           </Button>
-          <Button size={"s"} variant={"link"} color="Text">
+          <Button variant={"link"} color={"text"}>
             Find
           </Button>
-          <Button size={"s"} variant={"link"} color="Text">
+          <Button variant={"link"} color={"text"}>
             About
           </Button>
-          <Button size={"s"} bg="primary" color={"white"} p={2}>
-            Login
+          <Button bg="primary" color={"white"} p={2}>
+            Sign In
           </Button>
         </ButtonGroup>
       </Flex>
