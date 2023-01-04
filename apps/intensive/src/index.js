@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "@fontsource/poppins";
+import theme from "./utils/theme";
 
 // Importing pages ---------------------
 import Home from "./pages/Home";
@@ -11,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // Using React Router Dom for routes to pages and wrapping it with Chakra UI
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
