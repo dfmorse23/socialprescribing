@@ -6,9 +6,10 @@ import Search from "../components/SearchBar";
 const Home = () => {
   return (
     <>
-      <Box w={"100%"} h={"100vh"} bg="white">
+      <Box w={"100%"} h={"100vh"} bg="white" bg="white">
 
         {/* Box holding Image and text */}
+
 
         <Box w={"100%"} h={"450px"}>
           {/* Image Flex*/}
@@ -58,12 +59,17 @@ const Home = () => {
 
           {/* Search Bar */}
 
+
+          {/* Search Bar */}
+
           <Flex justify={"center"} mt="-6">
             <Search />
           </Flex>
         </Box>
 
+
       </Box>
+      <Footer />
       <Footer />
     </>
   );
