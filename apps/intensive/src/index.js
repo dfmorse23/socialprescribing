@@ -16,6 +16,9 @@ import "@fontsource/poppins/700.css";
 
 // Importing pages ---------------------
 import Home from "./pages/Home";
+import App from "./pages/App";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +35,11 @@ root.render(
         <ChakraProvider theme={theme}>
           <Router>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route element={<App />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+              </Route>
             </Routes>
           </Router>
         </ChakraProvider>

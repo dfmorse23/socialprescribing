@@ -1,13 +1,10 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import Nav from "../components/Nav";
 
 const Home = () => {
   return (
     <>
       <Box w={"100%"} h={"100vh"}>
-        <Nav />
-
         {/* Box holding Image and text */}
         <Box pos={"relative"} w={"100%"} h={"400px"}>
           <Image

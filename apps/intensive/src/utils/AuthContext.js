@@ -6,13 +6,13 @@ import Loading from "../components/Loading";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const { data, status } = useQuery("session", checkAuth);
 
   useEffect(() => {
     if (status === "success") {
-      setCurrentUser(data.user);
+      setUser(data.user);
       setLoading(false);
     } else if (status === "error") {
       setLoading(false);
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ currentUser }}>
+    <AuthContext.Provider value={{ user }}>
       {!loading && children ? children : <Loading />}
     </AuthContext.Provider>
   );
