@@ -11,7 +11,7 @@ import { Search, MapPin } from "react-feather";
 const SearchBar = () => {
   return (
     <>
-      <Flex w="600px" h={"45px"} align={"center"}>
+      <Flex w={["300px", "600px", "600px", "600px"]} h={"45px"} align={"center"}>
         <InputGroup shadow={"2xl"}>
           <InputLeftElement pointerEvents={"none"}>
             <MapPin size={20} color="#B2B6C6" />
