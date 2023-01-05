@@ -11,7 +11,13 @@ const redis = require("redis");
 const app = express();
 
 // middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   const RedisStore = connectRedis(session);
