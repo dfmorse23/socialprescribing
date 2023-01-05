@@ -34,30 +34,33 @@ const Signup = () => {
     }
   }, [user, navigate]);
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (!email || !password) {
-        setValidationError("Please fill out all fields.");
-        return;
-      } else {
-        setValidationError("");
-        setLoading(true);
-        await axios
-          .post(`${API_URL}/v2/auth/login`, { email, password })
-          .then((res) => {
-            if (res.data.success) {
-              window.location.href = "/";
-            } else {
-              setValidationError(res.data.message);
-            }
-          });
-      }
-    } catch (err) {
-      console.log(err);
-      setValidationError("Invalid credentials. Please try again.");
+    setLoading(true)
+    if (password !== confirmPassword) {
+      return setValidationError("Passwords do not match");
+    } else if (password.length < 6) {
+      return setValidationError("Password must be at least 6 characters");
+    } else if (
+      name.length < 1 ||
+      email.length < 1 ||
+      password.length < 1 ||
+      confirmPassword.length < 1
+    ) {
+      return setValidationError("Please fill out all fields");
+    } else {
+      setValidationError("");
+      await axios
+        .post(`${API_URL}/v2/auth/signup`, { name, email, password })
+        .then((res) => {
+          setLoading(false)
+          if (res.data.success) {
+            window.location.href = '/'
+          } else {
+            setValidationError(res.data.message);
+          }
+        });
     }
-    setLoading(false);
   };
 
   if (loadingUser) return null;
@@ -75,7 +78,7 @@ const Signup = () => {
             h="auto"
             p={10}
           >
-            <form style={{ height: "100%" }} onSubmit={handleLogin}>
+            <form style={{ height: "100%" }} onSubmit={handleSubmit}>
               <Flex h="100%" flexDir={"column"} justify="space-between">
                 <VStack spacing={15}>
                   <Text fontWeight={"500"}>Welcome,</Text>
