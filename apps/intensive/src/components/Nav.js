@@ -26,13 +26,9 @@ const Nav = () => {
         </Heading>
       </Flex>
       {/* Nav Buttons -------------------------- */}
-      <Flex color={"Text"} fontSize={["12px"]} ml={2}>
+      <Flex color={"Text"} fontSize={["12px", "12px", "12px", "15px"]} ml={2}>
         <ButtonGroup size={"s"} fontWeight={""}>
-          <Button
-            variant={"link"}
-            color={"text"}
-            onClick={() => navigate("/")}
-          >
+          <Button variant={"link"} color={"text"} onClick={() => navigate("/")}>
             Find
           </Button>
           <Button variant={"link"} color={"text"}>
@@ -43,8 +39,9 @@ const Nav = () => {
             bg="primary"
             color={"white"}
             p={2}
-            // mt={'1'}
-            // mb={'1'}
+            _hover={{
+              bg: "secondary",
+            }}
           >
             Sign In
           </Button>
