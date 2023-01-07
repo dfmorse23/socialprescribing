@@ -1,5 +1,6 @@
-import {QueryClient} from 'react-query'
+import {QueryClient, useMutation} from 'react-query'
 import axios from 'axios'
+import { useToast } from '@chakra-ui/react';
 
 axios.defaults.withCredentials = true;
 
@@ -16,4 +17,27 @@ export const getEvents = (zipcode) => {
   return axios.post(`${API_URL}/api/scrapers/getEvents/${zipcode}`);
 };
 
-// export conse useGetEvents
+export const useGetEvents = () => {
+   const toast = useToast()
+   return useMutation(getEvents, {
+      onError: (error) => {
+        if (error.response.data.error === 'Non-US zipcode') {
+          toast({
+            title: "Non-US zipcode",
+            description: "Please enter a US zipcode",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          })
+        } else {
+          toast({
+            title: "Error",
+            description: "An error has occured while fetching events",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          })
+        }
+      },
+   })
+}

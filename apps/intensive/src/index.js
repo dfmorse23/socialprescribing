@@ -1,5 +1,5 @@
 import React from "react";
-import {createRoot} from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -30,21 +30,21 @@ const root = createRoot(container);
 root.render(
   // Using React Router Dom for routes to pages and wrapping it with Chakra UI
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
           <Router>
             <Routes>
               <Route element={<App />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
-                <Route path='/signup' element={<Signup />} />
+                <Route path="/signup" element={<Signup />} />
               </Route>
             </Routes>
           </Router>
-        </ChakraProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );
 
