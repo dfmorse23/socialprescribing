@@ -1,3 +1,4 @@
+import { Center } from "@chakra-ui/react";
 import React, { useState, useEffect, createContext } from "react";
 import { useQuery } from "react-query";
 import { checkAuth } from "../api";
@@ -19,10 +20,15 @@ const AuthProvider = ({ children }) => {
     }
   }, [status, data]);
 
-
   return (
     <AuthContext.Provider value={{ user }}>
-      {!loading && children ? children : <Loading />}
+      {!loading && children ? (
+        children
+      ) : (
+        <Center w='100%' h='100vh'>
+          <Loading />
+        </Center>
+      )}
     </AuthContext.Provider>
   );
 };

@@ -1,14 +1,43 @@
-import { Box, Heading, Text, Flex, Center, Grid } from "@chakra-ui/react";
-import React from "react";
-import EmptyState from "../components/EmptyState";
-import Footer from "../components/Footer";
+import { Box, Heading, Text, Flex,  useToast } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { useGetEvents } from "../api";
+import Events from "../components/Events";
 import Search from "../components/SearchBar";
-import EventCard from "../components/EventCard";
 
 const Home = () => {
+  const toast = useToast();
+  //getEvents mutation
+  const {
+    mutate,
+    isLoading,
+    isError,
+    data: eventsData,
+  } = useGetEvents();
+
+  useEffect(() => {
+    console.log(eventsData);
+  }, [eventsData]);
+  //gets events using the zip code
+  const handleSearch = (e, zipCode) => {
+    if (e) {
+      // Prevents page from reloading
+      e.preventDefault();
+    }
+    if (zipCode.length !== 5) {
+      toast({
+        title: "Invalid Zip Code",
+        description: "Please enter a valid zip code",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      mutate(zipCode);
+    }
+  };
   return (
     <>
-      <Box w={"100%"} h={"100vh"} bg="white">
+      <Box w={"100%"} h={"100%"} bg="white">
         {/* Box holding Image and text */}
 
         <Box w={"100%"} h={"450px"}>
@@ -58,15 +87,10 @@ const Home = () => {
           {/* Search Bar */}
 
           <Flex justify={"center"} mt="-6">
-            <Search />
+            <Search handleSearch={handleSearch} />
           </Flex>
         </Box>
-        <Center h={"100%"} w={"100%"}>
-          {/* <EmptyState /> */}
-          <EventCard />
-        </Center>
-
-        <Footer />
+        <Events eventsData={eventsData} isLoading={isLoading} isError={isError} />
       </Box>
     </>
   );

@@ -1,16 +1,24 @@
-import { Flex } from "@chakra-ui/react"
-import { Outlet } from "react-router-dom"
-import Nav from "../components/Nav"
+import { Flex } from "@chakra-ui/react";
+import { Outlet } from "react-router-dom";
+import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 
 const App = () => {
   return (
     <>
-    <Flex flexDir='column' w='100%' h='100vh'>
-      <Nav />
-      <Outlet />
-    </Flex>
+      <Flex
+        justify={"space-between"}
+        flexDir="column"
+        w="100%"
+        h={"auto"}
+        minH="100vh"
+      >
+        <Nav />
+        <Outlet />
+        <Footer />
+      </Flex>
     </>
-  )
-}
+  );
+};
 
-export default App 
+export default App;
