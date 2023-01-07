@@ -36,7 +36,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
     if (password !== confirmPassword) {
       return setValidationError("Passwords do not match");
     } else if (password.length < 6) {
@@ -49,6 +48,7 @@ const Signup = () => {
     ) {
       return setValidationError("Please fill out all fields");
     } else {
+    setLoading(true)
       setValidationError("");
       await axios
         .post(`${API_URL}/v2/auth/signup`, { name, email, password })

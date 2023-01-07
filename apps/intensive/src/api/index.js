@@ -11,3 +11,9 @@ export const checkAuth = async () => {
   const res = await axios.get(`${API_URL}/v2/auth/check`);
   return res.data;
 };
+
+export const getEvents = (zipcode) => {
+  return axios.post(`${API_URL}/api/scrapers/getEvents/${zipcode}`);
+};
+
+// export conse useGetEvents
