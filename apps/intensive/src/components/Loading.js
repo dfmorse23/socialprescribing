@@ -6,7 +6,6 @@ const Loading = () => {
   return (
     <>
       <Flex>
-        {/* <h1>Loading</h1> */}
         <Heading>Loading{" "}</Heading>
         <ScaleLoader color={'black'} />
       </Flex>

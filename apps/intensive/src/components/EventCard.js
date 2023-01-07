@@ -6,43 +6,34 @@ import {
   Img,
   Flex,
   Center,
-  useColorModeValue,
   HStack,
   Icon,
 } from "@chakra-ui/react";
-// import { BsArrowUpRight, BsHeartFill, BsHeart } from 'react-icons/bs';
 import { Heart, ArrowUpRight } from "react-feather";
 
-const EventCard = () => {
+const EventCard = ({ event, imageSeed }) => {
   const [liked, setLiked] = useState(false);
 
   return (
     <Center py={6}>
       <Box
-        w="s"
+        w={{ base: 320, sm: 300, md: 250, lg: 300 }}
         rounded={"sm"}
-        my={5}
-        mx={[0, 5]}
         overflow={"hidden"}
         bg="white"
-        // border={"1px"}
         borderColor="gray.10"
-        // boxShadow={useColorModeValue("6px 6px 0 #4361EE", "6px 6px 0 cyan")}
-        // shadow={"md"}
       >
-        <Box
-          h={"180px"}
-          // borderBottom={"1px"}
-          // borderColor="black"
-        >
+        <Box h={"180px"}>
           <Img
             src={
-              "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              event.image
+                ? event.image
+                : `https://picsum.photos/seed/${imageSeed}/2000/2000`
             }
             roundedTop={"sm"}
             objectFit="cover"
-            h="full"
-            w="full"
+            h="100%"
+            w="100%"
             alt={"Blog Image"}
             shadow={"md"}
             borderRadius={2}
@@ -59,20 +50,14 @@ const EventCard = () => {
             borderRadius={5}
           >
             <Text fontSize={"xs"} fontWeight="medium">
-              Tag
+              {event.tag}
             </Text>
           </Box>
-          <Heading fontSize={"2xl"} noOfLines={1} color={"text"}>
-            Title
+          <Heading fontSize={"md"} noOfLines={2} color={"text"}>
+            {event.title}
           </Heading>
-          <Text color={"text"} noOfLines={2}>
-            Description
-          </Text>
         </Box>
-        <HStack
-          // borderTop={"1px"}
-          color="black"
-        >
+        <HStack color="black">
           <Flex
             p={4}
             alignItems="center"
@@ -80,6 +65,7 @@ const EventCard = () => {
             roundedBottom={"sm"}
             cursor={"pointer"}
             w="full"
+            _hover={{ color: "primary" }}
           >
             <Text fontSize={"md"} fontWeight={"semibold"}>
               View more
@@ -91,9 +77,9 @@ const EventCard = () => {
             alignItems="center"
             justifyContent={"space-between"}
             roundedBottom={"sm"}
-            // borderLeft={"1px"}
             cursor="pointer"
             onClick={() => setLiked(!liked)}
+            _hover={{ color: "primary" }}
           >
             {liked ? (
               <Icon as={Heart} fill="red" color={"red"} fontSize={"24px"} />

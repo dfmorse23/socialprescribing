@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react";
-import { ReactComponent as MainLogo } from "../images/logo.svg";
+import { ReactComponent as MainLogo } from "../assets/images/logo.svg";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 const Nav = () => {

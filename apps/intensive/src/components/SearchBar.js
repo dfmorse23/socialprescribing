@@ -27,9 +27,10 @@ const SearchBar = ({handleSearch}) => {
         h={"45px"}
         align={"center"}
         flexDir="column"
+        
       >
         <form style={{width: '100%'}} onSubmit={(e) => handleSearch(e, zipCode)}>
-        <InputGroup shadow={"2xl"}>
+        <InputGroup rounded={20} shadow={"2xl"}>
           <InputLeftElement pointerEvents={"none"}>
             <Icon as={MapPin} w={25} h={25} color="#B2B6C6" />
           </InputLeftElement>
