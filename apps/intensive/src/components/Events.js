@@ -1,10 +1,12 @@
-import { Center, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Center, Flex, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
 import EventCard from "./EventCard";
 import EmptyState from "./EmptyState";
 import Loading from "./Loading";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Events = ({ eventsData, isLoading, isError }) => {
+  const [data, setData] = useState(eventsData);
+
   useEffect(() => {
     if (eventsData && eventsData.data) {
       console.log(eventsData.data[1]);
@@ -24,10 +26,9 @@ const Events = ({ eventsData, isLoading, isError }) => {
       <Flex mt={10} h="100%">
         {eventsData && eventsData.data.length > 0 ? (
           <>
-            <Grid
+            <SimpleGrid
               w="100%"
-              templateColumns="repeat(auto-fit, minmax(280px, 1fr))"
-              autoRows={"inherit"}
+              columns={{ base: 1, md: 2, lg: 3}}
               gap={10}
               mt={5}
             >
@@ -52,7 +53,7 @@ const Events = ({ eventsData, isLoading, isError }) => {
                   </Center>
                 </GridItem>
               ))}
-            </Grid>
+            </SimpleGrid>
           </>
         ) : (
           <Center h={"100%"} w={"100%"}>
