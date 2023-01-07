@@ -1,5 +1,5 @@
 import { Center, Text } from "@chakra-ui/react";
-import { ReactComponent as Empty } from "../images/emptyStateImage.svg";
+import { ReactComponent as Empty } from "../assets/images/emptyStateImage.svg";
 
 import React from "react";
 

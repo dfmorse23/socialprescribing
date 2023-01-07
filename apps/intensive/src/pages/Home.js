@@ -1,5 +1,5 @@
 import { Box, Heading, Text, Flex,  useToast } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React from "react";
 import { useGetEvents } from "../api";
 import Events from "../components/Events";
 import Search from "../components/SearchBar";
@@ -14,9 +14,7 @@ const Home = () => {
     data: eventsData,
   } = useGetEvents();
 
-  useEffect(() => {
-    console.log(eventsData);
-  }, [eventsData]);
+ 
   //gets events using the zip code
   const handleSearch = (e, zipCode) => {
     if (e) {
@@ -45,7 +43,7 @@ const Home = () => {
 
           <Flex
             // Settings for the image
-            bgImage={require("../images/bg.jpg")}
+            bgImage={require("../assets/images/bg.jpg")}
             bgPosition="center"
             bgRepeat="no-repeat"
             bgSize="cover"
