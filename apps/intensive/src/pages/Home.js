@@ -1,8 +1,9 @@
-import { Box, Heading, Text, Flex, Center } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Center, Grid } from "@chakra-ui/react";
 import React from "react";
 import EmptyState from "../components/EmptyState";
 import Footer from "../components/Footer";
 import Search from "../components/SearchBar";
+import EventCard from "../components/EventCard";
 
 const Home = () => {
   return (
@@ -61,8 +62,10 @@ const Home = () => {
           </Flex>
         </Box>
         <Center h={"100%"} w={"100%"}>
-          <EmptyState />
+          {/* <EmptyState /> */}
+          <EventCard />
         </Center>
+
         <Footer />
       </Box>
     </>
