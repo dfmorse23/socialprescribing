@@ -1,5 +1,6 @@
-import { Box, Heading, Text, Flex } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Center } from "@chakra-ui/react";
 import React from "react";
+import EmptyState from "../components/EmptyState";
 import Footer from "../components/Footer";
 import Search from "../components/SearchBar";
 
@@ -59,8 +60,11 @@ const Home = () => {
             <Search />
           </Flex>
         </Box>
+        <Center h={"100%"} w={"100%"}>
+          <EmptyState />
+        </Center>
+        <Footer />
       </Box>
-      <Footer />
     </>
   );
 };
