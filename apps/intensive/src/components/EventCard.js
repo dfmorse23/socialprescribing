@@ -40,6 +40,7 @@ const EventCard = ({ event, imageSeed }) => {
           />
         </Box>
         <Box p={4}>
+          {/* Tag on card aka "Mental Health" -------------------*/}
           <Box
             bg="#F3F4F6"
             display={"inline-block"}
@@ -53,11 +54,15 @@ const EventCard = ({ event, imageSeed }) => {
               {event.tag}
             </Text>
           </Box>
+          {/* Title  -------------------*/}
+
           <Heading fontSize={"md"} noOfLines={2} color={"text"}>
             {event.title}
           </Heading>
         </Box>
+        {/* Bottom of card ------------------- */}
         <HStack color="black">
+          {/* Button to open up modal for more information */}
           <Flex
             p={4}
             alignItems="center"
@@ -72,6 +77,7 @@ const EventCard = ({ event, imageSeed }) => {
             </Text>
             <ArrowUpRight />
           </Flex>
+          {/* Like Button ------------------- */}
           <Flex
             p={4}
             alignItems="center"

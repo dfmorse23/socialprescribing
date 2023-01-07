@@ -11,10 +11,10 @@ const Footer = () => {
         align={"center"}
         color="gray.30"
         bg={"#F3F4F6"}
-        
-
       >
-        <Text fontSize={"12px"}>ⓒ 2022 Social Prescribing USA. All rights reserved.</Text>
+        <Text fontSize={"12px"}>
+          ⓒ 2022 Social Prescribing USA. All rights reserved.
+        </Text>
       </Flex>
     </>
   );
