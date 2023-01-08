@@ -8,11 +8,11 @@ import {
   ModalCloseButton,
   ModalFooter,
   Flex,
-  Text,
-  Box,
   Icon,
   Link,
   Spacer,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import { Heart, ExternalLink, MapPin } from "react-feather";
