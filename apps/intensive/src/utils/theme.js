@@ -19,6 +19,7 @@ const theme = extendTheme({
     gray: {
 
       10: "#363C57",
+      
       // Icon Color
       20: "#535874",
 
