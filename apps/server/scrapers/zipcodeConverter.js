@@ -23,7 +23,6 @@ const convertZipcode = async (zipcode) => {
   const state = res["data"]["state"];
   const city = citySplit.join(" ");
   const country = res["data"]["country"];
-  console.log(state);
   return { state, city, country };
 };
 
