@@ -67,8 +67,21 @@ const EventModal = ({
           <ModalFooter
           // justifyContent={"space-between"}
           >
+            <Box
+              bg="#F3F4F6"
+              display={"inline-block"}
+              px={2}
+              py={1}
+              color="text"
+              // mb={2}
+              borderRadius={5}
+            >
+              <Text fontSize={"xs"} fontWeight="medium">
+                {tag}
+              </Text>
+            </Box>
             {/* HEART --------------------------------- */}
-            <Flex justify={"start"} w="100%">
+            <Flex justify={"end"} w="100%">
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Link
                   borderRadius={5}
