@@ -45,7 +45,7 @@ const EventModal = ({
             bg="white"
             rounded={"full"}
             size="sm"
-            _hover={{ bg: "#F3F4F6", color: 'red' }}
+            _hover={{ bg: "#F3F4F6", color: "red" }}
           />
           <ModalBody>
             <Text color="text">
@@ -79,17 +79,16 @@ const EventModal = ({
                 {tag}
               </Text>
             </Box>
-            {/* HEART --------------------------------- */}
+            {/* Button to LIKE --------------------------------- */}
             <Flex justify={"end"} w="100%">
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Link
                   borderRadius={5}
                   bg="#F3F4F6"
-                  // p={1}
-                  pl={2}
-                  pr={2}
+                  // padding top, bottom, left, right
                   pt={2}
                   pb={1}
+                  px={2}
                   mr={2}
                   _hover={{ cursor: "pointer" }}
                 >
@@ -100,7 +99,8 @@ const EventModal = ({
                   />
                 </Link>
               </motion.div>
-              {/* SITE --------------------------------- */}
+
+              {/* Button to SITE --------------------------------- */}
 
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Link
