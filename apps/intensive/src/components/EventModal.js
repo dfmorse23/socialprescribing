@@ -10,6 +10,8 @@ import {
   Flex,
   Icon,
   Link,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import { Heart, ExternalLink, MapPin } from "react-feather";
