@@ -47,29 +47,7 @@ const Events = ({ eventsData, isLoading, isError }) => {
               gap={10}
               mt={5}
             >
-              {eventsData.data[0].EventBrite.map((event, index) => (
-                <GridItem key={index}>
-                  <Center>
-                    <EventCard
-                      openModal={openModal}
-                      imageSeed={index + Math.random() * 100}
-                      event={event}
-                    />
-                  </Center>
-                </GridItem>
-              ))}
-              {eventsData.data[1].Volunteering.map((event, index) => (
-                <GridItem key={index}>
-                  <Center>
-                    <EventCard
-                      openModal={openModal}
-                      imageSeed={index + Math.random() * 100}
-                      event={event}
-                    />
-                  </Center>
-                </GridItem>
-              ))}
-              {eventsData.data[2].Generic.map((event, index) => (
+              {eventsData.data.map((event, index) => (
                 <GridItem key={index}>
                   <Center>
                     <EventCard
