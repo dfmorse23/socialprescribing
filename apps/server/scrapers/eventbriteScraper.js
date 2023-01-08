@@ -58,7 +58,6 @@ const getCategories = async (zipcode, categories) => {
   const country = zipcodeData.country;
 
   let eventsList = [];
-
   for (let i = 0; i < categories.length; i++) {
     let category = await getCategory(
       categories[i],
@@ -112,10 +111,9 @@ const getCategory = async (category, city, state, country, zipcode) => {
   if (!(category in categoryUrls)) {
     throw new Error(`Unsupported EventBrite category: ${category}`);
   }
-
+	
   let url = `https://www.eventbrite.com/d/${state}--${city}/${categoryUrls[category].url}/${zipcode}/`;
-
-  let events = await axios.get(url);
+	let events = await axios.get(url);
   // console.log(`--------${events.data}-----`)
   const $ = cheerio.load(events.data);
   const eventTitles = [];
@@ -129,7 +127,6 @@ const getCategory = async (category, city, state, country, zipcode) => {
     // EventBrite lists titles twice with this class. Only record every other title.
     if (i % 2 == 1) {
       const title = $(el).text();
-
       // Remove characters after pipe (usually contains extra description)
       eventTitles.push(title.split("|")[0]);
     }

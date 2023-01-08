@@ -8,8 +8,6 @@ import {
   ModalCloseButton,
   ModalFooter,
   Flex,
-  Text,
-  Box,
   Icon,
   Link,
   Spacer,

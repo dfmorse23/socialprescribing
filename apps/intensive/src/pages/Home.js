@@ -1,21 +1,38 @@
-import { Box, Heading, Text, Flex,  useToast } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Heading, Text, Flex, useToast } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { useGetEvents } from "../api";
 import Events from "../components/Events";
+import Filters from "../components/Filters";
 import Search from "../components/SearchBar";
 
 const Home = () => {
   const toast = useToast();
-  // const [events, setEvents] = useState([]);
-  //getEvents mutation
-  const {
-    mutate,
-    isLoading,
-    isError,
-    data: eventsData,
-  } = useGetEvents();
+  const [filter, setFilter] = useState(["All"]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const { mutate, isLoading, isError, data: eventsData } = useGetEvents({});
+  
+  /* 
+    This is a useEffect hook that is used to filter the events based 
+    on the filter selected. It uses the tag property of the event.
+  */
+  useEffect(() => {
+    if (eventsData && eventsData.data) {
+      if (filter[0] === "All") {
+        setFilteredEvents([...eventsData.data]);
+      } else {
+        let filtered = [];
+        for (let i = 0; i < filter.length; i++) {
+          for (let j = 0; j < eventsData.data.length; j++) {
+            if (filter[i] === eventsData.data[j].tag) {
+              filtered.push(eventsData.data[j]);
+            }
+          }
+        }
+        setFilteredEvents([...filtered]);
+      }
+    }
+  }, [filter, eventsData]);
 
- 
   //gets events using the zip code
   const handleSearch = (e, zipCode) => {
     if (e) {
@@ -34,6 +51,7 @@ const Home = () => {
       mutate(zipCode);
     }
   };
+
   return (
     <>
       <Box w={"100%"} h={"100%"} bg="white">
@@ -89,7 +107,13 @@ const Home = () => {
             <Search handleSearch={handleSearch} />
           </Flex>
         </Box>
-        <Events eventsData={eventsData} isLoading={isLoading} isError={isError} />
+        <Filters filter={filter} setFilter={setFilter} />
+        <Events
+          filter={filter}
+          eventsData={filteredEvents}
+          isLoading={isLoading}
+          isError={isError}
+        />
       </Box>
     </>
   );
