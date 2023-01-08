@@ -46,11 +46,11 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             display={"inline-block"}
             px={2}
             py={1}
-            color="gray.10"
+            color="text"
             mb={2}
             borderRadius={5}
           >
-            <Text fontSize={"xs"} fontWeight="medium">
+            <Text fontSize={"xs"} fontWeight="medium" >
               {event.tag}
             </Text>
           </Box>
