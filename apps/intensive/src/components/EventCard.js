@@ -39,7 +39,14 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             borderRadius={2}
           />
         </Box>
+<<<<<<< HEAD
         <Box p={4}>
+=======
+        <Box 
+        pt={4}
+        >
+          {/* Tag on card aka "Mental Health" -------------------*/}
+>>>>>>> 2715cfa (finished modal, added placeholder description and photo)
           <Box
             bg="#F3F4F6"
             display={"inline-block"}
@@ -59,7 +66,8 @@ const EventCard = ({ event, imageSeed, openModal }) => {
         </Box>
         <HStack color="black">
           <Flex
-            p={4}
+            p={2}
+            // bg='red'
             alignItems="center"
             justifyContent={"space-between"}
             roundedBottom={"sm"}
