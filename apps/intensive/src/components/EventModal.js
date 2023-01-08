@@ -10,11 +10,10 @@ import {
   Flex,
   Icon,
   Link,
-  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import { Heart, ExternalLink, MapPin } from "react-feather";
-import { motion } from "framer-motion";
+import {motion} from 'framer-motion'
 
 const EventModal = ({
   isOpen,
