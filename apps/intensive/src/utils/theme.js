@@ -11,7 +11,10 @@ const theme = extendTheme({
     background: "#FFFFFF",
     primary: "#4361EE",
     secondary: "#7B8CEC",
+
     text: "#363C57",
+    
+
     gray: {
       10: "#363C57",
       20: "#535874",

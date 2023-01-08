@@ -10,11 +10,9 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Heart, ArrowUpRight } from "react-feather";
-import EventModal from "./EventModal";
 
-const EventCard = ({ event, imageSeed }) => {
+const EventCard = ({ event, imageSeed, openModal }) => {
   const [liked, setLiked] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <Center py={6}>
@@ -73,7 +71,7 @@ const EventCard = ({ event, imageSeed }) => {
             cursor={"pointer"}
             w="full"
             _hover={{ color: "primary" }}
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => openModal(event)}
           >
             <Text fontSize={"md"} fontWeight={"semibold"}>
               View more
