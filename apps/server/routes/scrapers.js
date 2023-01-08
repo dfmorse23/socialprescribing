@@ -2,58 +2,41 @@ const express = require("express");
 const { getCategories } = require("../scrapers/eventbriteScraper");
 const { getVolunteering } = require("../scrapers/volunteerScraper");
 const { getGenericLinks } = require("../scrapers/genericLinks");
-const { convertZipcode } = require("../scrapers/zipcodeConverter");
 const router = express.Router();
+const {checkCache} = require("../libs/cache");
+const { redisClient } = require("../libs/redis");
 
-router.post("/getEvents/:zipcode", (req, res) => {
-	let zipcode = req.params.zipcode;
+router.post("/getEvents/:zipcode", checkCache, async (req, res) => {
+  try {
+    let zipcode = req.params.zipcode;
+    const eventBriteData = await getCategories(zipcode, [
+      "health",
+      "music",
+      "charity",
+      "community",
+      "family",
+      "hobbies",
+      "home",
+      "spirituality",
+      "school",
+      "sports",
+      "travel",
+    ]);
+    const volunteermatchData = await getVolunteering(zipcode);
+    const genericLinks = await getGenericLinks(zipcode);
+		//store for 1 hour
+		let data = [
+      ...eventBriteData,
+      ...volunteermatchData.Volunteering,
+      ...genericLinks,
+    ]
+		redisClient.setex(zipcode, 3600, JSON.stringify(data))
+    return res.json(data);
+  } catch (e) {
+    console.log(e);
 
-	// Temporarily hardcode Cleveland data
-	const intZipcode = parseInt(zipcode);
-	if (intZipcode >= 44101 && intZipcode <= 44199) {
-		console.log("Queried Cleveland zipcode");
-
-		let data = require("../mock_data.json");
-		return res.json(data);
-	}
-
-	const eventBriteData = new Promise((resolve, reject) => {
-		getCategories(zipcode, [
-			"health",
-			"music",
-			"charity",
-			"community",
-			"family",
-			"hobbies",
-			"home",
-			"spirituality",
-			"school",
-			"sports",
-			"travel",
-		])
-			.then((events) => resolve(events))
-			.catch((err) => reject(err));
-	});
-
-	const volunteermatchData = new Promise((resolve, reject) => {
-		getVolunteering(zipcode)
-			.then((events) => resolve(events))
-			.catch((err) => reject(err));
-	});
-
-	const genericLinks = new Promise((resolve, reject) => {
-		getGenericLinks(zipcode)
-			.then((links) => resolve(links))
-			.catch((err) => reject(err));
-	});
-
-	Promise.all([eventBriteData, volunteermatchData, genericLinks])
-		.then((vals) => {
-			return res.json(vals);
-		})
-		.catch((err) => {
-			return res.status(400).json({ error: `${err}` });
-		});
+    res.status(400).json({ error: `${e}` });
+  }
 });
 
 module.exports = router;

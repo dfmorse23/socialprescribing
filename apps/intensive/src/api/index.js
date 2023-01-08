@@ -39,5 +39,10 @@ export const useGetEvents = () => {
           })
         }
       },
+      onSuccess: (data) => {
+        return {
+          data: []
+        }
+      }
    })
 }

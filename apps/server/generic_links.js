@@ -1,4 +1,4 @@
-[
+const genericLinks = [
     {
       "title": "Adoption & Foster Care",
       "url": "https://www.findhelp.org/care/adoption-%26-foster-care?postal=",
@@ -1507,3 +1507,7 @@
       "image": "https://images.unsplash.com/photo-1476231790875-016a80c274f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZW1wbG95bWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
     }
   ]
+
+  module.exports = {
+    genericLinks
+  }
