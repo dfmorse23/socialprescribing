@@ -10,12 +10,17 @@ import {
   Flex,
   Icon,
   Link,
+  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
-import { Heart, ExternalLink } from "react-feather";
+import { Heart, ExternalLink, MapPin } from "react-feather";
 import { motion } from "framer-motion";
 
-const EventModal = ({ isOpen, onClose, event: { title, tag, location, url } }) => {
+const EventModal = ({
+  isOpen,
+  onClose,
+  event: { title, tag, location, url },
+}) => {
   return (
     // Title, Description, Name, Tag, Website, Location,
     <>
@@ -23,8 +28,25 @@ const EventModal = ({ isOpen, onClose, event: { title, tag, location, url } }) =
         <ModalOverlay />
 
         <ModalContent>
-          <ModalHeader color={'text'}>{title}</ModalHeader>
-          <ModalCloseButton />
+          <Flex h={"200px"} w={"100%"}>
+            <Img
+              src={`https://picsum.photos/seed/12/2000/2000`}
+              roundedTop={"sm"}
+              objectFit="cover"
+              h="100%"
+              w="100%"
+              // alt={"Blog Image"}
+              shadow={"sm"}
+              // borderRadius={5}
+            />
+          </Flex>
+          <ModalHeader color={"text"}>{title}</ModalHeader>
+          <ModalCloseButton
+            bg="white"
+            rounded={"full"}
+            size="sm"
+            _hover={{ bg: "#F3F4F6", color: 'red' }}
+          />
           <ModalBody>
             <Text color="text">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
@@ -44,8 +66,21 @@ const EventModal = ({ isOpen, onClose, event: { title, tag, location, url } }) =
           <ModalFooter
           // justifyContent={"space-between"}
           >
+            <Box
+              bg="#F3F4F6"
+              display={"inline-block"}
+              px={2}
+              py={1}
+              color="text"
+              // mb={2}
+              borderRadius={5}
+            >
+              <Text fontSize={"xs"} fontWeight="medium">
+                {tag}
+              </Text>
+            </Box>
             {/* HEART --------------------------------- */}
-            <Flex justify={"start"} w="100%">
+            <Flex justify={"end"} w="100%">
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Link
                   borderRadius={5}
@@ -88,19 +123,6 @@ const EventModal = ({ isOpen, onClose, event: { title, tag, location, url } }) =
                 </Link>
               </motion.div>
             </Flex>
-            <Box
-              bg="#F3F4F6"
-              display={"inline-block"}
-              px={2}
-              py={1}
-              color="text"
-              mb={2}
-              borderRadius={5}
-            >
-              <Text fontSize={"xs"} fontWeight="medium">
-                {tag}
-              </Text>
-            </Box>
           </ModalFooter>
         </ModalContent>
       </Modal>
