@@ -17,7 +17,7 @@ export const getEvents = (zipcode) => {
   return axios.post(`${API_URL}/api/scrapers/getEvents/${zipcode}`);
 };
 
-export const useGetEvents = () => {
+export const useGetEvents = (filter) => {
    const toast = useToast()
    return useMutation(getEvents, {
       onError: (error) => {
@@ -40,9 +40,9 @@ export const useGetEvents = () => {
         }
       },
       onSuccess: (data) => {
-        return {
-          data: []
-        }
+        if (filter !== 'all') {
+          
+        } 
       }
    })
 }
