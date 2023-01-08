@@ -39,7 +39,9 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             borderRadius={2}
           />
         </Box>
-        <Box p={4}>
+        <Box 
+        pt={4}
+        >
           {/* Tag on card aka "Mental Health" -------------------*/}
           <Box
             bg="#F3F4F6"
@@ -64,7 +66,8 @@ const EventCard = ({ event, imageSeed, openModal }) => {
         <HStack color="black">
           {/* Button to open up modal for more information */}
           <Flex
-            p={4}
+            p={2}
+            // bg='red'
             alignItems="center"
             justifyContent={"space-between"}
             roundedBottom={"sm"}
