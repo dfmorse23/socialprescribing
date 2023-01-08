@@ -12,12 +12,16 @@ const theme = extendTheme({
     primary: "#4361EE",
     secondary: "#7B8CEC",
 
+    // PRIMARY TEXT COLOR
     text: "#363C57",
     
 
     gray: {
+
       10: "#363C57",
+      // Icon Color
       20: "#535874",
+
       30: "#7F85A0",
     },
   },
