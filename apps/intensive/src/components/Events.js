@@ -1,12 +1,27 @@
-import { Center, Flex, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Center,
+  Flex,
+  GridItem,
+  SimpleGrid,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import EventCard from "./EventCard";
 import EmptyState from "./EmptyState";
 import Loading from "./Loading";
 import { useEffect, useState } from "react";
+import EventModal from "./EventModal";
 
 const Events = ({ eventsData, isLoading, isError }) => {
   const [data, setData] = useState(eventsData);
-  
+  const [event, setEvent] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const openModal = (event) => {
+    setEvent(event);
+    onOpen();
+  };
+
   useEffect(() => {
     if (eventsData && eventsData.data) {
       console.log(eventsData.data[1]);
@@ -28,14 +43,40 @@ const Events = ({ eventsData, isLoading, isError }) => {
           <>
             <SimpleGrid
               w="100%"
-              columns={{ base: 1, md: 2, lg: 3}}
+              columns={{ base: 1, md: 2, lg: 3 }}
               gap={10}
               mt={5}
             >
-              {eventsData.data.map((event, index) => (
+              {eventsData.data[0].EventBrite.map((event, index) => (
                 <GridItem key={index}>
                   <Center>
-                    <EventCard imageSeed={index + (Math.random() * 100)} event={event} />
+                    <EventCard
+                      openModal={openModal}
+                      imageSeed={index + Math.random() * 100}
+                      event={event}
+                    />
+                  </Center>
+                </GridItem>
+              ))}
+              {eventsData.data[1].Volunteering.map((event, index) => (
+                <GridItem key={index}>
+                  <Center>
+                    <EventCard
+                      openModal={openModal}
+                      imageSeed={index + Math.random() * 100}
+                      event={event}
+                    />
+                  </Center>
+                </GridItem>
+              ))}
+              {eventsData.data[2].Generic.map((event, index) => (
+                <GridItem key={index}>
+                  <Center>
+                    <EventCard
+                      openModal={openModal}
+                      imageSeed={index + Math.random() * 100}
+                      event={event}
+                    />
                   </Center>
                 </GridItem>
               ))}
@@ -47,6 +88,13 @@ const Events = ({ eventsData, isLoading, isError }) => {
           </Center>
         )}
       </Flex>
+      {event && (
+        <EventModal
+          isOpen={isOpen}
+          onClose={onClose}
+          event={event}
+        />
+      )}
     </>
   );
 };

@@ -7,80 +7,57 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalFooter,
+  Flex,
+  Text,
+  Box,
+  Icon,
 } from "@chakra-ui/react";
 import React from "react";
+import { Heart, ExternalLink } from "react-feather";
 
-// const EventModal = ({
-//   open,
-//   handleClose,
-//   title,
-//   imageUrl,
-//   eventUrl,
-//   altText,
-// }) => {
-//   return (
-//     <>
-//       <Modal open={open} handleClose={handleClose}>
-//         <img
-//           style={{
-//             width: "100%",
-//             height: "300px",
-//             borderTopLeftRadius: 5,
-//             borderTopRightRadius: 5,
-//           }}
-//           alt={altText}
-//           src={imageUrl}
-//         />
-//         <Box sx={{ p: 2 }}>
-//           {/* <Typography id="modal-modal-title" variant="h4" component="h3">
-//               {title}
-//             </Typography> */}
-//           <div
-//             id="modal-modal-description"
-//             style={{
-//               display: "flex",
-//               marginTop: 10,
-//               height: "100%",
-//               wordBreak: "break-word",
-//             }}
-//           >
-//             {/* <Typography style={{ fontWeight: "bold", wordBreak: "normal" }}>
-//                 Website:
-//               </Typography> */}
-//             <Link
-//               target="_blank"
-//               rel="noopener"
-//               underlin="none"
-//               style={{ fontSize: 18, marginLeft: 5 }}
-//               href={eventUrl}
-//             >
-//               {eventUrl}
-//             </Link>
-//           </div>
-//         </Box>
-//       </Modal>
-//       ;
-//     </>
-//   );
-// };
-// export default EventModal;
-
-const EventModal = (props) => {
+const EventModal = ({ isOpen, onClose, event: { title, tag, location } }) => {
   return (
+    // Title, Description, Name, Tag, Website, Location,
     <>
-
-      <Modal isOpen={props.isOpen} onClose={props.onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{/* <Lorem count={2} /> */}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={props.onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
+          <ModalBody>
+            <Flex>
+              {/* <Text>{tag}</Text> */}
+              {/* <Text>{location}</Text> */}
+            </Flex>
+          </ModalBody>
+          <ModalFooter
+            // bg={"red"}
+            justifyContent={"space-between"}
+          >
+            <Flex
+              // bg="red"
+              bg="#F3F4F6"
+              borderRadius={5}
+              justifyContent="center"
+              alignSelf={"center"}
+              // p={1}
+              p={2}
+            >
+              <Icon as={ExternalLink} size={15} color="gray.20" />
+            </Flex>
+            {/* <Box
+              bg="#F3F4F6"
+              display={"inline-block"}
+              px={2}
+              py={1}
+              color="gray.30"
+              mb={2}
+              borderRadius={5}
+            >
+              <Text fontSize={"xs"} fontWeight="medium">
+                {tag}
+              </Text>
+            </Box> */}
           </ModalFooter>
         </ModalContent>
       </Modal>
