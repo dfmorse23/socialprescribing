@@ -10,7 +10,6 @@ import {
   Flex,
   Icon,
   Link,
-  Spacer,
   Text,
   Box,
 } from "@chakra-ui/react";
