@@ -3,17 +3,14 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  Button,
   ModalBody,
   ModalCloseButton,
   ModalFooter,
   Flex,
-  Text,
-  Box,
   Icon,
 } from "@chakra-ui/react";
 import React from "react";
-import { Heart, ExternalLink } from "react-feather";
+import {  ExternalLink } from "react-feather";
 
 const EventModal = ({ isOpen, onClose, event: { title, tag, location } }) => {
   return (

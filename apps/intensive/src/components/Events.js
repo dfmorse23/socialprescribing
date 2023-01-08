@@ -9,11 +9,10 @@ import {
 import EventCard from "./EventCard";
 import EmptyState from "./EmptyState";
 import Loading from "./Loading";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EventModal from "./EventModal";
 
-const Events = ({ eventsData, isLoading, isError }) => {
-  const [data, setData] = useState(eventsData);
+const Events = ({ eventsData, isLoading, isError, filter }) => {
   const [event, setEvent] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -21,12 +20,6 @@ const Events = ({ eventsData, isLoading, isError }) => {
     setEvent(event);
     onOpen();
   };
-
-  useEffect(() => {
-    if (eventsData && eventsData.data) {
-      console.log(eventsData.data[1]);
-    }
-  }, [eventsData]);
 
   if (isLoading)
     return (
@@ -39,7 +32,7 @@ const Events = ({ eventsData, isLoading, isError }) => {
   return (
     <>
       <Flex mt={10} h="100%">
-        {eventsData && eventsData.data.length > 0 ? (
+        {eventsData && eventsData.length > 0 ? (
           <>
             <SimpleGrid
               w="100%"
@@ -47,7 +40,7 @@ const Events = ({ eventsData, isLoading, isError }) => {
               gap={10}
               mt={5}
             >
-              {eventsData.data.map((event, index) => (
+              {eventsData.map((event, index) => (
                 <GridItem key={index}>
                   <Center>
                     <EventCard
