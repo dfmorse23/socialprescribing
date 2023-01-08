@@ -50,7 +50,7 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             mb={2}
             borderRadius={5}
           >
-            <Text fontSize={"xs"} fontWeight="medium">
+            <Text fontSize={"xs"} fontWeight="medium" >
               {event.tag}
             </Text>
           </Box>
