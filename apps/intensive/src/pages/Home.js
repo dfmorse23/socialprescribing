@@ -69,7 +69,7 @@ const Home = () => {
             </Heading>
             <Text
               textAlign={"center"}
-              fontSize={["10px", "15px", "15px", "15px"]}
+              fontSize={["12px", "15px", "15px", "15px"]}
               color="white"
               w={["80%", "45%", "45%", "45%"]}
               fontWeight={600}
