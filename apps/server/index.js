@@ -1,14 +1,14 @@
-const express = require("express");
-var cors = require("cors");
-
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
+const express = require("express");
+const cors = require("cors");
+
+
 const session = require("express-session");
-const connectRedis = require("connect-redis");
-const redis = require("redis");
 
 const app = express();
+const { redisClient, RedisStore } = require("./libs/redis");
 
 // middleware
 app.use(
@@ -19,43 +19,24 @@ app.use(
 );
 
 app.use(express.json());
-if (process.env.NODE_ENV === "production") {
-  const RedisStore = connectRedis(session);
-  const redisClient = redis.createClient({
-    url: process.env.REDIS_URL,
-  });
-  app.use(
-    session({
-      store:
-        process.env.NODE_ENV === "production"
-          ? new RedisStore({ client: redisClient })
-          : null,
-      secret: process.env.SESSION_SECRET,
+
+app.use(
+  session({
+    store:
+      process.env.NODE_ENV === "production"
+        ? new RedisStore({ client: redisClient })
+        : null,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      secure: false,
+      sameSite: "lax",
       resave: false,
-      saveUninitialized: false,
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        secure: false,
-        sameSite: "lax",
-        resave: false,
-      },
-    })
-  );
-} else {
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        secure: false,
-        sameSite: "lax",
-        resave: false,
-      },
-    })
-  );
-}
+    },
+  })
+);
 
 // Routes
 const scraper = require("./routes/scrapers.js");

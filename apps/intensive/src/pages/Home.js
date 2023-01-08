@@ -1,11 +1,12 @@
 import { Box, Heading, Text, Flex,  useToast } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useGetEvents } from "../api";
 import Events from "../components/Events";
 import Search from "../components/SearchBar";
 
 const Home = () => {
   const toast = useToast();
+  // const [events, setEvents] = useState([]);
   //getEvents mutation
   const {
     mutate,
