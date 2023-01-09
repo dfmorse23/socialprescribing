@@ -8,14 +8,15 @@ import {
   ModalCloseButton,
   ModalFooter,
   Flex,
-  Icon,
-  Link,
   Text,
   Box,
+  Icon,
+  Link,
+  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import { Heart, ExternalLink, MapPin } from "react-feather";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 const EventModal = ({
   isOpen,
@@ -67,63 +68,6 @@ const EventModal = ({
           <ModalFooter
           // justifyContent={"space-between"}
           >
-            <Box
-              bg="#F3F4F6"
-              display={"inline-block"}
-              px={2}
-              py={1}
-              color="text"
-              // mb={2}
-              borderRadius={5}
-            >
-              <Text fontSize={"xs"} fontWeight="medium">
-                {tag}
-              </Text>
-            </Box>
-            {/* HEART --------------------------------- */}
-            <Flex justify={"end"} w="100%">
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Link
-                  borderRadius={5}
-                  bg="#F3F4F6"
-                  // p={1}
-                  pl={2}
-                  pr={2}
-                  pt={2}
-                  pb={1}
-                  mr={2}
-                  _hover={{ cursor: "pointer" }}
-                >
-                  <Icon
-                    as={Heart}
-                    color="gray.20"
-                    _hover={{ color: "primary" }}
-                  />
-                </Link>
-              </motion.div>
-              {/* SITE --------------------------------- */}
-
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Link
-                  href={url}
-                  isExternal
-                  borderRadius={5}
-                  bg="#F3F4F6"
-                  // p={1}
-                  pl={2}
-                  pr={2}
-                  pt={2}
-                  pb={1}
-                  _hover={{ cursor: "pointer" }}
-                >
-                  <Icon
-                    as={ExternalLink}
-                    color="gray.20"
-                    _hover={{ color: "primary" }}
-                  />
-                </Link>
-              </motion.div>
-            </Flex>
             <Box
               bg="#F3F4F6"
               display={"inline-block"}
