@@ -12,7 +12,6 @@ import {
   Text,
   Box,
   Link,
-  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import { Heart, ExternalLink, MapPin } from "react-feather";
@@ -50,12 +49,6 @@ const EventModal = ({
             _hover={{ bg: "#F3F4F6", color: "red" }}
           />
           <ModalBody>
-            <Text color="text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
-              ex consectetur, fuga, soluta culpa nihil minus neque nostrum hic,
-              praesentium magni voluptatibus natus maiores dolorum. Consequuntur
-              alias magnam ea vel!
-            </Text>
             <Flex color={"gray.30"} mt={5} align="center">
               <Icon as={MapPin} w={"15px"} h={"15px"} color="#B2B6C6" />
 
