@@ -46,7 +46,7 @@ const EventModal = ({
             bg="white"
             rounded={"full"}
             size="sm"
-            _hover={{ bg: "#F3F4F6", color: 'red' }}
+            _hover={{ bg: "#F3F4F6", color: "red" }}
           />
           <ModalBody>
             <Text color="text">
@@ -59,8 +59,8 @@ const EventModal = ({
               <Icon as={MapPin} w={"15px"} h={"15px"} color="#B2B6C6" />
 
               {/* I DONT KNOW WHY BUT REGION SHOWS THE CITY AND CITY SHOWS THE STATE DONT ASK ME WHY  */}
-              <Text px={1}>{location.region},</Text>
               <Text px={1}>{location.city},</Text>
+              <Text px={1}>{location.region},</Text>
               <Text px={1}>{location.postalCode}</Text>
             </Flex>
           </ModalBody>
