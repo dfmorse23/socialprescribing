@@ -13,7 +13,7 @@ const { redisClient, RedisStore } = require("./libs/redis");
 // middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", 'https://social.eliaswambugu.com'],
     credentials: true,
   })
 );
