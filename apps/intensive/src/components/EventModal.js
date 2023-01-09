@@ -9,12 +9,9 @@ import {
   ModalFooter,
   Flex,
   Icon,
-  Link,
   Text,
   Box,
-  Icon,
   Link,
-  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import { Heart, ExternalLink, MapPin } from "react-feather";

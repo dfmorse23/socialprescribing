@@ -5,9 +5,9 @@ import { ScaleLoader } from "react-spinners";
 const Loading = () => {
   return (
     <>
-      <Flex>
-        <Heading>Loading{" "}</Heading>
-        <ScaleLoader color={'black'} />
+      <Flex flexDir={"column"} justify="center" align={"center"}>
+        <Heading color="text">Loading </Heading>
+        <ScaleLoader color={"black"} />
       </Flex>
     </>
   );
