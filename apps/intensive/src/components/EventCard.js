@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Box,
   Heading,
@@ -10,10 +10,10 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Heart, ArrowUpRight } from "react-feather";
+import { AuthContext } from "../utils/AuthContext";
 
 const EventCard = ({ event, imageSeed, openModal }) => {
-  const [liked, setLiked] = useState(false);
-
+  const { user } = useContext(AuthContext);
   return (
     <Center py={6}>
       <Box
@@ -50,7 +50,7 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             mb={2}
             borderRadius={5}
           >
-            <Text fontSize={"xs"} fontWeight="medium" >
+            <Text fontSize={"xs"} fontWeight="medium">
               {event.tag}
             </Text>
           </Box>
@@ -74,21 +74,22 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             </Text>
             <ArrowUpRight />
           </Flex>
-          <Flex
-            p={4}
-            alignItems="center"
-            justifyContent={"space-between"}
-            roundedBottom={"sm"}
-            cursor="pointer"
-            onClick={() => setLiked(!liked)}
-            _hover={{ color: "primary" }}
-          >
-            {liked ? (
-              <Icon as={Heart} fill="red" color={"red"} fontSize={"24px"} />
-            ) : (
-              <Icon as={Heart} fontSize={"24px"} />
-            )}
-          </Flex>
+          {user && (
+            <Flex
+              p={4}
+              alignItems="center"
+              justifyContent={"space-between"}
+              roundedBottom={"sm"}
+              cursor="pointer"
+              _hover={{ color: "primary" }}
+            >
+              {event.favoriteId ? (
+                <Icon as={Heart} fill="red" color={"red"} fontSize={"24px"} />
+              ) : (
+                <Icon as={Heart} fontSize={"24px"} />
+              )}
+            </Flex>
+          )}
         </HStack>
       </Box>
     </Center>

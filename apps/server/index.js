@@ -22,10 +22,7 @@ app.use(express.json());
 
 app.use(
   session({
-    store:
-      process.env.NODE_ENV === "production"
-        ? new RedisStore({ client: redisClient })
-        : null,
+    store: new RedisStore({ client: redisClient }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,

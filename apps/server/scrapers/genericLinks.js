@@ -1,16 +1,43 @@
 const { convertZipcode } = require("./zipcodeConverter");
-let path = require("path");
-let fs = require("fs");
-// let jsonPath = path.join(__dirname, "..", "generic_links.json");
+const { prisma } = require("db");
 const { genericLinks } = require("../generic_links");
 
-const getGenericLinks = async (zipcode) => {
+const getGenericLinks = async (zipcode, user) => {
   let zipcodeData = await convertZipcode(zipcode);
   // let genericLinks = JSON.parse(fs.readFileSync(jsonPath).toString());
   let genericLinksZipcoded = [];
   for (let i = 0; i < genericLinks.length; i++) {
-    genericLinks[i]["url"] = `${genericLinks[i]["url"]}${zipcode}`;
-    genericLinks[i]["location"] = {
+		let favoriteId = null
+			
+      if (user) {
+        const event = await prisma.event.findFirst({
+          where: {
+            url: genericLinks[i].url,
+          },
+        });
+
+        if (event) {
+          const prismaUser = await prisma.user.findUnique({
+            where: {
+              id: user.id,
+            },
+            include: {
+              favorites: {
+                include: { event: true },
+              },
+            },
+          });
+
+					prismaUser.favorites.find(favorite => {
+						if (favorite.event.id === event.id) {
+							favoriteId = favorite.id
+						}
+					})
+        }
+      }
+    genericLinks[i].url = `${genericLinks[i].url}${zipcode}`;
+		genericLinks[i].favoriteId = favoriteId
+    genericLinks[i].location = {
       city: zipcodeData["city"],
       country: zipcodeData["country"],
       postalCode: zipcode,

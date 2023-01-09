@@ -15,7 +15,6 @@ import EventModal from "./EventModal";
 const Events = ({ eventsData, isLoading, isError, filter }) => {
   const [event, setEvent] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const openModal = (event) => {
     setEvent(event);
     onOpen();
