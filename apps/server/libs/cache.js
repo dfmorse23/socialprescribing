@@ -3,7 +3,7 @@ const { redisClient } = require("../libs/redis");
 const checkCache = async (req, res, next) => {
   const { zipcode } = req.params;
   const user = req.session.user;
-  const cacheKey = `${user.id}`
+  const cacheKey = `${zipcode}`
   // Replace cacheKey varible with line below when favorites feature is working
   // const cacheKey = `${zipcode}${user ? "-" + user.id : ""}`;
   

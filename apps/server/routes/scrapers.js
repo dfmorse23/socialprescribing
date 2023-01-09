@@ -31,7 +31,7 @@ router.post("/getEvents/:zipcode", checkCache, async (req, res) => {
     const volunteermatchData = await getVolunteering(zipcode, user);
     const genericLinks = await getGenericLinks(zipcode, user);
 
-    const cacheKey = `${user.id}`;
+    const cacheKey = `${zipcode}`;
     // Replace cacheKey varible with line below when favorites feature is working
     // const cacheKey = `${zipcode}${user ? "-" + user.id : ""}`;
 
