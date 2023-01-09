@@ -16,15 +16,16 @@ const Home = () => {
     on the filter selected. It uses the tag property of the event.
   */
   useEffect(() => {
-    if (eventsData && eventsData.data) {
+    if (eventsData && eventsData.data.events) {
+      console.log(eventsData.data)
       if (filter[0] === "All") {
-        setFilteredEvents([...eventsData.data]);
+        setFilteredEvents([...eventsData.data.events]);
       } else {
         let filtered = [];
         for (let i = 0; i < filter.length; i++) {
-          for (let j = 0; j < eventsData.data.length; j++) {
-            if (filter[i] === eventsData.data[j].tag) {
-              filtered.push(eventsData.data[j]);
+          for (let j = 0; j < eventsData.data.events.length; j++) {
+            if (filter[i] === eventsData.data.events[j].tag) {
+              filtered.push(eventsData.data.events[j]);
             }
           }
         }
@@ -113,6 +114,7 @@ const Home = () => {
           eventsData={filteredEvents}
           isLoading={isLoading}
           isError={isError}
+          cacheKey={eventsData?.data?.cacheKey}
         />
       </Box>
     </>

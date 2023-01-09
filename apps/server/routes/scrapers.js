@@ -10,7 +10,7 @@ router.post("/getEvents/:zipcode", checkCache, async (req, res) => {
   try {
     let zipcode = req.params.zipcode;
 		const user = req.session.user;
-		
+
     const eventBriteData = await getCategories(zipcode, [
       "health",
       "music",
@@ -27,14 +27,19 @@ router.post("/getEvents/:zipcode", checkCache, async (req, res) => {
     const volunteermatchData = await getVolunteering(zipcode, user);
     const genericLinks = await getGenericLinks(zipcode, user);
 
-		let data = [
-      ...eventBriteData,
-      ...volunteermatchData,
-      ...genericLinks,
-    ]
+		const cacheKey = `${zipcode}${user ? '-' + user.id : ''}`;
+
+		let data = {
+			cacheKey,
+			events: [
+				...eventBriteData,
+				...volunteermatchData,
+				...genericLinks,
+			]
+		}
 
 		//store for 1 hour
-		redisClient.setex(`${zipcode}${user ? '-' + user.id : ''}`, 3600, JSON.stringify(data))
+		redisClient.setex(cacheKey, 3600, JSON.stringify(data.events))
     return res.json(data);
   } catch (e) {
     console.log(e);

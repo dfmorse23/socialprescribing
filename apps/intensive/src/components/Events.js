@@ -12,9 +12,10 @@ import Loading from "./Loading";
 import { useState } from "react";
 import EventModal from "./EventModal";
 
-const Events = ({ eventsData, isLoading, isError, filter }) => {
+const Events = ({ eventsData, isLoading, isError, filter, cacheKey }) => {
   const [event, setEvent] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const openModal = (event) => {
     setEvent(event);
     onOpen();
@@ -46,6 +47,8 @@ const Events = ({ eventsData, isLoading, isError, filter }) => {
                       openModal={openModal}
                       imageSeed={index + Math.random() * 100}
                       event={event}
+                      index={index}
+                      cacheKey={cacheKey}
                     />
                   </Center>
                 </GridItem>

@@ -40,7 +40,6 @@ const getVolunteering = async (zipcode, user) => {
       });
 
       if (event) {
-        console.log('event found')
         const prismaUser = await prisma.user.findUnique({
           where: {
             id: user.id,

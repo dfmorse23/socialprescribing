@@ -86,7 +86,7 @@ const getCategory = async (category, city, state, country, zipcode, user) => {
   }
 
   let url = `https://www.eventbrite.com/d/${state}--${city}/${categoryUrls[category].url}/${zipcode}/`;
-  let events = await axios.get(url)
+  let events = await axios.get(url);
   if (events.status !== 200) {
     return [];
   } else {

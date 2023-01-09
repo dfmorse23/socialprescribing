@@ -35,7 +35,7 @@ model Event {
   updatedAt              DateTime  @updatedAt @map("updated_at")
   tag String
   url String
-  date DateTime
+  date String
   title String
   location String
   favorites Favorite[] 

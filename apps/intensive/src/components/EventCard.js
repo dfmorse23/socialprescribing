@@ -11,9 +11,28 @@ import {
 } from "@chakra-ui/react";
 import { Heart, ArrowUpRight } from "react-feather";
 import { AuthContext } from "../utils/AuthContext";
+import { useAddFavorite } from "../api";
+import { MoonLoader } from "react-spinners";
 
-const EventCard = ({ event, imageSeed, openModal }) => {
+const EventCard = ({ event, imageSeed, openModal, index, cacheKey }) => {
   const { user } = useContext(AuthContext);
+  const [liked, setLiked] = useState(event.favoriteId);
+  const { mutate: addFavorite, isLoading: addFavoriteLoading } =
+    useAddFavorite(setLiked);
+
+  const handleFavorite = () => {
+    if (!liked) {
+      addFavorite({ 
+        title: event.title,
+        url: event.url,
+        date: JSON.stringify(event.date),
+        tag: event.tag,
+        location: JSON.stringify(event.location),
+        index,
+        cacheKey
+      });
+    }
+  };
   return (
     <Center py={6}>
       <Box
@@ -75,20 +94,27 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             <ArrowUpRight />
           </Flex>
           {user && (
-            <Flex
-              p={4}
-              alignItems="center"
-              justifyContent={"space-between"}
-              roundedBottom={"sm"}
-              cursor="pointer"
-              _hover={{ color: "primary" }}
-            >
-              {event.favoriteId ? (
-                <Icon as={Heart} fill="red" color={"red"} fontSize={"24px"} />
+            <>
+              {addFavoriteLoading ? (
+                <MoonLoader size={24} color="gray" />
               ) : (
-                <Icon as={Heart} fontSize={"24px"} />
+                <Flex
+                  p={4}
+                  alignItems="center"
+                  justifyContent={"space-between"}
+                  roundedBottom={"sm"}
+                  cursor="pointer"
+                  _hover={{ color: "primary" }}
+                  onClick={handleFavorite}
+                >
+                  <Icon
+                    as={Heart}
+                    color={liked ? "red" : "none"}
+                    fontSize={"24px"}
+                  />
+                </Flex>
               )}
-            </Flex>
+            </>
           )}
         </HStack>
       </Box>
