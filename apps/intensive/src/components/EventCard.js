@@ -39,28 +39,17 @@ const EventCard = ({ event, imageSeed, openModal }) => {
             borderRadius={2}
           />
         </Box>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <Box p={4}>
-=======
-        <Box 
-        pt={4}
-        >
-          {/* Tag on card aka "Mental Health" -------------------*/}
->>>>>>> 2715cfa (finished modal, added placeholder description and photo)
-=======
-        <Box p={4}>
->>>>>>> 239ddab (finished filter component)
           <Box
             bg="#F3F4F6"
             display={"inline-block"}
             px={2}
             py={1}
-            color="gray.10"
+            color="text"
             mb={2}
             borderRadius={5}
           >
-            <Text fontSize={"xs"} fontWeight="medium">
+            <Text fontSize={"xs"} fontWeight="medium" >
               {event.tag}
             </Text>
           </Box>
@@ -70,7 +59,8 @@ const EventCard = ({ event, imageSeed, openModal }) => {
         </Box>
         <HStack color="black">
           <Flex
-            p={4}
+            p={2}
+            // bg='red'
             alignItems="center"
             justifyContent={"space-between"}
             roundedBottom={"sm"}
