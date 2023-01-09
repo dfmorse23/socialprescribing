@@ -40,7 +40,8 @@ const Nav = () => {
           >
             About
           </Button>
-          <Button
+          {/* Add when favorites is working */}
+          {/* <Button
             onClick={() => navigate("/login")}
             bg="primary"
             color={"white"}
@@ -50,7 +51,7 @@ const Nav = () => {
             }}
           >
             Sign In
-          </Button>
+          </Button> */}
         </ButtonGroup>
       </Flex>
     </Flex>

@@ -153,14 +153,17 @@ const getCategory = async (category, city, state, country, zipcode, user) => {
     for (let i = 0; i < eventTitles.length; i++) {
       // Add event if no profanity detected
       if (filter.isProfane(eventTitles[i]) == false) {
-        /* It's checking if the user has favorited the event. If they have, it sets the favoriteId to the id
-		 of the favorite. */
+        {/*
+   	 		WARNING: EXPERIMENTAL CODE:
+    		This is for the favorites feature. It is not working yet (fully)
+    
         let favoriteId = null;
 
         if (user) {
           const event = await prisma.event.findFirst({
             where: {
               url: eventUrls[i],
+							title: eventTitles[i],
             },
           });
 
@@ -183,6 +186,7 @@ const getCategory = async (category, city, state, country, zipcode, user) => {
             });
           }
         }
+			*/}
         dataList.push({
           title: eventTitles[i],
           date: {
@@ -197,8 +201,7 @@ const getCategory = async (category, city, state, country, zipcode, user) => {
             virtual: false,
           },
           url: eventUrls[i],
-          favoriteId,
-          image: eventImages[i],
+          image: `https://picsum.photos/seed/${i + Math.random() *1000}/2000/2000`,
           tag: categoryUrls[category].tag,
         });
       }

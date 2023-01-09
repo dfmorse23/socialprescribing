@@ -76,7 +76,7 @@ export const useAddFavorite = (setLiked) => {
 };
 
 const removeFavorite = async (event) => {
-  return axios.delete(`${API_URL}/v2/favorites/${event.favoriteId}`, event);
+  return axios.delete(`${API_URL}/v2/favorites/${event.favoriteId}/${event.cacheKey}/${event.index}`, event);
 };
 
 export const useRemoveFavorite = (setLiked) => {

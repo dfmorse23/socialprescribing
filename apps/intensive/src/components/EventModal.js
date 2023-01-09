@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 const EventModal = ({
   isOpen,
   onClose,
-  event: { title, tag, location, url },
+  event: { title, tag, location, url, image },
 }) => {
   return (
     // Title, Description, Name, Tag, Website, Location,
@@ -31,14 +31,13 @@ const EventModal = ({
         <ModalContent>
           <Flex h={"200px"} w={"100%"}>
             <Img
-              src={`https://picsum.photos/seed/12/2000/2000`}
+              src={image}
               roundedTop={"sm"}
               objectFit="cover"
               h="100%"
               w="100%"
-              // alt={"Blog Image"}
               shadow={"sm"}
-              // borderRadius={5}
+              alt='Event Image'
             />
           </Flex>
           <ModalHeader color={"text"}>{title}</ModalHeader>

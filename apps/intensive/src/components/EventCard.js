@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import {
   Box,
   Heading,
@@ -7,32 +6,42 @@ import {
   Flex,
   Center,
   HStack,
-  Icon,
 } from "@chakra-ui/react";
-import { Heart, ArrowUpRight } from "react-feather";
-import { AuthContext } from "../utils/AuthContext";
-import { useAddFavorite } from "../api";
-import { MoonLoader } from "react-spinners";
+import { ArrowUpRight } from "react-feather";
 
 const EventCard = ({ event, imageSeed, openModal, index, cacheKey }) => {
-  const { user } = useContext(AuthContext);
-  const [liked, setLiked] = useState(event.favoriteId);
-  const { mutate: addFavorite, isLoading: addFavoriteLoading } =
-    useAddFavorite(setLiked);
+  
+  //WARNING: EXPERIMENTAL CODE:
+  //This is for the favorites feature. It is not working yet (fully)
 
-  const handleFavorite = () => {
-    if (!liked) {
-      addFavorite({ 
-        title: event.title,
-        url: event.url,
-        date: JSON.stringify(event.date),
-        tag: event.tag,
-        location: JSON.stringify(event.location),
-        index,
-        cacheKey
-      });
-    }
-  };
+  // const { mutate: addFavorite, isLoading: addFavoriteLoading } =
+  //   useAddFavorite(setLiked);
+
+  // const { mutate: removeFavorite, isLoading: removeFavoriteLoading } =
+  //   useRemoveFavorite(setLiked);
+
+  // const handleFavorite = () => {
+  //   if (!liked) {
+  //     addFavorite({
+  //       title: event.title,
+  //       url: event.url,
+  //       date: JSON.stringify(event.date),
+  //       tag: event.tag,
+  //       location: JSON.stringify(event.location),
+  //       index,
+  //       cacheKey,
+  //     });
+  //   } else {
+  //     removeFavorite({
+  //       favoriteId: liked,
+  //       index,
+  //       cacheKey,
+  //     });
+  //   }
+  // };
+
+  // END OF EXPERIMENTAL CODE
+
   return (
     <Center py={6}>
       <Box
@@ -53,7 +62,7 @@ const EventCard = ({ event, imageSeed, openModal, index, cacheKey }) => {
             objectFit="cover"
             h="100%"
             w="100%"
-            alt={"Blog Image"}
+            alt={"Event Image"}
             shadow={"md"}
             borderRadius={2}
           />
@@ -79,6 +88,7 @@ const EventCard = ({ event, imageSeed, openModal, index, cacheKey }) => {
         </Box>
         <HStack color="black">
           <Flex
+            mt={4}
             // p={2}
             alignItems="center"
             justifyContent={"space-between"}
@@ -93,9 +103,14 @@ const EventCard = ({ event, imageSeed, openModal, index, cacheKey }) => {
             </Text>
             <ArrowUpRight />
           </Flex>
+          {/* 
+          WARNING: EXPERIMENTAL CODE:
+          This is for the favorites feature. It is not working yet (fully)
+    
+
           {user && (
             <>
-              {addFavoriteLoading ? (
+              {addFavoriteLoading || removeFavoriteLoading ? (
                 <MoonLoader size={24} color="gray" />
               ) : (
                 <Flex
@@ -109,13 +124,13 @@ const EventCard = ({ event, imageSeed, openModal, index, cacheKey }) => {
                 >
                   <Icon
                     as={Heart}
-                    color={liked ? "red" : "none"}
+                    color={liked ? "red.500" : "black"}
                     fontSize={"24px"}
                   />
                 </Flex>
               )}
             </>
-          )}
+          )} */}
         </HStack>
       </Box>
     </Center>

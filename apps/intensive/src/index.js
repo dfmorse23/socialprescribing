@@ -17,8 +17,6 @@ import "@fontsource/poppins/700.css";
 // Importing pages ---------------------
 import Home from "./pages/Home";
 import App from "./pages/App";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -37,8 +35,11 @@ root.render(
             <Routes>
               <Route element={<App />}>
                 <Route path="/" element={<Home />} />
+                {/* 
+                Add back when favorites is working
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
+                <Route path="/signup" element={<Signup />} /> 
+                */}
               </Route>
             </Routes>
           </Router>

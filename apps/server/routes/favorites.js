@@ -168,9 +168,9 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:favorite_id/:cache_key/:index", async (req, res) => {
+router.delete("/:favoriteId/:cacheKey/:index", async (req, res) => {
   try {
-    const { favorite_id, cache_key, index } = req.params;
+    const { favoriteId, cacheKey, index } = req.params;
     const user_id = req.session.user.id;
 
     if (!user_id) {
@@ -180,16 +180,16 @@ router.delete("/:favorite_id/:cache_key/:index", async (req, res) => {
       });
     }
 
-    if (!favorite_id) {
+    if (!favoriteId) {
       return res.status(400).send({
-        message: "favorite_id are required",
+        message: "favorite id is required",
         success: false,
       });
     }
 
     const favorite = await prisma.favorite.findFirst({
       where: {
-        id: favorite_id,
+        id: favoriteId,
       },
     });
 
@@ -200,13 +200,13 @@ router.delete("/:favorite_id/:cache_key/:index", async (req, res) => {
       });
     }
 
-    await prisma.favorite.delete({
-      where: {
-        id: favorite_id,
-      },
-    });
+    // await prisma.favorite.delete({
+    //   where: {
+    //     id: favoriteId,
+    //   },
+    // });
 
-    await redisClient.get(cache_key, (err, data) => {
+    await redisClient.get(cacheKey, (err, data) => {
       if (err) {
         console.log(err);
         return;
