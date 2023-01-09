@@ -14,7 +14,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import React from "react";
-import { Heart, ExternalLink, MapPin } from "react-feather";
+import { ExternalLink, MapPin } from "react-feather";
 import { motion } from "framer-motion";
 
 const EventModal = ({
@@ -49,12 +49,6 @@ const EventModal = ({
             _hover={{ bg: "#F3F4F6", color: "red" }}
           />
           <ModalBody>
-            <Text color="text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
-              ex consectetur, fuga, soluta culpa nihil minus neque nostrum hic,
-              praesentium magni voluptatibus natus maiores dolorum. Consequuntur
-              alias magnam ea vel!
-            </Text>
             <Flex color={"gray.30"} mt={5} align="center">
               <Icon as={MapPin} w={"15px"} h={"15px"} color="#B2B6C6" />
 
@@ -80,29 +74,8 @@ const EventModal = ({
                 {tag}
               </Text>
             </Box>
-            {/* HEART --------------------------------- */}
             <Flex justify={"end"} w="100%">
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Link
-                  borderRadius={5}
-                  bg="#F3F4F6"
-                  // p={1}
-                  pl={2}
-                  pr={2}
-                  pt={2}
-                  pb={1}
-                  mr={2}
-                  _hover={{ cursor: "pointer" }}
-                >
-                  <Icon
-                    as={Heart}
-                    color="gray.20"
-                    _hover={{ color: "primary" }}
-                  />
-                </Link>
-              </motion.div>
               {/* SITE --------------------------------- */}
-
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Link
                   href={url}
