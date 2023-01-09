@@ -1,0 +1,22 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "author": "Elias",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "db:migrate:dev": "yarn prisma migrate dev",
+    "db:generate": "yarn prisma generate",
+    "db:pre-build": "yarn prisma migrate deploy && yarn db:generate",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.8.0",
+    "dotenv-safe": "^8.2.0",
+    "prisma": "^4.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
