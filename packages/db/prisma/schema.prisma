@@ -21,27 +21,22 @@ model User {
 
 model Favorite {
   id String @id @default(uuid())
-  
-  eventId String
+  createdAt              DateTime  @default(now()) @map("created_at")
+  updatedAt              DateTime  @updatedAt @map("updated_at")
   event Event @relation(fields: [eventId], references: [id])
-
-  userId String
+  eventId String
   user User @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  userId String
 }
 
 model Event {
   id String @id @default(uuid())
+  createdAt              DateTime  @default(now()) @map("created_at")
+  updatedAt              DateTime  @updatedAt @map("updated_at")
   tag String
   url String
   date DateTime
   title String
   location String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  favorites Favorite[]
+  favorites Favorite[] 
 }
