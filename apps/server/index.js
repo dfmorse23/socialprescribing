@@ -37,13 +37,13 @@ app.use(
 
 // Routes
 const scraper = require("./routes/scrapers.js");
-const database = require("./routes/database.js");
+// const database = require("./routes/database.js");
 const auth = require("./routes/auth.js");
 const favorites = require("./routes/favorites.js");
 
 // LEGACY ROUTES
 app.use("/api/scrapers", scraper);
-app.use("/user", database);
+// app.use("/user", database);
 
 const v2 = express.Router();
 v2.use("/auth", auth);
